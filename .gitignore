@@ -1,0 +1,25 @@
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs / caches
+*.log
+.cache/
+node_modules/
+.python-version
+
+# OS
+Thumbs.db
