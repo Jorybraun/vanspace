@@ -8,15 +8,34 @@
       name="description"
       content="VanSpace: a micro-conference for builders under the stars. In a gigantic saucer — at the H.R. MacMillan Space Centre. Keynotes including Kent C. Dodds and Wes Bos."
     />
-    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="theme-color" content="#e5e0cf" />
+    <link rel="canonical" href="https://vanspace.dev/" />
+
+    <!-- Share card: this page's whole job is to be pasted into a DM -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vanspace.dev/" />
+    <meta property="og:title" content="VanSpace — a micro-conference under the dome" />
+    <meta
+      property="og:description"
+      content="One day, one room, single track. Keynotes from Kent C. Dodds and Wes Bos at the H.R. MacMillan Space Centre, Vancouver."
+    />
+    <meta property="og:image" content="https://vanspace.dev/space-centre-sketch.jpg" />
+    <meta property="og:image:alt" content="Pencil illustration of the MacMillan Space Centre saucer." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VanSpace — a micro-conference under the dome" />
+    <meta
+      name="twitter:description"
+      content="One day, one room, single track. Keynotes from Kent C. Dodds and Wes Bos."
+    />
+    <meta name="twitter:image" content="https://vanspace.dev/space-centre-sketch.jpg" />
     <link rel="icon" href="./logo-mark.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=17" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -24,10 +43,13 @@
     <!-- Sticky event bar -->
     <header class="nav">
       <a class="nav-brand" href="#top" aria-label="VanSpace home">
+        <img class="nav-mark" src="./logo-mark.svg" alt="" />
         <span class="nav-title">VanSpace</span>
+        <span class="nav-status">System 01</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#speakers">Speakers</a>
+        <a href="#film">Film</a>
         <a href="#schedule">Agenda</a>
         <a href="#tickets">Tickets</a>
         <a href="#sponsors">Sponsors</a>
@@ -37,49 +59,61 @@
     </header>
 
     <main id="main">
-      <!-- HERO — JS Nation energy, VanSpace brand -->
-      <section class="hero" id="top">
-        <div class="hero-inner wrap-xl">
-          <div class="hero-copy">
-            <div class="flagship-corner">
-              <span class="flagship-corner-label">Flagship</span>
-              <img
-                class="flagship-corner-logo"
-                src="./cognition-lockup.svg"
-                alt="Cognition"
-              />
-            </div>
-            <p class="eyebrow">Vancouver · MacMillan Space Centre</p>
-            <h1 class="hero-title">VanSpace</h1>
-            <p class="hero-date">Date TBA · One day · Single track</p>
-            <p class="hero-lead">
-              A micro-conference for builders under the stars. In a gigantic
-              saucer — at the H.R. MacMillan Space Centre.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#tickets">Get tickets</a>
-              <a class="btn btn-ghost" href="#speakers">Meet the keynotes</a>
-            </div>
+      <!-- HERO — dithered saucer that scrolls apart into the orbit map.
+           Everything below this section is a conventional conference site. -->
+      <section class="orbit-stage" id="orbit-stage">
+        <div class="orbit-sticky">
+          <canvas
+            id="orbit-canvas"
+            data-src="./space-centre-sketch.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Interactive VanSpace programme. Drag to rotate the orbit. Activate the scene to collapse the system into a wormhole and continue to the line-up."
+          ></canvas>
+
+          <div class="orbit-flagship">
+            <img src="./cognition-lockup.svg" alt="Cognition" />
           </div>
 
-          <div class="hero-art">
-            <div class="hero-art-frame">
-              <img
-                class="hero-building"
-                src="./space-centre-sketch.jpg"
-                alt="MacMillan Space Centre illustration"
-                width="1200"
-                height="675"
-              />
-              <img
-                class="hero-logo-overlay"
-                src="./logo-wordmark.svg"
-                alt="van space .dev"
-              />
+          <div class="orbit-copy" id="orbit-copy">
+            <div class="orbit-copy-panel">
+              <p class="orbit-kicker">Vancouver / System 01</p>
+              <h1 class="orbit-title">A micro-conference under the dome</h1>
+              <p class="orbit-meta">Date TBA · One day · Single track · MacMillan Space Centre, Vancouver</p>
+              <div class="orbit-actions">
+                <a class="btn btn-primary" href="#tickets">Get tickets</a>
+                <a class="btn btn-ghost" href="#speakers">Meet the keynotes</a>
+              </div>
+              <p class="orbit-cue">Scroll to release the poster ↓</p>
             </div>
+
+            <figure class="poster-signal">
+              <div class="poster-art-frame">
+                <img class="poster-art" src="./space-centre-sketch.jpg" alt="Pencil illustration of the H.R. MacMillan Space Centre" />
+                <img class="orbit-wordmark" src="./logo-wordmark.svg" alt="van space .dev" />
+              </div>
+              <figcaption>
+                <span>Date TBA / MacMillan Space Centre</span>
+                <span>Keynotes · Kent C. Dodds · Wes Bos · Vancouver</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="orbit-legend" id="orbit-legend">
+            <div class="row"><span>VanSpace · The day</span><span>Drag to rotate</span></div>
+            <div class="row"><span id="orbit-readout">Keynotes</span><span>2 keynotes confirmed</span></div>
           </div>
         </div>
       </section>
+
+      <div class="chapter-rail" aria-label="VanSpace narrative arc">
+        <span>Break</span>
+        <span>Dissolve</span>
+        <span>Mutate</span>
+        <span>Emerge</span>
+        <span>Fly</span>
+      </div>
 
       <!-- SPEAKERS — high on the page (ticket gravity) -->
       <section id="speakers" class="section">
@@ -167,9 +201,29 @@
         </div>
       </section>
 
+      <!-- SIZZLE -->
+      <section id="film" class="section">
+        <div class="wrap-xl">
+          <p class="eyebrow">The room</p>
+          <h2 class="section-title">One day, one dome</h2>
+          <p class="section-sub">
+            Ninety seconds inside the venue and what the day looks like.
+          </p>
+          <div class="video-frame">
+            <!-- Drop the file in and delete the placeholder:
+                 <video src="./vanspace-sizzle.mp4" poster="./space-centre-sketch.jpg"
+                        controls playsinline preload="metadata"></video> -->
+            <p class="video-placeholder">
+              Sizzle reel<br />
+              Coming soon
+            </p>
+          </div>
+        </div>
+      </section>
+
       <!-- AGENDA -->
       <section id="schedule" class="section section-alt">
-        <div class="wrap">
+        <div class="wrap-xl">
           <p class="eyebrow">Agenda</p>
           <h2 class="section-title">The day</h2>
           <p class="section-sub">
@@ -273,7 +327,7 @@
 
       <!-- ABOUT -->
       <section id="about" class="section">
-        <div class="wrap">
+        <div class="wrap-xl">
           <p class="eyebrow">About</p>
           <h2 class="section-title">One room. High signal. Zero fluff.</h2>
           <div class="about-grid">
@@ -302,7 +356,7 @@
 
       <!-- TICKETS -->
       <section id="tickets" class="section">
-        <div class="wrap">
+        <div class="wrap-xl">
           <p class="eyebrow">Tickets</p>
           <h2 class="section-title">Reserve your seat</h2>
           <p class="section-sub">
@@ -325,13 +379,12 @@
               <a class="btn btn-ghost" href="#tickets">Notify me</a>
             </article>
           </div>
-          <form class="waitlist-block" action="#" onsubmit="return false;">
-            <label for="email-tickets">Get notified when tickets open</label>
-            <div class="inline-form">
-              <input id="email-tickets" type="email" placeholder="Email" required />
-              <button type="submit" class="btn btn-primary">Notify me</button>
-            </div>
-          </form>
+          <div class="waitlist-block" aria-label="Ticket alert status">
+            <p class="waitlist-label">Ticket alerts open when the date is announced.</p>
+            <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=VanSpace%20ticket%20alert">
+              Ask for the date drop
+            </a>
+          </div>
         </div>
       </section>
 
@@ -341,8 +394,9 @@
           <p class="eyebrow">Sponsors</p>
           <h2 class="section-title">Presented with</h2>
           <div class="sponsor-feature">
-            <p class="sponsor-label">Flagship</p>
+            <p class="sponsor-label">System partner 01</p>
             <img src="./cognition-lockup.svg" alt="Cognition" height="72" />
+            <p class="sponsor-credit">Supporting one room of builders under the dome.</p>
           </div>
           <p class="section-sub sponsors-note">
             Other slots open.
@@ -368,5 +422,7 @@
         </div>
       </div>
     </footer>
+    <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
+    <script src="./orbit-hero.js?v=6" defer></script>
   </body>
 </html>

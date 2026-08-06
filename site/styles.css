@@ -1,13 +1,16 @@
 :root {
-  --ground: #f4f0e8;
-  --ground-2: #ebe6dc;
-  --ink: #1a1a1a;
-  --ink-soft: rgba(26, 26, 26, 0.58);
-  --ink-faint: rgba(26, 26, 26, 0.4);
-  --hairline: rgba(26, 26, 26, 0.1);
-  --mist: #8b8499;
-  --mist-deep: #5c5668;
-  --white: #fff;
+  --ground: #e5e0cf;
+  --ground-2: #dcd5bd;
+  --ink: #170073;
+  --ink-soft: rgba(23, 0, 115, 0.7);
+  --ink-faint: rgba(23, 0, 115, 0.48);
+  --hairline: rgba(23, 0, 115, 0.28);
+  --mist: #75699c;
+  --deep: #0600a8;
+  --ink-blue: #0600a8;
+  --display: "IBM Plex Sans", system-ui, sans-serif;
+  --mist-deep: #4b3876;
+  --white: #eee9d8;
   --font: "IBM Plex Sans", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --wrap: 44rem;
@@ -683,5 +686,1027 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+
+/* ============================================================
+   ORBIT HERO
+   Dithered saucer -> orbit map. Cream inverts to deep blue as
+   the stage scrolls. Everything below this section stays on the
+   normal cream marketing palette.
+   ============================================================ */
+
+.orbit-stage {
+  position: relative;
+  height: 320vh;
+  height: 320svh;
+  background: var(--ground);
+}
+
+.orbit-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+#orbit-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+#orbit-canvas:active { cursor: grabbing; }
+
+/* hero copy sits over the dithered plate, then clears out */
+.orbit-copy {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0 1.25rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.orbit-copy > * { pointer-events: auto; }
+.orbit-copy.is-out {
+  opacity: 0;
+  transform: translateY(-16px);
+  pointer-events: none;
+}
+.orbit-copy.is-out > * { pointer-events: none; }
+
+.orbit-wordmark { width: min(72vw, 340px); height: auto; }
+
+.orbit-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0.35rem 0 0;
+  color: var(--ink-blue);
+}
+
+.orbit-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist-deep);
+  margin: 0;
+}
+
+.orbit-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 0.9rem; }
+
+.orbit-cue {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0.9rem 0 0;
+}
+
+.orbit-flagship {
+  position: absolute;
+  top: calc(var(--nav-h) + 1rem);
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+.orbit-flagship img { height: 22px; width: auto; }
+.orbit-flagship span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* legend fades in once the orbit forms */
+.orbit-legend {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--nav-h) + 1rem) 1.5rem 1.5rem;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ground);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.orbit-legend.is-in { opacity: 0.7; }
+.orbit-legend .row { display: flex; justify-content: space-between; gap: 1rem; }
+
+/* reduced motion / image failure: collapse to a normal hero */
+.orbit-stage.is-static { height: auto; }
+.orbit-stage.is-static .orbit-sticky { position: static; height: auto; min-height: 70vh; }
+.orbit-stage.is-static .orbit-copy { position: static; padding-top: 2rem; }
+.orbit-stage.is-static .orbit-legend { display: none; }
+.orbit-stage.is-static #orbit-canvas { height: 46vh; }
+.orbit-stage.is-static #orbit-canvas { display: none; }
+
+@media (max-width: 760px) {
+  .orbit-stage { height: 260vh; height: 260svh; }
+  .orbit-flagship { top: calc(var(--nav-h) + 0.6rem); right: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-stage { height: auto; }
+  .orbit-sticky { position: static; height: auto; min-height: 70vh; }
+  .orbit-copy { position: static; padding-top: 2rem; }
+  .orbit-copy.is-out { opacity: 1; transform: none; }
+  .orbit-legend { display: none; }
+}
+
+/* ============================================================
+   SIZZLE VIDEO
+   ============================================================ */
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin-top: 2rem;
+  border: 1px solid var(--hairline);
+  background: var(--ground-2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.video-frame video,
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+.video-placeholder {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 2;
+}
+
+/* ============================================================
+   REVISED VISUAL SYSTEM
+   Aged keyboard plastic + blue-screen signal + editorial frames.
+   ============================================================ */
+
+html {
+  background: var(--ground);
+}
+
+body {
+  background-color: var(--ground);
+  background-image:
+    linear-gradient(rgba(23, 0, 115, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 0, 115, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--ink);
+}
+
+a,
+button,
+input {
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 3px double var(--deep);
+  outline-offset: 4px;
+}
+
+.nav {
+  background: var(--ground);
+  backdrop-filter: none;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav-mark {
+  width: 1.9rem;
+  height: 1.9rem;
+  image-rendering: pixelated;
+}
+
+.nav-title {
+  font-family: var(--display);
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.nav-status {
+  padding-left: 0.55rem;
+  border-left: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.nav-links {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nav-links a,
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.nav-cta,
+.btn-primary {
+  background: var(--deep) !important;
+  border-color: var(--deep) !important;
+  color: var(--ground) !important;
+}
+
+.btn {
+  min-height: 2.8rem;
+  border-color: var(--ink);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover {
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: var(--ground) !important;
+}
+
+.orbit-stage {
+  border-bottom: 1px solid var(--ink);
+}
+
+.orbit-copy {
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(24rem, 0.82fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: clamp(4rem, 8vw, 9rem);
+  padding: clamp(7.5rem, 16vh, 12rem) max(2rem, calc((100vw - var(--wrap-xl)) / 2)) clamp(2rem, 4vw, 3.5rem);
+  text-align: left;
+}
+
+.orbit-copy-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  max-width: 34rem;
+}
+
+.orbit-kicker {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.poster-signal {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 58rem;
+  margin: 0;
+  justify-self: end;
+}
+
+.poster-art-frame {
+  position: relative;
+  aspect-ratio: 2.39 / 1;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  border-radius: 18px;
+  background: var(--ground-2);
+}
+
+.poster-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.03) saturate(0.72);
+}
+
+.poster-art-frame .orbit-wordmark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(64%, 34rem);
+  transform: translate(-50%, -36%);
+  filter:
+    drop-shadow(0 2px 0 rgba(229, 224, 207, 0.96))
+    drop-shadow(0 0 18px rgba(229, 224, 207, 0.9));
+}
+
+.poster-signal figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
+  margin-top: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.poster-signal figcaption span:last-child {
+  text-align: right;
+}
+
+.orbit-title,
+.section-title {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.orbit-title {
+  max-width: 100%;
+  margin: 0;
+  font-size: clamp(2.65rem, 3.35vw, 3.75rem);
+  line-height: 0.9;
+  color: var(--deep);
+}
+
+.orbit-actions {
+  justify-content: flex-start;
+}
+
+.orbit-meta,
+.orbit-cue {
+  color: var(--ink);
+}
+
+.orbit-flagship {
+  left: auto;
+  right: clamp(1.5rem, 6vw, 7rem);
+  top: auto;
+  bottom: calc(var(--nav-h) + 1rem);
+  width: auto;
+  padding: 0.62rem 0.72rem;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: rgba(229, 224, 207, 0.94);
+  box-shadow: 4px 4px 0 rgba(23, 0, 115, 0.16);
+}
+
+.orbit-flagship img {
+  height: 22px;
+}
+
+.orbit-flagship.is-inverted {
+  border-color: var(--ground);
+  background: var(--ground);
+  box-shadow: 4px 4px 0 rgba(229, 224, 207, 0.2);
+}
+
+.orbit-flagship.is-inverted img {
+  filter: none;
+}
+
+.orbit-legend.is-in {
+  opacity: 0.9;
+}
+
+#orbit-canvas:focus-visible {
+  outline: 3px double var(--ground);
+  outline-offset: -7px;
+}
+
+.orbit-stage.is-warping #orbit-canvas {
+  cursor: progress;
+}
+
+.wormhole-transition {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  pointer-events: none;
+  background: var(--ground);
+  opacity: 0;
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wormhole-transition.is-covering {
+  opacity: 1;
+}
+
+.wormhole-transition.is-revealing {
+  opacity: 0;
+  transition-duration: 0.62s;
+}
+
+.chapter-rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: var(--ground);
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.chapter-rail span {
+  min-width: 0;
+  padding: 0.72rem 0.45rem;
+  border-right: 1px solid var(--hairline);
+  text-align: center;
+}
+
+.chapter-rail span:last-child {
+  border-right: 0;
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  border-bottom: 1px solid var(--ink);
+  background-color: rgba(229, 224, 207, 0.9);
+  background-image:
+    linear-gradient(rgba(23, 0, 115, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 0, 115, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.section-alt {
+  border-top: 0;
+  background-color: rgba(220, 213, 189, 0.94);
+}
+
+.section .wrap,
+.section .wrap-xl {
+  position: relative;
+}
+
+.section .wrap::before,
+.section .wrap-xl::before {
+  content: "VANSPACE / 01";
+  position: absolute;
+  top: -2.25rem;
+  right: 0;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.eyebrow {
+  color: var(--ink);
+}
+
+.section-title {
+  max-width: 18ch;
+  margin-bottom: 1rem;
+  font-size: clamp(2.75rem, 7vw, 5.7rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.section-sub {
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.86rem;
+}
+
+.speakers-grid {
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.speaker-card {
+  border: 0;
+  border-right: 1px solid var(--ink);
+  background: transparent;
+}
+
+.speaker-card:last-child {
+  border-right: 0;
+}
+
+.speaker-photo {
+  border-bottom: 1px solid var(--ink);
+  background: var(--deep);
+}
+
+.speaker-photo img {
+  filter: grayscale(1) contrast(1.45);
+  mix-blend-mode: screen;
+  opacity: 0.86;
+}
+
+.speaker-photo-tba {
+  background:
+    radial-gradient(circle, var(--ground) 0 1px, transparent 1.4px) 0 0 / 7px 7px,
+    var(--deep);
+  color: var(--ground);
+}
+
+.speaker-body {
+  padding: 1.35rem;
+}
+
+.speaker-body h3,
+.ticket-tier,
+.session-square h3 {
+  font-family: var(--display);
+  font-weight: 500;
+}
+
+.speaker-body h3 {
+  font-size: 1.65rem;
+}
+
+.speaker-tag,
+.speaker-meta,
+.speaker-bio,
+.session-square-tag,
+.session-square p {
+  color: var(--ink-soft);
+}
+
+.session-squares {
+  gap: 0;
+  margin-top: 1.2rem;
+  border: 1px solid var(--ink);
+}
+
+.session-square {
+  border: 0;
+  border-right: 1px solid var(--ink);
+  background: transparent;
+}
+
+.session-square:last-child {
+  border-right: 0;
+}
+
+.session-square.is-featured {
+  background: var(--deep);
+  color: var(--ground);
+}
+
+.session-square.is-featured .session-square-tag {
+  color: var(--ground);
+  opacity: 0.76;
+}
+
+#film {
+  overflow: hidden;
+  background: var(--deep);
+  color: var(--ground);
+}
+
+#film .eyebrow,
+#film .section-sub,
+#film .section .wrap::before {
+  color: var(--ground);
+}
+
+#film .section-sub {
+  opacity: 0.76;
+}
+
+#film .video-frame {
+  border-color: var(--ground);
+  background:
+    radial-gradient(circle, rgba(229, 224, 207, 0.9) 0 1px, transparent 1.4px) 0 0 / 10px 10px,
+    radial-gradient(circle at 50% 50%, rgba(229, 224, 207, 0.14), transparent 55%);
+}
+
+#film .video-placeholder {
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--ground);
+  background: var(--deep);
+  color: var(--ground);
+}
+
+.timeline {
+  border-color: var(--ink);
+}
+
+.timeline li {
+  grid-template-columns: 5.5rem 1fr;
+  border-color: var(--hairline);
+}
+
+.timeline li.is-key {
+  background: var(--deep);
+  color: var(--ground);
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+}
+
+.timeline li.is-key time,
+.timeline li.is-key span {
+  color: var(--ground);
+}
+
+.timeline li.is-key span {
+  opacity: 0.72;
+}
+
+.about-grid {
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.about-lead,
+.about-points {
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+.about-lead {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1.05;
+}
+
+.about-points {
+  border-left: 1px solid var(--ink);
+}
+
+.about-points li {
+  border-color: var(--hairline);
+  color: var(--ink-soft);
+}
+
+.about-points strong {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tickets-grid {
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.ticket-card {
+  border: 0;
+  border-right: 1px solid var(--ink);
+  background: transparent;
+}
+
+.ticket-card:last-child {
+  border-right: 0;
+}
+
+.ticket-card.is-featured {
+  background: var(--deep);
+  color: var(--ground);
+  box-shadow: none;
+}
+
+.ticket-card.is-featured .ticket-tier,
+.ticket-card.is-featured .ticket-note {
+  color: var(--ground);
+}
+
+.ticket-card.is-featured .ticket-note {
+  opacity: 0.72;
+}
+
+.ticket-card.is-featured .btn-primary {
+  background: var(--ground) !important;
+  border-color: var(--ground) !important;
+  color: var(--deep) !important;
+}
+
+.waitlist-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ink);
+}
+
+.waitlist-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) {
+  #schedule .section-sub {
+    margin-bottom: 2.75rem;
+  }
+
+  #schedule .timeline {
+    border: 1px solid var(--ink);
+  }
+
+  #schedule .timeline li {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    padding: 1rem 1.25rem;
+  }
+
+  #schedule .timeline li:last-child {
+    border-bottom: 0;
+  }
+
+  #schedule .timeline li > div {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.8fr) minmax(16rem, 1.2fr);
+    align-items: baseline;
+    gap: clamp(2rem, 7vw, 7rem);
+  }
+
+  #schedule .timeline li strong {
+    margin-bottom: 0;
+  }
+
+  #schedule .timeline li.is-key {
+    margin-inline: 0;
+    padding-inline: 1.25rem;
+  }
+
+  #about .section-title {
+    max-width: 20ch;
+    margin-bottom: 2rem;
+    font-size: clamp(3.5rem, 6vw, 5rem);
+  }
+
+  #about .about-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.85fr);
+  }
+
+  #about .about-lead {
+    padding: clamp(2.5rem, 4vw, 4rem);
+    font-size: clamp(1.9rem, 2.6vw, 2.65rem);
+    line-height: 1.03;
+  }
+
+  #about .about-points {
+    justify-content: center;
+    padding: clamp(2rem, 3.5vw, 3.5rem);
+  }
+
+  #tickets .section-title {
+    max-width: 12ch;
+  }
+
+  #tickets .tickets-grid {
+    margin-top: 2.75rem;
+  }
+
+  #tickets .ticket-card {
+    min-height: 15rem;
+    padding: 2rem;
+  }
+
+  #tickets .ticket-tier {
+    font-size: clamp(2.2rem, 3.5vw, 3.25rem);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+  }
+
+  #tickets .ticket-note {
+    font-size: 1rem;
+  }
+}
+
+#sponsors {
+  background: var(--deep);
+  color: var(--ground);
+}
+
+#sponsors .eyebrow,
+#sponsors .section-sub,
+#sponsors .sponsors-note a {
+  color: var(--ground);
+}
+
+#sponsors .section-sub {
+  opacity: 0.76;
+}
+
+.sponsor-feature {
+  max-width: 42rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-color: var(--ground);
+  background: transparent;
+}
+
+.sponsor-label,
+.sponsor-credit {
+  color: var(--ground);
+  font-family: var(--mono);
+}
+
+.sponsor-credit {
+  margin: 0;
+  font-size: 0.72rem;
+  opacity: 0.72;
+}
+
+.sponsor-feature img {
+  height: clamp(56px, 8vw, 88px);
+  filter: brightness(0) invert(1);
+}
+
+.footer {
+  border-top: 0;
+  background: var(--deep);
+  color: var(--ground);
+}
+
+.footer .fine,
+.footer-links a,
+.footer-links a:hover {
+  color: var(--ground);
+}
+
+@media (min-width: 720px) and (max-width: 1050px) {
+  .orbit-copy {
+    grid-template-columns: minmax(20rem, 0.9fr) minmax(0, 1.1fr);
+    gap: 2rem;
+    padding-inline: 2rem;
+  }
+
+  .orbit-title {
+    font-size: clamp(3rem, 6.3vw, 4.15rem);
+  }
+
+  .poster-signal figcaption span:last-child {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) and (min-height: 1050px) {
+  .orbit-copy {
+    padding-top: clamp(14rem, 24vh, 18rem);
+  }
+}
+
+@media (max-width: 719px) {
+  .nav-status {
+    display: none;
+  }
+
+  .orbit-copy {
+    inset: var(--nav-h) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    padding: 8rem 1rem 1.25rem;
+  }
+
+  .poster-signal {
+    order: -1;
+    max-width: 32rem;
+  }
+
+  .poster-art-frame {
+    border-radius: 12px;
+  }
+
+  .poster-signal figcaption {
+    display: none;
+  }
+
+  .orbit-copy-panel {
+    align-items: center;
+    gap: 0.6rem;
+    max-width: none;
+    text-align: center;
+  }
+
+  .orbit-kicker {
+    display: none;
+  }
+
+  .orbit-title {
+    max-width: 100%;
+    font-size: clamp(2.05rem, 10vw, 3.15rem);
+    text-shadow:
+      0 0 12px var(--ground),
+      0 0 24px var(--ground);
+  }
+
+  .orbit-flagship {
+    left: auto;
+    right: 1rem;
+    top: auto;
+    bottom: calc(var(--nav-h) + 0.75rem);
+    padding: 0.5rem 0.6rem;
+  }
+
+  .orbit-flagship img {
+    height: 18px;
+  }
+
+  .orbit-actions {
+    justify-content: center;
+    margin-top: 0.45rem;
+  }
+
+  .orbit-cue {
+    margin-top: 0.35rem;
+  }
+
+  .orbit-meta {
+    max-width: 31ch;
+    line-height: 1.65;
+  }
+
+  .chapter-rail {
+    font-size: 0.48rem;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-size: clamp(2.75rem, 16vw, 4.6rem);
+  }
+
+  .speakers-grid {
+    border-bottom: 0;
+  }
+
+  .speaker-card {
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .session-squares {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+  }
+
+  .session-square {
+    min-height: 8rem;
+    aspect-ratio: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .tickets-grid {
+    border-bottom: 0;
+  }
+
+  .ticket-card {
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .about-points {
+    border-top: 1px solid var(--ink);
+    border-left: 0;
+  }
+
+  .waitlist-block {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
