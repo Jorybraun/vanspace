@@ -199,16 +199,16 @@ a {
   color: var(--mist-deep);
 }
 .flagship-corner-logo {
-  height: 44px;
+  height: 64px;
   width: auto;
-  max-width: min(280px, 100%);
+  max-width: min(360px, 100%);
   object-fit: contain;
   object-position: left center;
 }
 @media (min-width: 960px) {
   .flagship-corner-logo {
-    height: 56px;
-    max-width: 320px;
+    height: 84px;
+    max-width: 440px;
   }
 }
 
@@ -261,6 +261,8 @@ a {
   z-index: 2;
   width: min(72%, 380px);
   height: auto;
+  /* Spacebar = SVG center; drop down the building axis into the claw V */
+  transform: translateY(32%);
   filter: drop-shadow(0 2px 0 rgba(244, 240, 232, 0.95))
     drop-shadow(0 0 20px rgba(244, 240, 232, 0.9));
 }
@@ -629,9 +631,9 @@ a {
   color: var(--mist-deep);
 }
 .sponsor-feature img {
-  height: 56px;
+  height: 72px;
   width: auto;
-  max-width: 280px;
+  max-width: 360px;
 }
 .sponsors-note {
   max-width: 28rem;
