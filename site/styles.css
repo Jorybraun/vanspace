@@ -1,6 +1,7 @@
 :root {
   --ground: #e5e0cf;
   --ground-2: #dcd5bd;
+  /* Blue family — titles, accents (BSOD / site) */
   --ink: #170073;
   --ink-soft: rgba(23, 0, 115, 0.7);
   --ink-faint: rgba(23, 0, 115, 0.48);
@@ -8,9 +9,14 @@
   --mist: #75699c;
   --deep: #0600a8;
   --ink-blue: #0600a8;
-  --display: "IBM Plex Sans", system-ui, sans-serif;
   --mist-deep: #4b3876;
+  /* Black — hard contrast like Cognition mark on cream */
+  --black: #0a0a0a;
+  --black-soft: rgba(10, 10, 10, 0.72);
+  --black-faint: rgba(10, 10, 10, 0.45);
+  --black-line: rgba(10, 10, 10, 0.88);
   --white: #eee9d8;
+  --display: "IBM Plex Sans", system-ui, sans-serif;
   --font: "IBM Plex Sans", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --wrap: 44rem;
@@ -112,16 +118,19 @@ a {
   padding: 0 1.25rem;
   background: color-mix(in srgb, var(--ground) 90%, transparent);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--black-line);
 }
 
 .nav-brand {
   text-decoration: none;
 }
 .nav-title {
-  font-weight: 600;
+  font-family: var(--mono);
+  font-weight: 500;
   font-size: 1.05rem;
   letter-spacing: -0.02em;
+  text-transform: lowercase;
+  color: var(--black);
 }
 
 .nav-links {
@@ -137,36 +146,69 @@ a {
 .nav-links a:hover {
   color: var(--ink);
 }
+/* —— Buttons = spacebar keys (see logo-wordmark) —— */
+.btn,
 .nav-cta {
-  padding: 0.45rem 0.85rem !important;
-  background: var(--ink) !important;
-  color: #fff !important;
-}
-
-/* —— Buttons —— */
-.btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.35rem;
-  font: 500 0.9rem/1 var(--font);
+  min-height: 2.65rem;
+  padding: 0.7rem 1.4rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
   text-decoration: none;
-  border: 1px solid var(--ink);
-  border-radius: 0;
+  color: var(--ink);
   cursor: pointer;
-  background: transparent;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  background: var(--ground);
+  box-shadow: 1px 3px 0 rgba(23, 0, 115, 0.12);
+  transition: transform 80ms ease, box-shadow 80ms ease, background 120ms ease;
+}
+/* top groove like the SVG space key */
+.btn::before,
+.nav-cta::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: rgba(23, 0, 115, 0.1);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.btn:hover,
+.nav-cta:hover {
+  background: color-mix(in srgb, var(--ground) 88%, #fff);
+}
+.btn:active,
+.nav-cta:active {
+  transform: translate(1px, 2px);
+  box-shadow: 0 1px 0 rgba(23, 0, 115, 0.1);
+}
+/* primary = pressed / filled key (still a keycap) */
+.btn-primary,
+.nav-cta {
+  background: var(--ground);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-ghost {
+  background: var(--ground);
   color: var(--ink);
 }
-.btn-primary {
-  background: var(--ink);
-  color: #fff;
-}
-.btn-primary:hover {
-  background: var(--mist-deep);
-  border-color: var(--mist-deep);
-}
-.btn-ghost:hover {
-  background: rgba(26, 26, 26, 0.05);
+.btn-primary:hover,
+.btn-ghost:hover,
+.nav-cta:hover {
+  background: color-mix(in srgb, var(--ground) 82%, #fff);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 /* —— Hero (event flow) —— */
@@ -400,8 +442,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* faces higher in frame */
-  object-position: center 18%;
+  object-position: center center;
   filter: grayscale(0.12) contrast(1.03);
 }
 .speaker-photo-tba {
@@ -692,15 +733,16 @@ a {
 
 /* ============================================================
    ORBIT HERO
-   Dithered saucer -> orbit map. Cream inverts to deep blue as
+   Dithered Science World -> orbit map. Cream inverts to deep blue as
    the stage scrolls. Everything below this section stays on the
    normal cream marketing palette.
    ============================================================ */
 
 .orbit-stage {
   position: relative;
-  height: 320vh;
-  height: 320svh;
+  /* tall stage: orbit + long speakers dwell + venue */
+  height: 560vh;
+  height: 560svh;
   background: var(--ground);
 }
 
@@ -765,19 +807,10 @@ a {
 
 .orbit-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 0.9rem; }
 
-.orbit-cue {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 0.9rem 0 0;
-}
 
+
+/* Flagship mark lives in .poster-foot (desktop styles later override) */
 .orbit-flagship {
-  position: absolute;
-  top: calc(var(--nav-h) + 1rem);
-  right: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -811,6 +844,15 @@ a {
   transition: opacity 0.5s ease;
 }
 .orbit-legend.is-in { opacity: 0.7; }
+/* pin legend to solar column when BIOS holds left ~35% */
+.orbit-legend.is-split {
+  top: 0;
+  bottom: 0;
+  left: 35%;
+  right: 0;
+  width: 65%;
+  padding-left: 1rem;
+}
 .orbit-legend .row { display: flex; justify-content: space-between; gap: 1rem; }
 
 /* reduced motion / image failure: collapse to a normal hero */
@@ -822,8 +864,7 @@ a {
 .orbit-stage.is-static #orbit-canvas { display: none; }
 
 @media (max-width: 760px) {
-  .orbit-stage { height: 260vh; height: 260svh; }
-  .orbit-flagship { top: calc(var(--nav-h) + 0.6rem); right: 1rem; }
+  .orbit-stage { height: 460vh; height: 460svh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -899,37 +940,40 @@ input {
 .nav {
   background: var(--ground);
   backdrop-filter: none;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--black-line);
   color: var(--ink);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+/* Full BSOD — hide chrome so white terminal is uninterrupted */
+.nav.is-bsod-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
 }
 
 .nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  text-decoration: none;
 }
 
 .nav-mark {
-  width: 1.9rem;
-  height: 1.9rem;
-  image-rendering: pixelated;
+  display: none; /* wordmark text only */
 }
 
+/* lowercase wordmark — black, mono, deck-adjacent */
 .nav-title {
-  font-family: var(--display);
-  font-size: 1.18rem;
+  font-family: var(--mono);
+  font-size: 1.05rem;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  color: var(--black);
 }
 
 .nav-status {
-  padding-left: 0.55rem;
-  border-left: 1px solid var(--hairline);
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+  display: none;
 }
 
 .nav-links {
@@ -944,115 +988,184 @@ input {
   color: var(--ink);
 }
 
+/* Spacebar keys win over earlier solid fills */
 .nav-cta,
-.btn-primary {
-  background: var(--deep) !important;
-  border-color: var(--deep) !important;
-  color: var(--ground) !important;
+.btn,
+.btn-primary,
+.btn-ghost {
+  background: var(--ground) !important;
+  border: 1.5px solid var(--ink) !important;
+  border-radius: 6px !important;
+  color: var(--ink) !important;
+  box-shadow: 1px 3px 0 rgba(23, 0, 115, 0.12);
+  font-family: var(--mono) !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: lowercase !important;
 }
-
-.btn {
-  min-height: 2.8rem;
-  border-color: var(--ink);
-  color: var(--ink);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.nav-cta {
+  padding: 0.55rem 1.1rem !important;
+  min-height: 2.35rem;
 }
-
 .btn-primary:hover,
-.btn-ghost:hover {
-  background: var(--ink) !important;
+.btn-ghost:hover,
+.nav-cta:hover {
+  background: color-mix(in srgb, var(--ground) 82%, #fff) !important;
   border-color: var(--ink) !important;
-  color: var(--ground) !important;
+  color: var(--ink) !important;
+}
+.btn-primary:active,
+.btn-ghost:active,
+.nav-cta:active {
+  transform: translate(1px, 2px);
+  box-shadow: 0 1px 0 rgba(23, 0, 115, 0.1);
 }
 
 .orbit-stage {
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--black-line);
+}
+
+/* Section titles (KEYNOTES, etc.) — black for contrast; hero title stays blue */
+.section-title {
+  color: var(--black) !important;
 }
 
 .orbit-copy {
   inset: 0;
-  display: grid;
-  grid-template-columns: minmax(24rem, 0.82fr) minmax(0, 1.18fr);
-  align-items: start;
-  gap: clamp(4rem, 8vw, 9rem);
-  padding: clamp(7.5rem, 16vh, 12rem) max(2rem, calc((100vw - var(--wrap-xl)) / 2)) clamp(2rem, 4vw, 3.5rem);
-  text-align: left;
-}
-
-.orbit-copy-panel {
-  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  padding:
+    calc(var(--nav-h) + clamp(1.25rem, 3vh, 2rem))
+    max(1.5rem, calc((100vw - var(--wrap-xl)) / 2))
+    1.5rem;
+  text-align: left;
+  pointer-events: none;
+}
+.orbit-copy > * {
+  pointer-events: auto;
+}
+
+/* Single row: left col height forced = poster image height */
+.orbit-hero-main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  column-gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  align-items: stretch; /* left stretches to poster height */
+  width: 100%;
+}
+
+.orbit-col-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* title top · panel bottom */
   align-items: flex-start;
-  gap: 0.9rem;
-  max-width: 34rem;
+  align-self: stretch;
+  box-sizing: border-box;
+  min-height: 0;
+  /* Match poster frame height exactly (grid stretch + self stretch) */
+  height: auto;
+  max-width: 36rem;
+}
+
+.orbit-lead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  width: 100%;
+  flex: 0 0 auto;
 }
 
 .orbit-kicker {
   margin: 0;
   font-family: var(--mono);
   font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--black-soft);
 }
 
-.poster-signal {
-  position: relative;
-  z-index: 2;
+.orbit-title {
+  max-width: 100%;
   width: 100%;
-  max-width: 58rem;
   margin: 0;
-  justify-self: end;
+  padding-top: 0;
+  font-size: clamp(2.65rem, 3.35vw, 3.75rem);
+  line-height: 0.9;
+  color: var(--deep);
+  text-transform: uppercase;
+}
+.orbit-title-ink {
+  color: var(--black);
+}
+
+/* Meta + buttons — bottom edge of buttons = bottom edge of image */
+.orbit-copy-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  margin-top: auto; /* pin to bottom of col = bottom of poster image */
+  padding: 0;
+  flex: 0 0 auto;
 }
 
 .poster-art-frame {
   position: relative;
-  aspect-ratio: 2.39 / 1;
+  width: 100%;
+  /* Always this large — loved look-up crop; THIS sets the row height */
+  aspect-ratio: 4 / 5;
+  max-height: min(72vh, 640px);
+  min-height: min(52vh, 420px);
   overflow: hidden;
-  border: 1px solid var(--ink);
+  border: 1.5px solid var(--black);
   border-radius: 18px;
   background: var(--ground-2);
+  /* no margin — bottom border is the align target */
+  margin: 0;
 }
 
 .poster-art {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(1.03) saturate(0.72);
+  /* Pencil sketch of Science World — dome high in frame */
+  object-position: center 18%;
+  /* keep graphite look; don't re-saturate into photo */
+  filter: contrast(1.08) saturate(0.12);
+  display: block;
 }
 
 .poster-art-frame .orbit-wordmark {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: min(64%, 34rem);
-  transform: translate(-50%, -36%);
+  top: 52%;
+  width: min(70%, 28rem);
+  transform: translate(-50%, -50%);
   filter:
     drop-shadow(0 2px 0 rgba(229, 224, 207, 0.96))
     drop-shadow(0 0 18px rgba(229, 224, 207, 0.9));
 }
 
-.poster-signal figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--hairline);
-  margin-top: 1.1rem;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+/* No caption text — Cognition under poster column only */
+.poster-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  column-gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  width: 100%;
+  margin: 0;
 }
-
-.poster-signal figcaption span:last-child {
-  text-align: right;
+.poster-foot .orbit-flagship {
+  grid-column: 2;
+  justify-self: end;
 }
 
 .orbit-title,
@@ -1062,45 +1175,55 @@ input {
   text-transform: uppercase;
 }
 
-.orbit-title {
-  max-width: 100%;
-  margin: 0;
-  font-size: clamp(2.65rem, 3.35vw, 3.75rem);
-  line-height: 0.9;
-  color: var(--deep);
-}
-
 .orbit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  line-height: 0; /* kill descender gap under inline-flex buttons */
+}
+.orbit-actions .btn {
+  margin: 0;
+  vertical-align: bottom;
+  min-width: 9.5rem; /* spacebar-ish width */
+  padding-inline: 1.5rem;
 }
 
-.orbit-meta,
-.orbit-cue {
+.orbit-meta {
   color: var(--ink);
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
+/* Cognition sits on poster foot — bottom-aligned with caption */
 .orbit-flagship {
-  left: auto;
-  right: clamp(1.5rem, 6vw, 7rem);
-  top: auto;
-  bottom: calc(var(--nav-h) + 1rem);
-  width: auto;
-  padding: 0.62rem 0.72rem;
-  justify-content: center;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  background: rgba(229, 224, 207, 0.94);
-  box-shadow: 4px 4px 0 rgba(23, 0, 115, 0.16);
+  position: static;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
 }
 
 .orbit-flagship img {
-  height: 22px;
+  height: clamp(28px, 3.2vw, 40px);
+  width: auto;
+  display: block;
 }
 
 .orbit-flagship.is-inverted {
-  border-color: var(--ground);
-  background: var(--ground);
-  box-shadow: 4px 4px 0 rgba(229, 224, 207, 0.2);
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .orbit-flagship.is-inverted img {
@@ -1109,6 +1232,847 @@ input {
 
 .orbit-legend.is-in {
   opacity: 0.9;
+}
+
+/* Cognition mark in the sun (white on blue) */
+.orbit-cog-sun {
+  position: absolute;
+  z-index: 2;
+  width: clamp(2.75rem, 5.5vw, 4.5rem);
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease, left 0.35s ease;
+}
+.orbit-cog-sun.is-on {
+  opacity: 0.95;
+}
+.orbit-cog-sun.is-split {
+  /* center of the right 65% column */
+  left: 67.5%;
+}
+.orbit-cog-sun img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+.orbit-cog-sun.is-warping {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/*
+ * Full-window BIOS chrome — 2-line white outline around the ENTIRE blue stage
+ * (left console + right modules), not only the speaker cards.
+ */
+.orbit-bios-chrome {
+  position: absolute;
+  z-index: 30;
+  inset: 0.75rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-sizing: border-box;
+  /* outer white line */
+  border: 1px solid #ffffff;
+  /* blue gap + inner white line via inset shadows */
+  box-shadow:
+    inset 0 0 0 4px #0000aa,
+    inset 0 0 0 5px #ffffff;
+}
+.orbit-bios-chrome.is-on {
+  opacity: 1;
+}
+@media (min-width: 900px) {
+  .orbit-bios-chrome {
+    inset: 0.85rem 0.95rem 0.9rem 0.85rem;
+  }
+}
+
+/* —— Right panel apps sit INSIDE the full-window chrome —— */
+.orbit-app {
+  /* outer chrome inset + double-line thickness + visible blue gap */
+  --bios-chrome-inset: 0.75rem;
+  --bios-chrome-lines: 8px;
+  --exe-gap: 14px;
+  --exe-edge: calc(
+    var(--bios-chrome-inset) + var(--bios-chrome-lines) + var(--exe-gap)
+  );
+  position: absolute;
+  z-index: 4;
+  top: var(--exe-edge);
+  right: var(--exe-edge);
+  bottom: var(--exe-edge);
+  left: var(--exe-edge);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+}
+.orbit-app.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (min-width: 900px) {
+  .orbit-app {
+    --bios-chrome-inset: 0.85rem;
+    --exe-gap: 16px;
+    top: var(--exe-edge);
+    right: var(--exe-edge);
+    bottom: var(--exe-edge);
+    left: calc(35% + 14px);
+  }
+}
+/* .EXE window fills the inset area; outer double border stays clear around it */
+.orbit-app-frame {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+  background: #0000aa;
+  overflow: hidden;
+}
+.orbit-app-inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: #0000aa;
+  overflow: hidden;
+}
+.orbit-app-titlebar {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  background: #0000aa;
+  font-family: var(--mono);
+}
+.orbit-app-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.4);
+  flex: 0 0 auto;
+}
+.orbit-app-title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.orbit-app-winbtns {
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  line-height: 1;
+}
+.orbit-app-status {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.28rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.8);
+  background: #0000aa;
+}
+.orbit-app-footer {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.28rem 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background: #0000aa;
+}
+
+/* Speakers grid — same pure BSOD blue as the shell */
+.orbit-speakers-grid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  min-height: 0;
+  height: 100%;
+  border: 0;
+  background: #0000aa;
+}
+.orbit-spk {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  background: #0000aa;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.35s ease, transform 0.35s ease, background 0.2s ease;
+}
+.orbit-speakers.is-on .orbit-spk {
+  opacity: 1;
+  transform: none;
+}
+.orbit-speakers.is-on .orbit-spk:nth-child(1) { transition-delay: 0.04s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(2) { transition-delay: 0.08s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(3) { transition-delay: 0.12s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(4) { transition-delay: 0.16s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(5) { transition-delay: 0.2s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(6) { transition-delay: 0.24s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(7) { transition-delay: 0.28s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(8) { transition-delay: 0.32s; }
+.orbit-speakers.is-on .orbit-spk:nth-child(9) { transition-delay: 0.36s; }
+.orbit-spk:nth-child(3n) {
+  border-right: 0;
+}
+.orbit-spk:nth-child(n + 7) {
+  border-bottom: 0;
+}
+.orbit-spk:hover,
+.orbit-spk:focus-within {
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+.orbit-spk-photo {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #0000aa;
+  position: relative;
+}
+.orbit-spk-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: grayscale(1) contrast(1.25);
+  opacity: 1;
+  display: block;
+}
+.orbit-spk-photo.is-logo {
+  display: grid;
+  place-items: center;
+  background: #0000aa;
+}
+.orbit-spk-photo.is-logo img {
+  position: static;
+  width: min(38%, 2.75rem);
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.orbit-spk-photo.is-slot {
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  background: #0000aa;
+}
+.orbit-spk-body {
+  padding: 0.28rem 0.4rem 0.35rem;
+  flex: 0 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  background: #0000aa;
+}
+.orbit-spk-tag {
+  margin: 0 0 0.08rem;
+  font-family: var(--mono);
+  font-size: 0.45rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.orbit-spk-body h3 {
+  margin: 0;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: clamp(0.68rem, 1vw, 0.85rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+.orbit-spk-meta {
+  margin: 0.08rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.orbit-spk.is-featured .orbit-spk-photo.is-slot {
+  color: rgba(255, 255, 255, 0.75);
+  background: #0000aa;
+}
+@media (max-width: 899px) {
+  .orbit-app {
+    --exe-gap: 8px;
+    overflow: auto;
+  }
+  .orbit-speakers-grid {
+    grid-template-rows: none;
+    min-height: 70vh;
+  }
+  .orbit-spk-photo {
+    aspect-ratio: 1;
+    min-height: 6rem;
+  }
+}
+@media (max-width: 520px) {
+  .orbit-speakers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .orbit-spk:nth-child(3n) {
+    border-right: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .orbit-spk:nth-child(2n) {
+    border-right: 0;
+  }
+  .orbit-spk:nth-child(n + 7) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .orbit-spk:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+/* —— BSOD / terminal — left half on desktop, solar owns the right —— */
+.orbit-bsod {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: clamp(1.5rem, 4.5vw, 2.75rem);
+  padding-top: clamp(1.5rem, 4vh, 2.5rem);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, width 0.35s ease;
+  background: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.orbit-bsod.is-on {
+  opacity: 1;
+}
+/* desktop split: left console inside full-window double border */
+.orbit-bsod.is-split {
+  inset: 0 auto 0 0;
+  width: 35%;
+  max-width: 35%;
+  /* stay inside full-window double border */
+  padding: 2rem 0.85rem 1.85rem 1.85rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  scroll-padding: 0.5rem;
+}
+/* only leave during wormhole exit */
+.orbit-bsod.is-fading {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+/* mobile: hand the full blue stage to right-panel scenes */
+.orbit-bsod.is-speakers-yield {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+/* Tickets / sponsors / Devin CLI panels */
+.orbit-tickets-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  overflow: auto;
+  background: #0000aa;
+}
+.orbit-tix {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.85rem 1rem;
+  background: #0000aa;
+}
+.orbit-tix.is-hero {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 10rem;
+  border-width: 1px;
+}
+.orbit-tix-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.orbit-tix-tag {
+  margin: 0 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.orbit-tix-price {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.orbit-tix-price.is-small {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+}
+.orbit-tix-note {
+  margin: 0.45rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.75);
+}
+.orbit-tix-meta {
+  margin: 0.75rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.orbit-sponsors-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  overflow: auto;
+  background: #0000aa;
+}
+.orbit-sponsor-card {
+  width: min(100%, 28rem);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  background: #0000aa;
+}
+.orbit-sponsor-logo {
+  display: block;
+  margin: 0 auto 1rem;
+  height: clamp(2.5rem, 5vw, 3.5rem);
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+.orbit-sponsor-role {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.orbit-sponsor-blurb {
+  margin: 0.55rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+}
+.orbit-sponsor-open {
+  width: min(100%, 28rem);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+.orbit-sponsor-open-line {
+  margin: 0.2rem 0 0;
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+.orbit-devin-inner {
+  background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.orbit-devin .orbit-app-titlebar,
+.orbit-devin .orbit-app-footer {
+  background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.75);
+}
+.orbit-devin-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.25rem 1.35rem;
+  overflow: auto;
+  background: #0a0a0a;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--mono);
+}
+.orbit-devin-ascii {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: pre;
+}
+.orbit-devin-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.orbit-devin-name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #fff;
+}
+.orbit-devin-ver {
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.orbit-devin-prompt-box {
+  margin-top: 0.5rem;
+  border-block: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.85rem 0;
+}
+.orbit-devin-prompt {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.orbit-devin-caret {
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 0.35rem;
+}
+.orbit-devin-model {
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+.orbit-devin-hint {
+  margin: 0;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Merged day: blueprint full bleed, overlays on top */
+.orbit-day-stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #0000aa;
+  overflow: hidden;
+}
+.orbit-venue-blueprint {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 12rem;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0000aa;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+/* Blueprint always visible under overlays — no screen blend washout */
+.orbit-day-blueprint-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: contrast(1.25) brightness(1.08);
+  opacity: 1;
+}
+/* Cognition lockup top-right over blueprint */
+.orbit-day-cognition {
+  position: absolute;
+  z-index: 4;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 170, 0.82);
+  pointer-events: none;
+}
+.orbit-day-cognition-logo {
+  display: block;
+  height: clamp(1.35rem, 2.4vw, 1.85rem);
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+.orbit-day-cognition-role {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+/* Tickets row OVER the bottom of the blueprint */
+.orbit-day-tickets {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 170, 0.88);
+  backdrop-filter: blur(2px);
+}
+.orbit-day-tix {
+  padding: 0.75rem 0.8rem 0.85rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+}
+.orbit-day-tix:last-child {
+  border-right: 0;
+}
+.orbit-day-tix.is-hero {
+  background: rgba(255, 255, 255, 0.06);
+}
+.orbit-tix-price.is-row {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  margin-top: 0.15rem;
+  color: #fff;
+}
+.orbit-day-tix .orbit-tix-tag,
+.orbit-day-tix .orbit-tix-note {
+  color: rgba(255, 255, 255, 0.75);
+}
+.orbit-bsod.is-on.is-glitch {
+  opacity: 0.92;
+  width: 100%;
+  max-width: none;
+  inset: 0;
+  border-right: 0;
+  transition: opacity 0.2s ease;
+}
+.orbit-bsod.is-on.is-glitch.is-fading {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.orbit-bsod-inner {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  font-family: "IBM Plex Mono", "Lucida Console", "Courier New", monospace;
+  color: #fff;
+  box-sizing: border-box;
+}
+.orbit-bsod.is-split .orbit-bsod-inner {
+  max-width: 100%;
+}
+.orbit-bsod-text {
+  margin: 0;
+  display: block;
+  max-width: 100%;
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  text-shadow: none;
+  opacity: 1;
+  box-sizing: border-box;
+}
+.orbit-bsod-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  animation: bsod-blink 0.85s step-end infinite;
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  vertical-align: baseline;
+  opacity: 1;
+}
+.orbit-bsod.is-fading .orbit-bsod-cursor {
+  display: none;
+}
+
+/* static / glitch as the prompt leaves */
+.orbit-bsod.is-glitch .orbit-bsod-inner {
+  animation: bsod-glitch 0.45s steps(2, end) infinite;
+}
+.orbit-bsod.is-glitch .orbit-bsod-text {
+  animation: bsod-static 0.12s steps(2, end) infinite;
+}
+.orbit-bsod.is-glitch {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.04) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.08) 0 2px,
+      transparent 2px 4px
+    ),
+    linear-gradient(180deg, rgba(0, 0, 40, 0.25) 0%, transparent 55%);
+}
+
+@keyframes bsod-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bsod-glitch {
+  0% {
+    transform: translate(0, 0) skewX(0deg);
+    filter: none;
+  }
+  20% {
+    transform: translate(-3px, 1px) skewX(-0.6deg);
+    filter: hue-rotate(20deg) contrast(1.2);
+  }
+  40% {
+    transform: translate(4px, -1px) skewX(0.8deg);
+    filter: hue-rotate(-25deg) contrast(1.35);
+  }
+  60% {
+    transform: translate(-2px, 2px) skewX(0.3deg);
+    clip-path: inset(8% 0 12% 0);
+  }
+  80% {
+    transform: translate(3px, 0) skewX(-0.4deg);
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1.25);
+  }
+  100% {
+    transform: translate(0, 0);
+    filter: none;
+  }
+}
+
+@keyframes bsod-static {
+  0% {
+    text-shadow:
+      2px 0 #ff0040,
+      -2px 0 #00e5ff,
+      0 0 1px #fff;
+    opacity: 1;
+  }
+  33% {
+    text-shadow:
+      -3px 0 #ff0040,
+      2px 1px #00e5ff,
+      0 0 2px #fff;
+    opacity: 0.85;
+    letter-spacing: 0.06em;
+  }
+  66% {
+    text-shadow:
+      1px -1px #ff0040,
+      -1px 2px #00e5ff;
+    opacity: 0.92;
+    transform: translateX(1px);
+  }
+  100% {
+    text-shadow:
+      0 0 1px #fff,
+      0 1px 0 rgba(0, 0, 0, 0.45);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-bsod {
+    display: none;
+  }
+  .orbit-bsod-cursor {
+    animation: none;
+  }
+  .orbit-bsod.is-glitch .orbit-bsod-inner,
+  .orbit-bsod.is-glitch .orbit-bsod-text {
+    animation: none;
+  }
 }
 
 #orbit-canvas:focus-visible {
@@ -1201,9 +2165,11 @@ input {
 .section-title {
   max-width: 18ch;
   margin-bottom: 1rem;
-  font-size: clamp(2.75rem, 7vw, 5.7rem);
+  /* Match hero title scale — not larger */
+  font-size: clamp(2.65rem, 3.35vw, 3.75rem);
   line-height: 0.9;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
+  font-weight: 400;
 }
 
 .section-sub {
@@ -1414,9 +2380,14 @@ input {
 }
 
 .ticket-card.is-featured .btn-primary {
+  /* key on deep card: invert face, keep spacebar shape */
   background: var(--ground) !important;
   border-color: var(--ground) !important;
   color: var(--deep) !important;
+  box-shadow: 1px 3px 0 rgba(0, 0, 0, 0.28);
+}
+.ticket-card.is-featured .btn-primary::before {
+  background: rgba(23, 0, 115, 0.12);
 }
 
 .waitlist-block {
@@ -1473,7 +2444,7 @@ input {
   #about .section-title {
     max-width: 20ch;
     margin-bottom: 2rem;
-    font-size: clamp(3.5rem, 6vw, 5rem);
+    font-size: clamp(2.65rem, 3.35vw, 3.75rem);
   }
 
   #about .about-grid {
@@ -1568,58 +2539,53 @@ input {
 
 @media (min-width: 720px) and (max-width: 1050px) {
   .orbit-copy {
-    grid-template-columns: minmax(20rem, 0.9fr) minmax(0, 1.1fr);
-    gap: 2rem;
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
+  }
+
+  .orbit-hero-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    column-gap: 1.5rem;
   }
 
   .orbit-title {
-    font-size: clamp(3rem, 6.3vw, 4.15rem);
+    font-size: clamp(2.4rem, 5.5vw, 3.4rem);
   }
 
-  .poster-signal figcaption span:last-child {
-    display: none;
-  }
-}
-
-@media (min-width: 900px) and (min-height: 1050px) {
-  .orbit-copy {
-    padding-top: clamp(14rem, 24vh, 18rem);
+  .poster-art-frame {
+    max-height: min(64vh, 520px);
+    min-height: min(46vh, 360px);
   }
 }
 
 @media (max-width: 719px) {
-  .nav-status {
-    display: none;
-  }
-
   .orbit-copy {
     inset: var(--nav-h) 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.8rem;
-    padding: 8rem 1rem 1.25rem;
+    gap: 0.85rem;
+    padding: 1.25rem 1rem 1.25rem;
+    text-align: center;
   }
 
-  .poster-signal {
-    order: -1;
-    max-width: 32rem;
-  }
-
-  .poster-art-frame {
-    border-radius: 12px;
-  }
-
-  .poster-signal figcaption {
-    display: none;
-  }
-
-  .orbit-copy-panel {
+  .orbit-hero-main {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    max-width: none;
+    gap: 0.85rem;
+  }
+
+  .orbit-col-copy {
+    order: 2;
+    height: auto;
+    max-width: 32rem;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .orbit-lead {
+    align-items: center;
     text-align: center;
   }
 
@@ -1635,25 +2601,36 @@ input {
       0 0 24px var(--ground);
   }
 
-  .orbit-flagship {
-    left: auto;
-    right: 1rem;
-    top: auto;
-    bottom: calc(var(--nav-h) + 0.75rem);
-    padding: 0.5rem 0.6rem;
+  .poster-art-frame {
+    order: 1;
+    width: 100%;
+    max-width: 32rem;
+    max-height: none;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
   }
 
-  .orbit-flagship img {
-    height: 18px;
+  .orbit-copy-panel {
+    align-items: center;
+    text-align: center;
+  }
+
+  .poster-foot {
+    order: 3;
+    display: flex;
+    justify-content: center;
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  .poster-foot .orbit-flagship {
+    grid-column: auto;
+    justify-self: center;
   }
 
   .orbit-actions {
     justify-content: center;
-    margin-top: 0.45rem;
-  }
-
-  .orbit-cue {
-    margin-top: 0.35rem;
   }
 
   .orbit-meta {
@@ -1667,7 +2644,7 @@ input {
   }
 
   .section-title {
-    font-size: clamp(2.75rem, 16vw, 4.6rem);
+    font-size: clamp(2.2rem, 9vw, 3.15rem);
   }
 
   .speakers-grid {

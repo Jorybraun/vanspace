@@ -1,7 +1,8 @@
 # Orbit · Vancouver (working title)
 
-**VanSpace** — *Agents in space.* Micro-conference at the [H.R. MacMillan Space Centre](https://www.spacecentre.ca).  
-**Site:** [vanspace.dev](https://vanspace.dev) (owned · Cloudflare).  
+**VanSpace** — *Agents in space.* Micro-conference in **Vancouver**.  
+**Venue (open):** [MacMillan Space Centre](https://www.spacecentre.ca) *or* [Science World](https://www.scienceworld.ca) — see [`ops/venue.md`](./ops/venue.md).  
+**Site:** [vanspace.dev](https://vanspace.dev) (owned · Cloudflare Pages).  
 Keynotes: **Kent C. Dodds**, **Wes Bos** · **Closing speaker TBA**. Sponsors: Flagship / Gold (Flagship → Cognition).
 
 > Design packet lives in `design-thinking/space-micro-con/`.  
@@ -15,8 +16,10 @@ Keynotes: **Kent C. Dodds**, **Wes Bos** · **Closing speaker TBA**. Sponsors: F
 | --- | --- |
 | `design-thinking/space-micro-con/design-brief.md` | Full design-thinking packet (Discover → Deliver) |
 | `design-thinking/space-micro-con/implementation-plan.md` | Slice 0 + backlog + policy locks |
-| `brand/` | Tokens, voice, logo draft, Devin assets, visual refs |
+| `brand/` | Tokens, voice, logo, **DIRECTION.md** (pivots), THEME.md |
+| `brand/DIRECTION.md` | **Living direction log** — venue, deck, theme, Luma card |
 | `ops/FULL-PLAN.md` | **Start here** — full plan if you feel lost |
+| `ops/venue.md` | **Venue decision** — Space Centre vs Science World |
 | `ops/speaking-schedule.md` | Stage map: Devin keynote, Gold firesides, Kent, panel |
 | `ops/checklist.md` | End-to-end planning checklist |
 | `ops/outreach-templates.md` | Venue, speakers, sponsors, community emails |
@@ -46,7 +49,7 @@ Assets:
 ## Next steps
 
 1. Read the [design brief](./design-thinking/space-micro-con/design-brief.md).
-2. Answer founder decisions (name, date, venue hold, Kent status).
+2. Answer founder decisions (name, date, **venue: Space Centre vs Science World**, Kent status).
 3. Approve the recommendation.
 4. Run **`/plan`** (or ask to implement **slice 0**) against [implementation-plan.md](./design-thinking/space-micro-con/implementation-plan.md).
 
@@ -59,4 +62,4 @@ Slice 0 ships: brand board + static marketing shell + waitlist/tickets link + op
 **Domain:** `vanspace.dev` (Cloudflare Registrar) — see `ops/domain.md`  
 Organizer: _TBD_ · `hello@vanspace.dev` (set up Email Routing)  
 Flagship target: Cognition / Devin _TBD_  
-Venue: [spacecentre.ca](https://www.spacecentre.ca) rentals
+Venue: _TBD_ — Space Centre and/or Science World rentals (`ops/venue.md`)

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VanSpace — Micro-conference at the MacMillan Space Centre</title>
+    <title>VanSpace — Micro-conference at Science World, Vancouver</title>
     <meta
       name="description"
-      content="VanSpace: a micro-conference for builders under the stars. In a gigantic saucer — at the H.R. MacMillan Space Centre. Keynotes including Kent C. Dodds and Wes Bos."
+      content="VanSpace: Tue 10 Nov 2026, 1–7pm at Science World, Vancouver. Keynotes including Kent C. Dodds and Wes Bos."
     />
     <meta name="theme-color" content="#e5e0cf" />
     <link rel="canonical" href="https://vanspace.dev/" />
@@ -14,20 +14,20 @@
     <!-- Share card: this page's whole job is to be pasted into a DM -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vanspace.dev/" />
-    <meta property="og:title" content="VanSpace — a micro-conference under the dome" />
+    <meta property="og:title" content="VanSpace — a micro-conference with big-conference energy" />
     <meta
       property="og:description"
-      content="One day, one room, single track. Keynotes from Kent C. Dodds and Wes Bos at the H.R. MacMillan Space Centre, Vancouver."
+      content="Tue 10 Nov 2026 · 1–7pm · Science World, Vancouver. Keynotes from Kent C. Dodds and Wes Bos."
     />
-    <meta property="og:image" content="https://vanspace.dev/space-centre-sketch.jpg" />
-    <meta property="og:image:alt" content="Pencil illustration of the MacMillan Space Centre saucer." />
+    <meta property="og:image" content="https://vanspace.dev/science-world-hero.jpg" />
+    <meta property="og:image:alt" content="Pencil sketch of Science World geodesic dome, Vancouver." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VanSpace — a micro-conference under the dome" />
+    <meta name="twitter:title" content="VanSpace — a micro-conference with big-conference energy" />
     <meta
       name="twitter:description"
-      content="One day, one room, single track. Keynotes from Kent C. Dodds and Wes Bos."
+      content="Tue 10 Nov 2026 · 1–7pm · Science World. Kent C. Dodds and Wes Bos."
     />
-    <meta name="twitter:image" content="https://vanspace.dev/space-centre-sketch.jpg" />
+    <meta name="twitter:image" content="https://vanspace.dev/science-world-hero.jpg" />
     <link rel="icon" href="./logo-mark.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,20 +35,17 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=17" />
+    <link rel="stylesheet" href="./styles.css?v=48" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
     <!-- Sticky event bar -->
     <header class="nav">
-      <a class="nav-brand" href="#top" aria-label="VanSpace home">
-        <img class="nav-mark" src="./logo-mark.svg" alt="" />
-        <span class="nav-title">VanSpace</span>
-        <span class="nav-status">System 01</span>
+      <a class="nav-brand" href="#top" aria-label="vanspace home">
+        <span class="nav-title">vanspace</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#speakers">Speakers</a>
         <a href="#film">Film</a>
         <a href="#schedule">Agenda</a>
         <a href="#tickets">Tickets</a>
@@ -59,51 +56,249 @@
     </header>
 
     <main id="main">
-      <!-- HERO — dithered saucer that scrolls apart into the orbit map.
+      <!-- HERO — dithered Science World that scrolls into the orbit map.
            Everything below this section is a conventional conference site. -->
       <section class="orbit-stage" id="orbit-stage">
         <div class="orbit-sticky">
+          <!-- Full-window BIOS double outline (left console + right modules) -->
+          <div class="orbit-bios-chrome" id="orbit-bios-chrome" aria-hidden="true"></div>
+
           <canvas
             id="orbit-canvas"
-            data-src="./space-centre-sketch.jpg"
+            data-src="./science-world-hero.jpg"
             role="button"
             tabindex="0"
             aria-pressed="false"
-            aria-label="Interactive VanSpace programme. Drag to rotate the orbit. Activate the scene to collapse the system into a wormhole and continue to the line-up."
+            aria-label="Interactive VanSpace programme map. Drag to rotate. Press Enter or Space to continue. Schedule and tickets are also available further down the page without this animation."
           ></canvas>
 
-          <div class="orbit-flagship">
-            <img src="./cognition-lockup.svg" alt="Cognition" />
-          </div>
-
           <div class="orbit-copy" id="orbit-copy">
-            <div class="orbit-copy-panel">
-              <p class="orbit-kicker">Vancouver / System 01</p>
-              <h1 class="orbit-title">A micro-conference under the dome</h1>
-              <p class="orbit-meta">Date TBA · One day · Single track · MacMillan Space Centre, Vancouver</p>
-              <div class="orbit-actions">
-                <a class="btn btn-primary" href="#tickets">Get tickets</a>
-                <a class="btn btn-ghost" href="#speakers">Meet the keynotes</a>
+            <!-- One row: left column height = poster image height → buttons flush to crab bottom -->
+            <div class="orbit-hero-main">
+              <div class="orbit-col-copy">
+                <div class="orbit-lead">
+                  <p class="orbit-kicker">vancouver</p>
+                  <h1 class="orbit-title">A <span class="orbit-title-ink">micro</span>-conference with <span class="orbit-title-ink">big</span>-conference energy</h1>
+                </div>
+                <div class="orbit-copy-panel">
+                  <p class="orbit-meta">Tue 10 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
+                  <div class="orbit-actions">
+                    <a class="btn btn-primary" href="#tickets">Get tickets</a>
+                    <a class="btn btn-ghost" href="#schedule">See the agenda</a>
+                  </div>
+                </div>
               </div>
-              <p class="orbit-cue">Scroll to release the poster ↓</p>
-            </div>
-
-            <figure class="poster-signal">
               <div class="poster-art-frame">
-                <img class="poster-art" src="./space-centre-sketch.jpg" alt="Pencil illustration of the H.R. MacMillan Space Centre" />
+                <img class="poster-art" src="./science-world-hero.jpg" alt="Pencil sketch of Science World geodesic dome, Vancouver" />
                 <img class="orbit-wordmark" src="./logo-wordmark.svg" alt="van space .dev" />
               </div>
-              <figcaption>
-                <span>Date TBA / MacMillan Space Centre</span>
-                <span>Keynotes · Kent C. Dodds · Wes Bos · Vancouver</span>
-              </figcaption>
-            </figure>
+            </div>
+            <div class="poster-foot">
+              <div class="orbit-flagship">
+                <img src="./cognition-lockup.svg" alt="Cognition" />
+              </div>
+            </div>
           </div>
 
           <div class="orbit-legend" id="orbit-legend">
             <div class="row"><span>VanSpace · The day</span><span>Drag to rotate</span></div>
             <div class="row"><span id="orbit-readout">Keynotes</span><span>2 keynotes confirmed</span></div>
           </div>
+
+          <!-- Cognition sun — shown in the middle of the solar system -->
+          <div class="orbit-cog-sun" id="orbit-cog-sun" aria-hidden="true">
+            <img src="./cognition-mark.svg" alt="" width="72" height="76" />
+          </div>
+
+          <!-- Right panel: speakers as BIOS inset window -->
+          <section
+            class="orbit-app orbit-speakers"
+            id="orbit-speakers"
+            aria-hidden="true"
+            aria-label="Line-up"
+            tabindex="-1"
+          >
+            <div class="orbit-app-frame">
+              <div class="orbit-app-inner">
+              <header class="orbit-app-titlebar">
+                <span class="orbit-app-dot" aria-hidden="true"></span>
+                <p class="orbit-app-title" id="orbit-speakers-heading">C:\VANSPACE\SPEAKERS.EXE</p>
+                <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+              </header>
+              <p class="orbit-app-status">LINE-UP · 10 Nov 2026 · 2 keynotes · closing TBA · Science World</p>
+              <div class="orbit-speakers-grid" role="list" aria-labelledby="orbit-speakers-heading">
+              <article class="orbit-spk is-key" role="listitem">
+                <div class="orbit-spk-photo">
+                  <img
+                    src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1663241015/dev/Kent_C._Dodds_cekgpk.jpg?auto=format,compress&fit=crop&w=400&h=400&crop=faces"
+                    alt="Kent C. Dodds"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Keynote</p>
+                  <h3>Kent C. Dodds</h3>
+                  <p class="orbit-spk-meta">EpicWeb</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-key" role="listitem">
+                <div class="orbit-spk-photo">
+                  <img
+                    src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1670334021/dev/Wes_Bos_hib0hw.jpg?auto=format,compress&fit=crop&w=400&h=400&crop=faces"
+                    alt="Wes Bos"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Keynote</p>
+                  <h3>Wes Bos</h3>
+                  <p class="orbit-spk-meta">Syntax.fm</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-closing" role="listitem">
+                <div class="orbit-spk-photo is-logo">
+                  <img src="./devin-mark.svg" alt="Devin" width="80" height="92" />
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Closing</p>
+                  <h3>To be announced</h3>
+                  <p class="orbit-spk-meta">Devin · Cognition</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">01</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">02</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">03</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">04</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">05</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem">
+                <div class="orbit-spk-photo is-slot">06</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              </div>
+              <p class="orbit-app-footer" aria-hidden="true">ESC exit · SCROLL next module · F1 help</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Right: Science World + Devin logo + Cognition + tickets row -->
+          <section
+            class="orbit-app orbit-venue"
+            id="orbit-venue"
+            aria-hidden="true"
+            aria-label="Science World, tickets, and Cognition"
+            tabindex="-1"
+          >
+            <div class="orbit-app-frame">
+              <div class="orbit-app-inner">
+                <header class="orbit-app-titlebar">
+                  <span class="orbit-app-dot" aria-hidden="true"></span>
+                  <p class="orbit-app-title" id="orbit-venue-heading">
+                    C:\VANSPACE\DAY.EXE
+                  </p>
+                  <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+                </header>
+                <p class="orbit-app-status">
+                  SCIENCE WORLD · 10 NOV 2026 · 13:00–19:00 · EARLY BIRD $99
+                </p>
+                <div class="orbit-day-stage">
+                  <div class="orbit-venue-blueprint">
+                    <img
+                      class="orbit-day-blueprint-img"
+                      src="./science-world-blueprint.jpg"
+                      alt="Structural line drawing of Science World, Vancouver"
+                      width="1600"
+                      height="900"
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <div class="orbit-day-cognition">
+                      <img
+                        src="./cognition-lockup.svg"
+                        alt="Cognition"
+                        class="orbit-day-cognition-logo"
+                      />
+                      <p class="orbit-day-cognition-role">System partner</p>
+                    </div>
+                    <!-- Tickets row OVER the blueprint -->
+                    <div class="orbit-day-tickets" role="list">
+                      <article class="orbit-day-tix is-hero" role="listitem">
+                        <p class="orbit-tix-tag">Early bird · first 50</p>
+                        <p class="orbit-tix-price is-row">$99</p>
+                        <p class="orbit-tix-note">Full day access</p>
+                      </article>
+                      <article class="orbit-day-tix" role="listitem">
+                        <p class="orbit-tix-tag">Student</p>
+                        <p class="orbit-tix-price is-row is-small">$99</p>
+                        <p class="orbit-tix-note">ID at door</p>
+                      </article>
+                      <article class="orbit-day-tix" role="listitem">
+                        <p class="orbit-tix-tag">Standard</p>
+                        <p class="orbit-tix-price is-row is-small">$160</p>
+                        <p class="orbit-tix-note">Full day access</p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <p class="orbit-app-footer" aria-hidden="true">
+                  DEVIN · COGNITION · EARLY $99 · STUDENT $99 · STANDARD $160
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Console: BIOS boot, then scroll-loaded modules (decorative type; live status for AT) -->
+          <div class="orbit-bsod" id="orbit-bsod" aria-hidden="true">
+            <div class="orbit-bsod-inner">
+              <pre class="orbit-bsod-text" id="orbit-bsod-text" aria-hidden="true"></pre>
+              <span class="orbit-bsod-cursor" aria-hidden="true">█</span>
+            </div>
+          </div>
+
+          <!-- Screen-reader status for chapter changes (not every typed character) -->
+          <p class="sr-only" id="orbit-status" role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
       </section>
 
@@ -115,103 +310,17 @@
         <span>Fly</span>
       </div>
 
-      <!-- SPEAKERS — high on the page (ticket gravity) -->
-      <section id="speakers" class="section">
-        <div class="wrap-xl">
-          <p class="eyebrow">Line-up</p>
-          <h2 class="section-title">Keynotes</h2>
-          <p class="section-sub">
-            Two keynotes, a closing speaker, plus workshops and talks mixed through the day.
-          </p>
-
-          <div class="speakers-grid">
-            <article class="speaker-card is-keynote">
-              <div class="speaker-photo">
-                <img
-                  src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1663241015/dev/Kent_C._Dodds_cekgpk.jpg?auto=format,compress&fit=crop&w=600&h=600&crop=faces"
-                  alt="Kent C. Dodds"
-                  width="600"
-                  height="600"
-                  loading="eager"
-                />
-              </div>
-              <div class="speaker-body">
-                <p class="speaker-tag">Keynote</p>
-                <h3>Kent C. Dodds</h3>
-                <p class="speaker-meta">EpicWeb · Educator &amp; open source</p>
-                <p class="speaker-bio">Talk title TBA.</p>
-              </div>
-            </article>
-
-            <article class="speaker-card is-keynote">
-              <div class="speaker-photo">
-                <img
-                  src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1670334021/dev/Wes_Bos_hib0hw.jpg?auto=format,compress&fit=crop&w=600&h=600&crop=faces"
-                  alt="Wes Bos"
-                  width="600"
-                  height="600"
-                  loading="eager"
-                />
-              </div>
-              <div class="speaker-body">
-                <p class="speaker-tag">Keynote</p>
-                <h3>Wes Bos</h3>
-                <p class="speaker-meta">Syntax.fm · Full-stack educator</p>
-                <p class="speaker-bio">Talk title TBA.</p>
-              </div>
-            </article>
-
-            <article class="speaker-card is-tba">
-              <div class="speaker-photo speaker-photo-tba" aria-hidden="true">?</div>
-              <div class="speaker-body">
-                <p class="speaker-tag">Closing speaker</p>
-                <h3>To be announced</h3>
-                <p class="speaker-meta">Closes the day</p>
-                <p class="speaker-bio">We’re locking the closing speaker.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="session-squares" aria-label="More sessions">
-            <article class="session-square is-featured">
-              <p class="session-square-tag">Devin workshop</p>
-              <h3>Build with Devin</h3>
-            </article>
-            <article class="session-square">
-              <p class="session-square-tag">Talk</p>
-              <h3>Session</h3>
-              <p>Announcing soon</p>
-            </article>
-            <article class="session-square">
-              <p class="session-square-tag">Talk</p>
-              <h3>Session</h3>
-              <p>Announcing soon</p>
-            </article>
-            <article class="session-square">
-              <p class="session-square-tag">Talk</p>
-              <h3>Session</h3>
-              <p>Announcing soon</p>
-            </article>
-            <article class="session-square">
-              <p class="session-square-tag">Talk</p>
-              <h3>Session</h3>
-              <p>Announcing soon</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <!-- SIZZLE -->
       <section id="film" class="section">
         <div class="wrap-xl">
           <p class="eyebrow">The room</p>
-          <h2 class="section-title">One day, one dome</h2>
+          <h2 class="section-title">One day, Science World</h2>
           <p class="section-sub">
             Ninety seconds inside the venue and what the day looks like.
           </p>
           <div class="video-frame">
             <!-- Drop the file in and delete the placeholder:
-                 <video src="./vanspace-sizzle.mp4" poster="./space-centre-sketch.jpg"
+                 <video src="./vanspace-sizzle.mp4" poster="./science-world-hero.jpg"
                         controls playsinline preload="metadata"></video> -->
             <p class="video-placeholder">
               Sizzle reel<br />
@@ -221,104 +330,90 @@
         </div>
       </section>
 
-      <!-- AGENDA -->
+      <!-- AGENDA — full static schedule (works without JS / screen readers) -->
       <section id="schedule" class="section section-alt">
         <div class="wrap-xl">
           <p class="eyebrow">Agenda</p>
           <h2 class="section-title">The day</h2>
           <p class="section-sub">
-            Sessions between keynotes. Closing talk ~3:30 · wrap ~5:00.
+            Tue 10 Nov 2026 · Science World · 13:00–19:00 · single track.
           </p>
           <ol class="timeline">
             <li>
-              <time datetime="10:00">10:00</time>
+              <time datetime="2026-11-10T13:00">13:00</time>
               <div>
                 <strong>Doors open</strong>
                 <span>Coffee · settle · tables</span>
               </div>
             </li>
             <li>
-              <time datetime="10:15">10:15</time>
+              <time datetime="2026-11-10T13:15">13:15</time>
               <div>
                 <strong>Welcome</strong>
                 <span>Host · CoC · wifi</span>
               </div>
             </li>
             <li class="is-key">
-              <time datetime="10:30">10:30</time>
+              <time datetime="2026-11-10T13:30">13:30</time>
               <div>
                 <strong>Keynote 1</strong>
-                <span>~40 min · e.g. Kent C. Dodds</span>
+                <span>~40 min · Kent C. Dodds</span>
               </div>
             </li>
             <li>
-              <time datetime="11:10">11:10</time>
+              <time datetime="2026-11-10T14:15">14:15</time>
               <div>
                 <strong>Session 1</strong>
                 <span>~25–30 min</span>
               </div>
             </li>
             <li>
-              <time datetime="11:40">11:40</time>
+              <time datetime="2026-11-10T14:45">14:45</time>
               <div>
                 <strong>Session 2</strong>
                 <span>~25–30 min</span>
               </div>
             </li>
             <li>
-              <time datetime="12:10">12:10</time>
+              <time datetime="2026-11-10T15:15">15:15</time>
               <div>
-                <strong>Lunch + tables</strong>
-                <span>~50–60 min</span>
+                <strong>Break · hallway</strong>
+                <span>~20 min</span>
               </div>
             </li>
             <li class="is-key">
-              <time datetime="13:10">13:10</time>
+              <time datetime="2026-11-10T15:35">15:35</time>
               <div>
                 <strong>Keynote 2</strong>
-                <span>~40 min · e.g. Wes Bos · after lunch</span>
+                <span>~40 min · Wes Bos</span>
               </div>
             </li>
             <li>
-              <time datetime="13:50">13:50</time>
+              <time datetime="2026-11-10T16:20">16:20</time>
               <div>
                 <strong>Session 3</strong>
-                <span>~25–30 min</span>
-              </div>
-            </li>
-            <li>
-              <time datetime="14:20">14:20</time>
-              <div>
-                <strong>Session 4</strong>
-                <span>~25–30 min · e.g. Devin workshop</span>
-              </div>
-            </li>
-            <li>
-              <time datetime="14:55">14:55</time>
-              <div>
-                <strong>Session 5</strong>
-                <span>~25–30 min</span>
+                <span>~30 min</span>
               </div>
             </li>
             <li class="is-key">
-              <time datetime="15:30">15:30</time>
+              <time datetime="2026-11-10T16:55">16:55</time>
               <div>
                 <strong>Closing speaker</strong>
                 <span>~40 min · TBA</span>
               </div>
             </li>
             <li>
-              <time datetime="16:15">16:15</time>
+              <time datetime="2026-11-10T17:40">17:40</time>
               <div>
                 <strong>Hang · tables</strong>
                 <span>Soft wind-down</span>
               </div>
             </li>
             <li>
-              <time datetime="17:00">17:00</time>
+              <time datetime="2026-11-10T19:00">19:00</time>
               <div>
-                <strong>Done</strong>
-                <span>Rough close</span>
+                <strong>Programme ends</strong>
+                <span>Science World close</span>
               </div>
             </li>
           </ol>
@@ -343,7 +438,7 @@
               </li>
               <li>
                 <strong>Talks, not booth hour</strong>
-                ~3.5h on mic inside the Space Centre package.
+                Tue 10 Nov 2026 · 13:00–19:00 · Science World.
               </li>
               <li>
                 <strong>Built for builders</strong>
@@ -360,29 +455,40 @@
           <p class="eyebrow">Tickets</p>
           <h2 class="section-title">Reserve your seat</h2>
           <p class="section-sub">
-            Tickets open with the date. Luma link drops here.
+            Tue 10 Nov 2026 · 13:00–19:00. Luma link drops here.
           </p>
           <div class="tickets-grid">
-            <article class="ticket-card">
-              <p class="ticket-tier">Early</p>
-              <p class="ticket-note">First ~35 · date drop window</p>
-              <a class="btn btn-ghost" href="#tickets">Notify me</a>
-            </article>
             <article class="ticket-card is-featured">
+              <p class="ticket-tier">Early bird</p>
+              <p class="ticket-price">$99</p>
+              <p class="ticket-note">First 50 · full day access</p>
+              <a class="btn btn-primary" href="mailto:hello@vanspace.dev?subject=VanSpace%20early%20bird">
+                Get early bird
+              </a>
+            </article>
+            <article class="ticket-card">
               <p class="ticket-tier">Standard</p>
-              <p class="ticket-note">Main run · full day access</p>
-              <a class="btn btn-primary" href="#tickets">Notify me</a>
+              <p class="ticket-price">$160</p>
+              <p class="ticket-note">Full day access</p>
+              <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=VanSpace%20tickets">
+                Notify me
+              </a>
             </article>
             <article class="ticket-card">
               <p class="ticket-tier">Student</p>
+              <p class="ticket-price">$99</p>
               <p class="ticket-note">ID at door · limited</p>
-              <a class="btn btn-ghost" href="#tickets">Notify me</a>
+              <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=VanSpace%20student">
+                Notify me
+              </a>
             </article>
           </div>
           <div class="waitlist-block" aria-label="Ticket alert status">
-            <p class="waitlist-label">Ticket alerts open when the date is announced.</p>
-            <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=VanSpace%20ticket%20alert">
-              Ask for the date drop
+            <p class="waitlist-label">
+              Early bird $99 · student $99 · standard $160 · Tue 10 Nov 2026 · 1–7pm.
+            </p>
+            <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=VanSpace%2010%20Nov%20tickets">
+              Get ticket alerts
             </a>
           </div>
         </div>
@@ -396,7 +502,7 @@
           <div class="sponsor-feature">
             <p class="sponsor-label">System partner 01</p>
             <img src="./cognition-lockup.svg" alt="Cognition" height="72" />
-            <p class="sponsor-credit">Supporting one room of builders under the dome.</p>
+            <p class="sponsor-credit">Supporting one room of builders at Science World.</p>
           </div>
           <p class="section-sub sponsors-note">
             Other slots open.
@@ -416,13 +522,13 @@
         <div class="footer-links">
           <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
           <a href="mailto:sponsors@vanspace.dev">sponsors@vanspace.dev</a>
-          <a href="https://www.spacecentre.ca" target="_blank" rel="noopener"
-            >Space Centre</a
+          <a href="https://www.scienceworld.ca" target="_blank" rel="noopener"
+            >Science World</a
           >
         </div>
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="./orbit-hero.js?v=6" defer></script>
+    <script src="./orbit-hero.js?v=35" defer></script>
   </body>
 </html>
