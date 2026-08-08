@@ -740,10 +740,20 @@ a {
 
 .orbit-stage {
   position: relative;
-  /* tall stage: orbit + long speakers dwell + venue */
-  height: 560vh;
-  height: 560svh;
+  /* tall stage: manifesto + long speakers dwell + day */
+  height: 640vh;
+  height: 640svh;
   background: var(--ground);
+}
+/* blue-first: never show cream poster hero */
+.orbit-stage.is-blue-first {
+  background: #0000aa;
+}
+.orbit-stage.is-blue-first .orbit-copy {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .orbit-sticky {
@@ -944,12 +954,16 @@ input {
   color: var(--ink);
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
-/* Full BSOD — hide chrome so white terminal is uninterrupted */
+/* Full BSOD — hide chrome so the blue stage is uninterrupted */
 .nav.is-bsod-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-100%);
+  /* don't leave a cream strip behind */
+  height: 0;
+  overflow: hidden;
+  border: 0;
 }
 
 .nav-brand {
@@ -1293,6 +1307,75 @@ input {
   }
 }
 
+/* BIOS bottom action bar — sits just above the double border */
+.orbit-bios-nav {
+  position: absolute;
+  z-index: 32;
+  left: calc(0.85rem + 10px);
+  right: calc(0.95rem + 10px);
+  bottom: calc(0.9rem + 10px);
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  background: #0000aa;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+.orbit-bios-nav.is-on {
+  display: flex;
+}
+.orbit-bios-nav-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: #0000aa;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.orbit-bios-nav-btn:hover,
+.orbit-bios-nav-btn:focus-visible {
+  background: #fff;
+  color: #0000aa;
+  outline: none;
+}
+.orbit-bios-nav-btn.is-primary {
+  background: #fff;
+  color: #0000aa;
+  border-color: #fff;
+}
+.orbit-bios-nav-btn.is-primary:hover,
+.orbit-bios-nav-btn.is-primary:focus-visible {
+  background: transparent;
+  color: #fff;
+}
+@media (max-width: 899px) {
+  .orbit-bios-nav {
+    left: calc(0.75rem + 8px);
+    right: calc(0.75rem + 8px);
+    bottom: calc(0.75rem + 8px);
+    gap: 0.35rem;
+  }
+  .orbit-bios-nav-btn {
+    font-size: 0.52rem;
+    padding: 0.35rem 0.55rem;
+  }
+}
+
 /* —— Right panel apps sit INSIDE the full-window chrome —— */
 .orbit-app {
   /* outer chrome inset + double-line thickness + visible blue gap */
@@ -1306,7 +1389,8 @@ input {
   z-index: 4;
   top: var(--exe-edge);
   right: var(--exe-edge);
-  bottom: var(--exe-edge);
+  /* clear BIOS bottom nav bar */
+  bottom: calc(var(--exe-edge) + 2.85rem);
   left: var(--exe-edge);
   color: #fff;
   display: flex;
@@ -1331,7 +1415,7 @@ input {
     --exe-gap: 16px;
     top: var(--exe-edge);
     right: var(--exe-edge);
-    bottom: var(--exe-edge);
+    bottom: calc(var(--exe-edge) + 2.85rem);
     left: calc(35% + 14px);
   }
 }
@@ -1597,12 +1681,14 @@ input {
   opacity: 1;
 }
 /* desktop split: left console inside full-window double border */
-.orbit-bsod.is-split {
+.orbit-bsod.is-on.is-split {
   inset: 0 auto 0 0;
   width: 35%;
   max-width: 35%;
-  /* stay inside full-window double border */
-  padding: 2rem 0.85rem 1.85rem 1.85rem;
+  /* clear the outer double line so it doesn't get clipped / broken */
+  margin-top: 1.35rem;
+  margin-bottom: 3.75rem; /* border + BIOS nav */
+  padding: 1.1rem 0.85rem 1rem 1.85rem;
   border-right: 1px solid rgba(255, 255, 255, 0.35);
   overflow-y: auto;
   overflow-x: hidden;
@@ -1935,6 +2021,68 @@ input {
   font-family: "IBM Plex Mono", "Lucida Console", "Courier New", monospace;
   color: #fff;
   box-sizing: border-box;
+}
+/* After boot: clean manifesto instead of terminal dump */
+.orbit-bsod.is-manifesto .orbit-bsod-inner {
+  display: none;
+}
+/* Day phase: Devin CLI tone (not Windows CMD) */
+.orbit-bsod.is-devin .orbit-bsod-text {
+  font-size: clamp(0.7rem, 1vw, 0.88rem);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
+}
+.orbit-bsod.is-devin .orbit-bsod-cursor {
+  opacity: 0.85;
+}
+.orbit-intro {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 22rem;
+  padding: 0.15rem 0 0;
+  color: #fff;
+}
+.orbit-bsod.is-manifesto .orbit-intro,
+.orbit-intro.is-on {
+  display: flex;
+}
+.orbit-intro-kicker {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.orbit-intro-title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.orbit-intro-mission {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(0.8rem, 1.15vw, 0.95rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 28ch;
+}
+.orbit-intro-meta {
+  margin: 0.35rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
 }
 .orbit-bsod.is-split .orbit-bsod-inner {
   max-width: 100%;

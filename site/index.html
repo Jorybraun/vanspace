@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=48" />
+    <link rel="stylesheet" href="./styles.css?v=55" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -289,13 +289,41 @@
             </div>
           </section>
 
-          <!-- Console: BIOS boot, then scroll-loaded modules (decorative type; live status for AT) -->
+          <!-- Console: BIOS boot → clear → VanSpace manifesto (then modules) -->
           <div class="orbit-bsod" id="orbit-bsod" aria-hidden="true">
             <div class="orbit-bsod-inner">
               <pre class="orbit-bsod-text" id="orbit-bsod-text" aria-hidden="true"></pre>
-              <span class="orbit-bsod-cursor" aria-hidden="true">█</span>
+              <span class="orbit-bsod-cursor" id="orbit-bsod-cursor" aria-hidden="true">█</span>
+            </div>
+            <div class="orbit-intro" id="orbit-intro" aria-hidden="true">
+              <p class="orbit-intro-kicker">VanSpace</p>
+              <h2 class="orbit-intro-title">
+                A micro-conference in Vancouver with big-conference energy
+              </h2>
+              <p class="orbit-intro-mission">
+                We bring big names to community events in Vancouver at a reasonable cost.
+              </p>
+              <p class="orbit-intro-meta">
+                Tue 10 Nov 2026 · 13:00–19:00 · Science World
+              </p>
             </div>
           </div>
+
+          <!-- BIOS bottom nav — actions inside the double border -->
+          <nav class="orbit-bios-nav" id="orbit-bios-nav" aria-label="VanSpace shortcuts" hidden>
+            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="speakers">
+              See speakers
+            </button>
+            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="day">
+              Venue &amp; tickets
+            </button>
+            <a class="orbit-bios-nav-btn is-primary" href="#tickets">
+              Purchase
+            </a>
+            <a class="orbit-bios-nav-btn" href="#schedule">
+              Full agenda
+            </a>
+          </nav>
 
           <!-- Screen-reader status for chapter changes (not every typed character) -->
           <p class="sr-only" id="orbit-status" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -529,6 +557,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="./orbit-hero.js?v=35" defer></script>
+    <script src="./orbit-hero.js?v=43" defer></script>
   </body>
 </html>

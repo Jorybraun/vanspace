@@ -23,8 +23,8 @@
   const speakersPanel = document.getElementById("orbit-speakers");
   const venuePanel = document.getElementById("orbit-venue");
   const biosChrome = document.getElementById("orbit-bios-chrome");
+  const biosNav = document.getElementById("orbit-bios-nav");
   const statusEl = document.getElementById("orbit-status");
-  let lastAnnouncedChapter = "";
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const GROUND = [229, 224, 207]; // --ground
@@ -35,9 +35,12 @@
   /* ---- Console: BIOS boot, then scroll unlocks more load chapters ---- */
   const bsodEl = document.getElementById("orbit-bsod");
   const bsodText = document.getElementById("orbit-bsod-text");
+  const bsodCursor = document.getElementById("orbit-bsod-cursor");
+  const introEl = document.getElementById("orbit-intro");
   const navEl = document.querySelector(".nav");
 
-  /* Phase 0 — short boot (sponsors + core systems) */
+  /* Blue-first: boot on blue → manifesto → scroll modules */
+  const BLUE_FIRST = true;
   const BOOT_SCRIPT = [
     "VanSpace BIOS (C) 2026",
     "",
@@ -49,157 +52,153 @@
     "  Science World...... OK",
     "  10 Nov 2026........ OK",
     "  13:00–19:00........ OK",
-    "  ticket gravity..... OK",
     "  loading devin...... OK",
     "",
-    "A problem has been detected and Windows has been",
-    "shut down to prevent damage to your weekend.",
-    "",
-    "VANSPACE_MICRO_CONFERENCE",
-    "",
-    "*** STOP: 0xVANSPACE (KENT, WES, CLOSING, 0x96)",
-    "",
-    "Keep scrolling — modules load as you go_"
+    "Boot complete."
   ].join("\n");
 
-  /* After boot: each chapter appends as scroll/form crosses a threshold */
-  const LOAD_CHAPTERS = [
-    {
-      id: "orbit",
-      formAt: 0.02,
-      label: "Programme map loaded",
-      lines: [
-        "",
-        "C:\\VANSPACE> load orbit.exe",
-        "Loading programme map...",
-        "  ring:keynotes...... OK",
-        "  ring:sessions...... OK",
-        "  ring:the-room...... OK",
-        "  cognition core..... ONLINE"
-      ]
-    },
-    {
-      id: "speakers",
-      /* wide band so the line-up can be scrolled / read */
-      formAt: 0.45,
-      label: "Speakers module loaded",
-      lines: [
-        "",
-        "C:\\VANSPACE> load speakers.exe",
-        "Loading speakers...",
-        "  Kent C. Dodds...... OK",
-        "  Wes Bos............ OK",
-        "  closing speaker.... PENDING",
-        "  sessions[0..4]..... TBA"
-      ]
-    },
-    {
-      /* Merged right panel: Science World + tickets + Cognition/Devin.
-         Left console clears to Devin CLI + schedule. */
-      id: "day",
-      formAt: 0.72,
-      label: "Day loaded — Science World, tickets, Devin schedule",
-      lines: [
-        "",
-        "C:\\VANSPACE> cls",
-        "C:\\VANSPACE> load devin.exe",
-        "Loading Devin...",
-        "  cognition.......... OK",
-        "  cli................ OK",
-        "  schedule bridge.... OK",
-        "",
-        "C:\\VANSPACE> devin",
-        "",
-        "⠀⣴⣾⣶⡄⠀⠀⠀⠀",
-        "⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI",
-        "⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.2.17 · Max",
-        "⠀⠻⢿⠿⠃⠀⠀⠀⠀",
-        "",
-        "  presented with Cognition",
-        "  vanspace · 10 Nov 2026",
-        "",
-        "C:\\VANSPACE> load schedule.exe",
-        "Loading agenda · 13:00–19:00",
-        "",
-        "  13:00  Doors · coffee · tables",
-        "  13:15  Welcome · CoC · wifi",
-        "  13:30  Keynote 1 · Kent C. Dodds",
-        "  14:15  Session 1",
-        "  14:45  Session 2",
-        "  15:15  Break · hallway",
-        "  15:35  Keynote 2 · Wes Bos",
-        "  16:20  Session 3",
-        "  16:55  Closing speaker · TBA",
-        "  17:40  Hang · tables",
-        "  19:00  Programme ends",
-        "",
-        "  early bird......... $99 · first 50",
-        "  student............ $99",
-        "  standard........... $160",
-        "",
-        "SWE-1.7 Max · /help"
-      ]
-    }
-  ];
+  /* Scroll gates (0–1 over the orbit stage). Wide speakers band so it can't be skipped. */
+  const SPEAKERS_AT = 0.28;
+  const DAY_AT = 0.72;
 
+  /** Scroll the page so stage progress ≈ targetP (0–1) */
+  function scrollStageTo(targetP) {
+    const rect = stage.getBoundingClientRect();
+    const total = Math.max(1, rect.height - window.innerHeight);
+    const next = window.scrollY + rect.top + Math.min(1, Math.max(0, targetP)) * total;
+    window.scrollTo({ top: next, behavior: "smooth" });
+  }
+
+  if (biosNav) {
+    biosNav.addEventListener("click", function (e) {
+      const btn = e.target.closest("[data-bios-jump]");
+      if (!btn) return;
+      e.preventDefault();
+      const jump = btn.getAttribute("data-bios-jump");
+      if (jump === "speakers") scrollStageTo(SPEAKERS_AT + 0.06);
+      else if (jump === "day") scrollStageTo(DAY_AT + 0.04);
+    });
+  }
+
+  /* Speakers phase — schedule only (no DOS prompt) */
+  const SCHEDULE_LINES = [
+    "Schedule · 10 Nov 2026 · 13:00–19:00",
+    "Science World, Vancouver",
+    "",
+    "13:00  Doors · coffee · tables",
+    "13:15  Welcome · CoC · wifi",
+    "13:30  Keynote 1 · Kent C. Dodds",
+    "14:15  Session 1",
+    "14:45  Session 2",
+    "15:15  Break · hallway",
+    "15:35  Keynote 2 · Wes Bos",
+    "16:20  Session 3",
+    "16:55  Closing speaker · TBA",
+    "17:40  Hang · tables",
+    "19:00  Programme ends",
+    "",
+    "early bird  $99 · first 50",
+    "student     $99",
+    "standard    $160"
+  ].join("\n");
+
+  /* Day phase — pure Devin CLI (not Windows CMD) */
+  const DAY_LINES = [
+    "⠀⣴⣾⣶⡄⠀⠀⠀⠀",
+    "⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI",
+    "⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.2.17 · Max",
+    "⠀⠻⢿⠿⠃⠀⠀⠀⠀",
+    "",
+    "presented with Cognition",
+    "vanspace · 10 Nov 2026",
+    "",
+    "────────────────────────",
+    "",
+    "Schedule",
+    "",
+    "13:00  Doors · coffee · tables",
+    "13:15  Welcome · CoC · wifi",
+    "13:30  Keynote 1 · Kent C. Dodds",
+    "14:15  Session 1",
+    "14:45  Session 2",
+    "15:15  Break · hallway",
+    "15:35  Keynote 2 · Wes Bos",
+    "16:20  Session 3",
+    "16:55  Closing speaker · TBA",
+    "17:40  Hang · tables",
+    "19:00  Programme ends",
+    "",
+    "early bird  $99 · first 50",
+    "student     $99",
+    "standard    $160",
+    "",
+    "❭ Ask Devin to build features,",
+    "  fix bugs, or work on your code",
+    "",
+    "SWE-1.7 Max · /help"
+  ].join("\n");
+
+  /* phase: boot | intro | speakers | day */
+  let phase = "boot";
   let consoleTyped = 0;
   let consoleLastTick = 0;
   let bsodDone = false;
   let bsodDoneAt = 0;
+  let introAt = 0;
   let lastScrollP = 0;
   let scrollVel = 0;
   let orbitForm = 0;
-  /* console focus: boot → speakers wipe → day (Devin + schedule only) */
-  let consoleFocusFrom = null;
-  let lastConsoleMode = "boot";
+  let lastAnnouncedPhase = "";
 
-  const SPEAKERS_CHAPTER = LOAD_CHAPTERS.find(function (c) {
-    return c.id === "speakers";
-  });
-  const DAY_CHAPTER = LOAD_CHAPTERS.find(function (c) {
-    return c.id === "day";
-  });
-  const SPEAKERS_AT = SPEAKERS_CHAPTER ? SPEAKERS_CHAPTER.formAt : 0.45;
-  const DAY_AT = DAY_CHAPTER ? DAY_CHAPTER.formAt : 0.72;
-
-  /* chapterP: scroll-driven after boot — orbit dwells long before speakers */
-  function chapterProgress(p, form, sinceDoneSec) {
-    if (!bsodDone) return 0;
-    const byScroll = ease(Math.max(0, (p - 0.22) / 0.72));
-    const byForm = form * 0.28;
-    const byTime = Math.min(0.12, sinceDoneSec / 14);
-    return Math.min(1, Math.max(byScroll, byForm, byTime));
+  function setIntroVisible(on) {
+    if (!introEl) return;
+    introEl.classList.toggle("is-on", on);
+    introEl.setAttribute("aria-hidden", on ? "false" : "true");
+    if (bsodEl) bsodEl.classList.toggle("is-manifesto", on);
+    if (bsodCursor) bsodCursor.style.display = on ? "none" : "";
   }
 
-  function buildConsoleTarget(chapterP) {
-    /* Day beat: only Devin CLI + schedule — everything else gone */
-    if (consoleFocusFrom === "day") {
-      const ch = DAY_CHAPTER;
-      if (!ch) return "";
-      return ch.lines.join("\n").replace(/^\n+/, "");
-    }
+  function setDevinMode(on) {
+    if (bsodEl) bsodEl.classList.toggle("is-devin", on);
+  }
 
-    /* Speakers beat: short speakers dump (no boot crash noise) */
-    if (consoleFocusFrom === "speakers") {
-      const head = [
-        "VanSpace console",
-        "C:\\VANSPACE> cls",
-        "  (boot log cleared)",
-        ""
-      ].join("\n");
-      const ch = SPEAKERS_CHAPTER;
-      return head + (ch ? "\n" + ch.lines.join("\n") : "");
-    }
+  if (BLUE_FIRST && stage) {
+    stage.classList.add("is-blue-first");
+  }
 
-    let out = BOOT_SCRIPT;
-    for (let i = 0; i < LOAD_CHAPTERS.length; i++) {
-      const ch = LOAD_CHAPTERS[i];
-      if (ch.id === "speakers") break;
-      if (chapterP >= ch.formAt) {
-        out += "\n" + ch.lines.join("\n");
+  function phaseTarget() {
+    if (phase === "boot") return BOOT_SCRIPT;
+    if (phase === "intro") return "";
+    if (phase === "speakers") return SCHEDULE_LINES;
+    if (phase === "day") return DAY_LINES;
+    return "";
+  }
+
+  function setPhase(next, now) {
+    if (phase === next) return;
+    phase = next;
+    consoleTyped = 0;
+    consoleLastTick = 0;
+    if (bsodEl) bsodEl.scrollTop = 0;
+    setDevinMode(next === "day");
+    if (next === "intro") {
+      introAt = now || performance.now();
+      setIntroVisible(true);
+      if (bsodText) bsodText.textContent = "";
+    } else {
+      setIntroVisible(false);
+    }
+    if (statusEl && next !== "boot") {
+      const labels = {
+        intro: "VanSpace",
+        speakers: "Schedule loaded — line-up on the right",
+        day: "Day loaded — Science World and tickets"
+      };
+      if (labels[next] && labels[next] !== lastAnnouncedPhase) {
+        lastAnnouncedPhase = labels[next];
+        statusEl.textContent = labels[next];
       }
     }
-    return out;
   }
 
   /* ---- the day, as an orbit ------------------------------------------ */
@@ -510,7 +509,9 @@
       vel *= 0.94;
     }
 
-    const invert = ease((p - 0.06) / 0.32);
+    /* Blue-first: land on BSOD + orbit without cream poster dwell */
+    const invertScroll = ease((p - 0.06) / 0.32);
+    const invert = BLUE_FIRST ? Math.max(0.98, invertScroll) : invertScroll;
     scrollVel = Math.abs(p - lastScrollP);
     lastScrollP = p;
 
@@ -521,122 +522,90 @@
       ctx.fillRect(0, 0, W, H);
     }
 
-    /* ---- Console (scroll unlocks load chapters) ---- */
+    /* ---- Simple phases: boot → intro → speakers → day ---- */
     const sinceDone = bsodDone ? (now - bsodDoneAt) / 1000 : 0;
+    /* orbit forms after boot (time + a bit of scroll) */
     const form = bsodDone
-      ? ease(Math.min(1, Math.max(sinceDone / 1.8, (p - 0.24) / 0.5)))
+      ? ease(Math.min(1, Math.max(sinceDone / 1.35, (p - 0.05) / 0.4)))
       : 0;
     orbitForm = form;
-    const chapterP = chapterProgress(p, form, sinceDone);
-    /* right-panel: speakers, then merged day (venue + tickets + cognition) */
-    const speakersAt = SPEAKERS_AT;
-    const dayAt = DAY_AT;
-    const speakersReveal = chapterP >= speakersAt
-      ? ease(Math.min(1, (chapterP - speakersAt) / 0.1))
-      : 0;
-    const dayReveal = chapterP >= dayAt
-      ? ease(Math.min(1, (chapterP - dayAt) / 0.12))
-      : 0;
-    const orbitFade =
-      speakersReveal > 0.15 || dayReveal > 0.1
-        ? 0
-        : 1 - speakersReveal * 0.98;
 
-    /* a11y: announce chapter loads once (not every typed char) */
-    if (statusEl && bsodDone && !warping) {
-      let ann = "";
-      for (let i = LOAD_CHAPTERS.length - 1; i >= 0; i--) {
-        if (chapterP >= LOAD_CHAPTERS[i].formAt) {
-          ann = LOAD_CHAPTERS[i].label || LOAD_CHAPTERS[i].id;
-          break;
-        }
-      }
-      if (ann && ann !== lastAnnouncedChapter) {
-        lastAnnouncedChapter = ann;
-        statusEl.textContent = ann;
+    /* chapter progress = linear scroll after boot (no ease — easier to land in bands) */
+    const chapterP = bsodDone ? Math.min(1, Math.max(0, p)) : 0;
+
+    /*
+     * Sequential phases only — never jump intro → day and skip speakers.
+     * intro holds briefly, then scroll unlocks speakers, then day.
+     */
+    const introHeld = phase !== "intro" || (introAt && now - introAt > 1600);
+    if (!warping && bsodDone && introHeld) {
+      if (phase === "intro" && chapterP >= SPEAKERS_AT) {
+        setPhase("speakers", now);
+      } else if (phase === "speakers" && chapterP >= DAY_AT) {
+        setPhase("day", now);
+      } else if (phase === "day" && chapterP < DAY_AT) {
+        setPhase("speakers", now);
+      } else if (
+        (phase === "speakers" || phase === "day") &&
+        chapterP < SPEAKERS_AT
+      ) {
+        setPhase("intro", now);
       }
     }
 
-    const bootActive = invert > 0.52 && !warping;
-    if (bsodEl && bsodText && !reduce) {
-      /* boot → speakers wipe → day (Devin CLI + schedule only) */
-      if (chapterP >= DAY_AT && consoleFocusFrom !== "day") {
-        consoleFocusFrom = "day";
-        consoleTyped = 0;
-        consoleLastTick = 0;
-        lastConsoleMode = "day";
-        if (bsodEl) bsodEl.scrollTop = 0;
-      } else if (
-        chapterP >= SPEAKERS_AT &&
-        chapterP < DAY_AT &&
-        consoleFocusFrom !== "speakers"
-      ) {
-        consoleFocusFrom = "speakers";
-        consoleTyped = 0;
-        consoleLastTick = 0;
-        lastConsoleMode = "speakers";
-        if (bsodEl) bsodEl.scrollTop = 0;
-      } else if (chapterP < SPEAKERS_AT && consoleFocusFrom) {
-        consoleFocusFrom = null;
-        lastConsoleMode = "boot";
-      }
+    const spkOn = phase === "speakers";
+    const dayOn = phase === "day";
+    const speakersReveal = spkOn ? 1 : 0;
+    const dayReveal = dayOn ? 1 : 0;
+    /* hide orbit when a right-panel module is up */
+    const orbitFade = spkOn || dayOn ? 0 : 1;
 
-      const target = buildConsoleTarget(chapterP);
+    const bootActive = invert > 0.5 && !warping;
+    if (bsodEl && bsodText && !reduce) {
+      /* type boot, then manifesto, then module scripts */
+      const target = phaseTarget();
       const targetLen = target.length;
 
-      if (bootActive && consoleTyped < targetLen) {
-        const speed = Math.max(1, 13 - p * 10 - scrollVel * 900);
-        const burst = Math.max(
-          2,
-          Math.min(32, 2 + Math.floor(p * 16 + scrollVel * 140))
-        );
+      if (phase === "boot" && bootActive && consoleTyped < targetLen) {
+        const speed = Math.max(1, 7 - scrollVel * 500);
+        const burst = Math.max(2, Math.min(28, 3 + Math.floor(scrollVel * 80)));
         if (!consoleLastTick) consoleLastTick = now;
         while (consoleTyped < targetLen && now - consoleLastTick > speed) {
           consoleTyped = Math.min(targetLen, consoleTyped + burst);
           consoleLastTick += speed;
         }
-        if (!bsodDone && consoleTyped >= BOOT_SCRIPT.length && !consoleFocusFrom) {
+        if (consoleTyped >= targetLen) {
           bsodDone = true;
           bsodDoneAt = now;
+          setPhase("intro", now);
         }
-        /* speakers clear path still needs orbit unlocked */
-        if (!bsodDone && consoleFocusFrom && consoleTyped > 8) {
-          bsodDone = true;
-          if (!bsodDoneAt) bsodDoneAt = now;
-        }
-      }
-      if (consoleTyped > targetLen) consoleTyped = targetLen;
-
-      if (bootActive || bsodDone) {
         bsodText.textContent = target.slice(0, consoleTyped);
-      }
-
-      if (invert < 0.32 && !warping) {
-        consoleTyped = 0;
-        consoleLastTick = 0;
-        bsodDone = false;
-        bsodDoneAt = 0;
-        consoleFocusFrom = null;
-        lastConsoleMode = "boot";
-        bsodText.textContent = "";
-        lastAnnouncedChapter = "";
-        if (statusEl) statusEl.textContent = "";
+      } else if (phase === "speakers" || phase === "day") {
+        if (bootActive && consoleTyped < targetLen) {
+          const speed = Math.max(1, 6 - scrollVel * 400);
+          const burst = Math.max(2, Math.min(32, 4 + Math.floor(scrollVel * 100)));
+          if (!consoleLastTick) consoleLastTick = now;
+          while (consoleTyped < targetLen && now - consoleLastTick > speed) {
+            consoleTyped = Math.min(targetLen, consoleTyped + burst);
+            consoleLastTick += speed;
+          }
+        }
+        if (consoleTyped > targetLen) consoleTyped = targetLen;
+        bsodText.textContent = target.slice(0, consoleTyped);
       }
 
       const splitDesktop = W >= 900;
       const exitGlitch = warping && warp > 0.02;
       const bsodVisible =
-        (invert > 0.48 && (bootActive || bsodDone) && !warping) ||
-        exitGlitch;
+        (invert > 0.48 && (bootActive || bsodDone) && !warping) || exitGlitch;
 
       bsodEl.classList.toggle("is-on", bsodVisible);
       bsodEl.classList.toggle(
         "is-split",
-        splitDesktop && bsodDone && bsodVisible && !exitGlitch
+        splitDesktop && bsodVisible && !exitGlitch && (BLUE_FIRST || bsodDone)
       );
       bsodEl.classList.toggle("is-fading", exitGlitch && warp > 0.55);
       bsodEl.classList.toggle("is-glitch", exitGlitch);
-      /* full-window 2-line outline around entire BIOS (not only cards) */
       if (biosChrome) {
         biosChrome.classList.toggle("is-on", bsodVisible && !exitGlitch);
         biosChrome.setAttribute(
@@ -644,30 +613,41 @@
           bsodVisible && !exitGlitch ? "false" : "true"
         );
       }
-      /* mobile: right-panel scenes own the stage; console yields */
+      if (biosNav) {
+        const showNav = bsodVisible && !exitGlitch && phase !== "boot";
+        biosNav.classList.toggle("is-on", showNav);
+        if (showNav) biosNav.removeAttribute("hidden");
+        else biosNav.setAttribute("hidden", "");
+      }
       bsodEl.classList.toggle(
         "is-speakers-yield",
-        (speakersReveal > 0.45 || dayReveal > 0.45) &&
-          W < 900 &&
-          !exitGlitch
+        (spkOn || dayOn) && W < 900 && !exitGlitch
       );
       bsodEl.setAttribute("aria-hidden", bsodVisible ? "false" : "true");
 
-      if (bsodVisible && bsodEl.scrollHeight > bsodEl.clientHeight) {
+      if (
+        bsodVisible &&
+        phase !== "intro" &&
+        bsodEl.scrollHeight > bsodEl.clientHeight
+      ) {
         bsodEl.scrollTop = bsodEl.scrollHeight;
       }
 
       if (navEl) {
-        navEl.classList.toggle(
-          "is-bsod-hidden",
-          bsodVisible && !exitGlitch && invert > 0.55
-        );
+        const hideNav = BLUE_FIRST
+          ? !exitGlitch && p < 0.98
+          : bsodVisible && !exitGlitch && invert > 0.55;
+        navEl.classList.toggle("is-bsod-hidden", hideNav);
         if (exitGlitch) navEl.classList.remove("is-bsod-hidden");
       }
     }
 
     /* Desktop split: BIOS 35% | solar 65% (center of right column) */
-    const split = W >= 900 && bsodDone && invert > 0.5 && !warping;
+    const split =
+      W >= 900 &&
+      invert > 0.5 &&
+      !warping &&
+      (BLUE_FIRST || bsodDone);
     const cx = split ? W * 0.675 : W / 2;
     const cy = H / 2;
     const scale = split
@@ -877,7 +857,13 @@
       }
     }
 
-    if (heroCopy) heroCopy.classList.toggle("is-out", p > 0.2);
+    if (heroCopy) {
+      heroCopy.classList.toggle("is-out", BLUE_FIRST || p > 0.2);
+      if (BLUE_FIRST) {
+        heroCopy.setAttribute("aria-hidden", "true");
+        heroCopy.style.display = "none";
+      }
+    }
     if (flagship) flagship.classList.toggle("is-inverted", p > 0.22);
     if (legend) {
       legend.classList.toggle(
@@ -917,6 +903,11 @@
       resize();
       ditherToParticles();
     });
+    /* blue-first: start at top so we don't land mid-stage on speakers */
+    if (BLUE_FIRST) {
+      if (window.scrollY > 8) window.scrollTo(0, 0);
+      if (navEl) navEl.classList.add("is-bsod-hidden");
+    }
     requestAnimationFrame(frame);
   };
   img.onerror = function () { stage.classList.add("is-static"); };
