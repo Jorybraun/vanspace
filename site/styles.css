@@ -2119,6 +2119,22 @@ input {
   mix-blend-mode: screen;
   opacity: 1;
 }
+/* VanSpace lockup over the Science World illustration */
+.orbit-day-wordmark {
+  position: absolute;
+  z-index: 4;
+  top: 1rem;
+  left: 50%;
+  width: min(42%, 15rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.orbit-day-wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.8));
+}
 /* Cognition lockup top-right over blueprint */
 .orbit-day-cognition {
   position: absolute;
