@@ -1214,7 +1214,7 @@ input {
   position: relative;
   width: 100%;
   /* Always this large — loved look-up crop; THIS sets the row height */
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   max-height: min(72vh, 640px);
   min-height: min(52vh, 420px);
   overflow: hidden;
@@ -1233,7 +1233,7 @@ input {
   object-fit: cover;
   /* Pencil sketch of Science World — dome high in frame */
   object-position: center 18%;
-  filter: contrast(1.08) saturate(0.35);
+  filter: none;
   display: block;
 }
 
@@ -1247,6 +1247,12 @@ input {
   transform: translate(-50%, -50%);
   white-space: nowrap;
 }
+.poster-lockup-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
 .poster-lockup-name {
   color: #fff;
   font-family: var(--display);
@@ -1257,11 +1263,27 @@ input {
   text-transform: uppercase;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18), 0 0 12px rgba(0, 0, 0, 0.25);
 }
-.poster-lockup .orbit-wordmark {
-  position: static;
+.poster-lockup-sub {
+  color: #fff;
+  font-family: var(--mono);
+  font-size: clamp(1rem, 2.8vw, 2rem);
+  line-height: 0.8;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18), 0 0 12px rgba(0, 0, 0, 0.25);
+}
+.poster-space-key {
+  display: grid;
+  place-items: center;
   width: clamp(7rem, 22vw, 13rem);
-  transform: none;
-  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.65));
+  height: clamp(2rem, 5vw, 3.2rem);
+  border: 2px solid #fff;
+  border-radius: 0.4rem;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: clamp(0.7rem, 1.6vw, 1rem);
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 /* No caption text — Cognition under poster column only */
@@ -2114,7 +2136,7 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  filter: contrast(1.08) saturate(0.35);
+  filter: none;
   mix-blend-mode: normal;
   opacity: 1;
 }
@@ -3104,7 +3126,7 @@ input {
     max-width: 32rem;
     max-height: none;
     min-height: 0;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 3;
     border-radius: 12px;
   }
 
