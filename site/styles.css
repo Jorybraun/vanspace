@@ -2115,8 +2115,8 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  filter: invert(1) contrast(1.25) brightness(1.08);
-  mix-blend-mode: screen;
+  filter: contrast(1.08) saturate(1.05);
+  mix-blend-mode: normal;
   opacity: 1;
 }
 /* VanSpace lockup over the Science World illustration */
