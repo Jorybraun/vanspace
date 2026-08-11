@@ -1045,5 +1045,5 @@
     requestAnimationFrame(frame);
   };
   img.onerror = function () { stage.classList.add("is-static"); };
-  img.src = canvas.dataset.src || "/science-world-hero-photo.jpg";
+  img.src = canvas.dataset.src || "/science-world-aerial-dither-blue.png";
 })();
