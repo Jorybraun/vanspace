@@ -2146,8 +2146,8 @@ input {
 /* VanSpace lockup over the Science World illustration */
 .orbit-day-wordmark {
   z-index: 4;
-  top: 1rem;
-  width: min(68%, 28rem);
+  top: 0.75rem;
+  width: min(58%, 24rem);
   transform: translateX(-50%);
   pointer-events: none;
 }
