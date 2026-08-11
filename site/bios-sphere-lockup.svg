@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 66" role="img" aria-labelledby="title desc">
+  <title id="title">BIOS van space SPHERE .dev</title>
+  <desc id="desc">BIOS and SPHERE around a blue spacebar, with van and .dev below.</desc>
+  <style>
+    .name { font-family: Arial, "IBM Plex Sans", sans-serif; font-size: 29px; font-weight: 800; letter-spacing: -1.2px; fill: #fff; }
+    .sub { font-family: Arial, "IBM Plex Sans", sans-serif; font-size: 22px; font-weight: 500; letter-spacing: -0.6px; fill: #e5e0cf; }
+    .key { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 8px; font-weight: 500; letter-spacing: 2.6px; fill: #fff; }
+  </style>
+  <text class="name" x="0" y="31">BIOS</text>
+  <text class="name" x="234" y="31">SPHERE</text>
+  <text class="sub" x="34" y="59">van</text>
+  <text class="sub" x="251" y="59">.dev</text>
+  <rect x="86" y="38" width="152" height="30" rx="4" fill="#0000aa" stroke="#fff" stroke-width="1.5" />
+  <text class="key" x="162" y="56" text-anchor="middle">space</text>
+</svg>

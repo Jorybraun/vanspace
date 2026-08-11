@@ -1291,6 +1291,22 @@ input {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
+.bios-sphere-lockup {
+  position: absolute;
+  z-index: 5;
+  top: 1.25rem;
+  left: 50%;
+  display: block;
+  width: min(92%, 23rem);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.orbit-day-wordmark.bios-sphere-lockup {
+  top: 0.75rem;
+  width: min(92%, 23rem);
+}
+
 /* No caption text — Cognition under poster column only */
 .poster-foot {
   display: grid;
