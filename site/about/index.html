@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=66" />
+    <link rel="stylesheet" href="/styles.css?v=67" />
     <style>
       body.about-page {
         min-height: 100vh;
@@ -26,13 +26,24 @@
         color: inherit;
       }
       .about-hero {
+        position: relative;
         min-height: 70vh;
         display: grid;
         place-items: center;
         padding: 2.5rem 0;
         background: var(--deep);
+        overflow: hidden;
       }
-      .about-wordmark {
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("/ariel-correct-blue-scienceworld.png") center / cover no-repeat;
+        opacity: 0.42;
+      }
+      .about-wordmark { 
+        position: relative;
+        z-index: 1;
         width: min(76vw, 28rem);
         height: auto;
         filter: brightness(0) invert(1);
