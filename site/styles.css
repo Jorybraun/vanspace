@@ -2157,7 +2157,7 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.12);
+  transform: none;
   transform-origin: center;
   filter: none;
   mix-blend-mode: normal;
