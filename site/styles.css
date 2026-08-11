@@ -1233,8 +1233,7 @@ input {
   object-fit: cover;
   /* Pencil sketch of Science World — dome high in frame */
   object-position: center 18%;
-  /* keep graphite look; don't re-saturate into photo */
-  filter: contrast(1.08) saturate(0.12);
+  filter: contrast(1.08) saturate(1.05);
   display: block;
 }
 
