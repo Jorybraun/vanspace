@@ -1233,7 +1233,7 @@ input {
   object-fit: cover;
   /* Pencil sketch of Science World — dome high in frame */
   object-position: center 18%;
-  filter: contrast(1.08) saturate(1.05);
+  filter: contrast(1.08) saturate(0.35);
   display: block;
 }
 
@@ -2114,7 +2114,7 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  filter: contrast(1.08) saturate(1.05);
+  filter: contrast(1.08) saturate(0.35);
   mix-blend-mode: normal;
   opacity: 1;
 }
