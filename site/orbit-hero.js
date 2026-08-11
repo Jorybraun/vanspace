@@ -67,8 +67,8 @@
     },
     speakers: {
       kicker: "LINEUP",
-      title: "Kent C. Dodds · Wes Bos",
-      mission: "Kent C. Dodds · Wes Bos · Devin · Agents · AI · Systems.",
+      title: "Kent C. Dodds · ?",
+      mission: "Kent C. Dodds · ? · Devin · Agents · AI · Systems.",
       meta: "Tue 10 Nov 2026 · Science World"
     },
     day: {
@@ -128,7 +128,7 @@
     "14:15  Agents",
     "14:45  AI + Systems",
     "15:15  Break",
-    "15:35  Keynote 2 · Wes Bos",
+    "15:35  Keynote 2 · ? · TBA",
     "16:20  Teams + Craft",
     "16:55  Closing · Devin",
     "17:40  Community",
@@ -352,7 +352,7 @@
       tilt: 0.32,
       nodes: [
         { label: "Kent C. Dodds", sub: "Keynote", filled: true },
-        { label: "Wes Bos", sub: "Keynote", filled: true },
+        { label: "?", sub: "TBA", filled: false },
         { label: "Devin", sub: "Closing", filled: false }
       ]
     },

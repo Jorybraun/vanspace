@@ -6,7 +6,7 @@
     <title>VanSpace — Micro-conference at Science World, Vancouver</title>
     <meta
       name="description"
-      content="VanSpace: Tue 10 Nov 2026, 1–7pm at Science World, Vancouver. Keynotes including Kent C. Dodds and Wes Bos."
+      content="VanSpace: Tue 10 Nov 2026, 1–7pm at Science World, Vancouver. Keynote from Kent C. Dodds, with more speakers to be announced."
     />
     <meta name="theme-color" content="#e5e0cf" />
     <link rel="canonical" href="https://bios.vanspace.dev/" />
@@ -17,7 +17,7 @@
     <meta property="og:title" content="VanSpace — a micro-conference with big-conference energy" />
     <meta
       property="og:description"
-      content="Tue 10 Nov 2026 · 1–7pm · Science World, Vancouver. Keynotes from Kent C. Dodds and Wes Bos."
+      content="Tue 10 Nov 2026 · 1–7pm · Science World, Vancouver. Keynote from Kent C. Dodds, with more speakers to be announced."
     />
     <meta property="og:image" content="https://vanspace.dev/science-world-hero-photo.jpg" />
     <meta property="og:image:alt" content="Aerial photograph of Science World, Vancouver." />
@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="VanSpace — a micro-conference with big-conference energy" />
     <meta
       name="twitter:description"
-      content="Tue 10 Nov 2026 · 1–7pm · Science World. Kent C. Dodds and Wes Bos."
+      content="Tue 10 Nov 2026 · 1–7pm · Science World. Kent C. Dodds and more speakers to be announced."
     />
     <meta name="twitter:image" content="https://vanspace.dev/science-world-hero-photo.jpg" />
     <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=70" />
+    <link rel="stylesheet" href="/styles.css?v=71" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -53,8 +53,22 @@
     </header>
 
     <main id="main">
-      <!-- HERO — dithered Science World that scrolls into the orbit map.
-           Everything below this section is a conventional conference site. -->
+      <!-- Prelude — one page before the orbit map -->
+      <section class="bios-prelude" aria-labelledby="bios-prelude-title">
+        <div class="bios-prelude-inner">
+          <div class="bios-prelude-copy">
+            <p class="bios-prelude-kicker">VANSPACE : BIOS</p>
+            <h1 id="bios-prelude-title">A room for the people building what comes next.</h1>
+            <p class="bios-prelude-meta">Tue 10 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
+            <a class="bios-prelude-link" href="#orbit-stage">Enter the orbit ↓</a>
+          </div>
+          <figure class="bios-prelude-figure">
+            <img src="/science-world-hero-photo.jpg" alt="Aerial photograph of Science World, Vancouver" width="1574" height="1090" loading="eager" decoding="async" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- HERO — Science World that scrolls into the orbit map. -->
       <section class="orbit-stage" id="orbit-stage">
         <div class="orbit-sticky">
           <!-- Full-window BIOS double outline (left console + right modules) -->
@@ -136,20 +150,12 @@
                   <p class="orbit-spk-meta">EpicWeb</p>
                 </div>
               </article>
-              <article class="orbit-spk is-key" role="listitem" data-name="Wes Bos" data-tag="Keynote" data-meta="Syntax.fm" data-desc="Full-stack developer, educator, and co-host of the Syntax.fm podcast." tabindex="0">
-                <div class="orbit-spk-photo">
-                  <img
-                    src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1670334021/dev/Wes_Bos_hib0hw.jpg?auto=format,compress&fit=crop&w=400&h=400&crop=faces"
-                    alt="Wes Bos"
-                    width="400"
-                    height="400"
-                    loading="lazy"
-                  />
-                </div>
+              <article class="orbit-spk is-key is-tba" role="listitem" data-name="?" data-tag="Keynote" data-meta="To be announced" data-desc="Speaker announcement coming soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">?</div>
                 <div class="orbit-spk-body">
                   <p class="orbit-spk-tag">Keynote</p>
-                  <h3>Wes Bos</h3>
-                  <p class="orbit-spk-meta">Syntax.fm</p>
+                  <h3>?</h3>
+                  <p class="orbit-spk-meta">To be announced</p>
                 </div>
               </article>
               <article class="orbit-spk is-closing" role="listitem" data-name="To be announced" data-tag="Closing" data-meta="Devin · Cognition" data-desc="Announcing soon." tabindex="0">
@@ -257,8 +263,8 @@
                     </div>
                     <!-- Tickets row OVER the blueprint -->
                     <div class="orbit-day-tickets" role="list">
-                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird" data-price="$99" data-desc="First 50 tickets at the best price. Full day access to keynotes, sessions, and the after-party." data-cta="Get early bird on Luma" data-luma="https://lu.ma/vanspace-2026-11-10">
-                        <p class="orbit-tix-tag">Early bird · first 50</p>
+                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird" data-price="$99" data-desc="First 25 tickets at the best price. Full day access to keynotes, sessions, and the after-party." data-cta="Get early bird on Luma" data-luma="https://lu.ma/vanspace-2026-11-10">
+                        <p class="orbit-tix-tag">Early bird · first 25</p>
                         <p class="orbit-tix-price is-row">$99</p>
                         <p class="orbit-tix-note">Full day access</p>
                       </article>
@@ -385,6 +391,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=58" defer></script>
+    <script src="/orbit-hero.js?v=59" defer></script>
   </body>
 </html>

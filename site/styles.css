@@ -954,6 +954,86 @@ input {
   color: var(--ink);
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
+/* Prelude page before the BIOS orbit */
+.bios-prelude {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  background: var(--deep);
+  color: var(--ground);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.bios-prelude-inner {
+  width: min(100% - 2.5rem, var(--wrap-xl));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 7rem);
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+.bios-prelude-copy {
+  max-width: 34rem;
+}
+.bios-prelude-kicker,
+.bios-prelude-meta {
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.bios-prelude h1 {
+  margin: 0 0 1.5rem;
+  color: #fff;
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+.bios-prelude-meta {
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+.bios-prelude-link {
+  display: inline-block;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  padding-bottom: 0.35rem;
+}
+.bios-prelude-figure {
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #000;
+  overflow: hidden;
+}
+.bios-prelude-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.75) contrast(1.08);
+}
+@media (max-width: 760px) {
+  .bios-prelude-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+  .bios-prelude h1 {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+  .bios-prelude-figure {
+    order: -1;
+  }
+}
+
 /* Full BSOD — hide chrome so the blue stage is uninterrupted */
 .nav.is-bsod-hidden {
   opacity: 0;
