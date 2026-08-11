@@ -1279,9 +1279,9 @@ input {
   place-items: center;
   width: clamp(6rem, 18vw, 10rem);
   height: clamp(1.7rem, 4vw, 2.6rem);
-  border: 2px solid #fff;
-  border-radius: 0.4rem;
-  background: var(--deep);
+  border: 1.5px solid #fff;
+  border-radius: 0.45rem;
+  background: #0000aa;
   color: #fff;
   font-family: var(--mono);
   font-size: clamp(0.7rem, 1.6vw, 1rem);
