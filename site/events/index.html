@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VanSpace — Events</title>
+    <meta
+      name="description"
+      content="VanSpace events in Vancouver: upcoming and past micro-events, hackathons, and micro-conferences."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .events-hero {
+        padding: 6rem 0 3rem;
+      }
+      .events-hero h1 {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        letter-spacing: -0.03em;
+        line-height: 0.95;
+        text-transform: uppercase;
+        margin: 0 0 0.5rem;
+      }
+      .events-hero p {
+        color: var(--ink-soft);
+        max-width: 55ch;
+        margin: 0;
+      }
+      .events-grid {
+        display: grid;
+        gap: 1.5rem;
+        padding: 0 0 6rem;
+      }
+      .event-card {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        border: 1px solid var(--ink);
+        background: var(--ground);
+        text-decoration: none;
+        color: var(--ink);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .event-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 4px 6px 0 rgba(23, 0, 115, 0.15);
+      }
+      .event-card img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        display: block;
+      }
+      .event-card-body {
+        padding: 1.25rem;
+      }
+      .event-card .eyebrow {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-soft);
+        margin: 0 0 0.5rem;
+      }
+      .event-card h2 {
+        font-family: var(--display);
+        font-size: clamp(1.4rem, 4vw, 1.9rem);
+        line-height: 1.05;
+        margin: 0 0 0.75rem;
+      }
+      .event-card p {
+        color: var(--ink-soft);
+        margin: 0 0 0.5rem;
+      }
+      .event-card .collab {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ink);
+        margin-top: 1rem;
+      }
+      @media (min-width: 720px) {
+        .events-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <a class="nav-brand" href="/" aria-label="vanspace home">
+        <span class="nav-title">vanspace</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/events/" aria-current="page">Events</a>
+        <a href="/about/">About</a>
+        <a href="/sponsor/">Sponsor</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section events-hero">
+        <div class="wrap">
+          <h1>Events</h1>
+          <p>Micro-conferences, hackathons, and one-day builds in Vancouver.</p>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="wrap">
+          <div class="events-grid">
+            <a class="event-card" href="/">
+              <img
+                src="/science-world-hero-photo.jpg"
+                alt="Aerial photograph of Science World, Vancouver"
+              />
+              <div class="event-card-body">
+                <p class="eyebrow">Upcoming · 10 Nov 2026</p>
+                <h2>VanSpace — Science World</h2>
+                <p>
+                  A single-track, 1–7pm micro-conference for engineers who ship.
+                  Keynotes from Kent C. Dodds and Wes Bos.
+                </p>
+                <p class="collab">By VanSpace</p>
+              </div>
+            </a>
+
+            <a class="event-card" href="/agents-of-chaos/">
+              <img
+                src="/agents-of-chaos/assets/butterfly-hero-blue.png"
+                alt="Agents of Chaos blue butterfly"
+              />
+              <div class="event-card-body">
+                <p class="eyebrow">Past · 4 Jul 2026</p>
+                <h2>Agents of Chaos</h2>
+                <p>
+                  A July 4 AI hackathon in Vancouver for builders, designers,
+                  engineers, and agents of questionable alignment.
+                </p>
+                <p class="collab">In collaboration with Young Guns Studio</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div>
+          <p class="footer-title">VanSpace</p>
+          <p class="footer-note">Micro-conferences and builds in Vancouver.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

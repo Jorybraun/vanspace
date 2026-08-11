@@ -37,10 +37,47 @@
   const bsodText = document.getElementById("orbit-bsod-text");
   const bsodCursor = document.getElementById("orbit-bsod-cursor");
   const introEl = document.getElementById("orbit-intro");
+  const introKicker = document.getElementById("orbit-intro-kicker");
+  const introTitle = document.getElementById("orbit-intro-title");
+  const introMission = document.getElementById("orbit-intro-mission");
+  const introMeta = document.getElementById("orbit-intro-meta");
+  const dayAddressEl = document.getElementById("orbit-day-address");
+  const devinLogoEl = document.getElementById("orbit-devin-logo");
+  const speakerBack = document.getElementById("orbit-speaker-back");
+  const speakerCards = stage ? stage.querySelectorAll(".orbit-spk") : [];
+  const ticketDetail = document.getElementById("orbit-ticket-detail");
+  const ticketDetailTitle = document.getElementById("orbit-ticket-detail-title");
+  const ticketDetailPrice = document.getElementById("orbit-ticket-detail-price");
+  const ticketDetailDesc = document.getElementById("orbit-ticket-detail-desc");
+  const ticketDetailCta = document.getElementById("orbit-ticket-cta");
+  const ticketBack = document.getElementById("orbit-ticket-back");
+  const ticketCards = stage ? stage.querySelectorAll("[data-ticket]") : [];
   const navEl = document.querySelector(".nav");
 
   /* Blue-first: boot on blue → manifesto → scroll modules */
   const BLUE_FIRST = true;
+
+  /* Dynamic title block shown above the console body for each phase */
+  const TITLE_BLOCKS = {
+    intro: {
+      kicker: "BIOS",
+      title: "A micro-conference in Vancouver with big-conference energy",
+      mission: "We bring big names to community events in Vancouver at a reasonable cost.",
+      meta: "Tue 10 Nov 2026 · 13:00–19:00 · Science World"
+    },
+    speakers: {
+      kicker: "LINEUP",
+      title: "Kent C. Dodds · Wes Bos",
+      mission: "Kent C. Dodds · Wes Bos · Devin · Agents · AI · Systems.",
+      meta: "Tue 10 Nov 2026 · Science World"
+    },
+    day: {
+      kicker: "THE DAY",
+      title: "Science World",
+      mission: "Doors at 13:00 · programme ends at 19:00.",
+      meta: "Tue 10 Nov 2026 · 13:00–19:00"
+    }
+  };
   const BOOT_SCRIPT = [
     "VanSpace BIOS (C) 2026",
     "",
@@ -88,60 +125,30 @@
     "13:00  Doors · coffee · tables",
     "13:15  Welcome · CoC · wifi",
     "13:30  Keynote 1 · Kent C. Dodds",
-    "14:15  Session 1",
-    "14:45  Session 2",
-    "15:15  Break · hallway",
+    "14:15  Agents",
+    "14:45  AI + Systems",
+    "15:15  Break",
     "15:35  Keynote 2 · Wes Bos",
-    "16:20  Session 3",
-    "16:55  Closing speaker · TBA",
-    "17:40  Hang · tables",
-    "19:00  Programme ends",
-    "",
-    "early bird  $99 · first 50",
-    "student     $99",
-    "standard    $160"
+    "16:20  Teams + Craft",
+    "16:55  Closing · Devin",
+    "17:40  Community",
+    "19:00  Programme ends"
   ].join("\n");
 
-  /* Day phase — pure Devin CLI (not Windows CMD) */
+  /* Day phase — address + byline */
   const DAY_LINES = [
-    "⠀⣴⣾⣶⡄⠀⠀⠀⠀",
-    "⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI",
-    "⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.2.17 · Max",
-    "⠀⠻⢿⠿⠃⠀⠀⠀⠀",
+    "Science World",
+    "1455 Quebec Street, Vancouver, BC V6A 3Z7",
     "",
-    "presented with Cognition",
-    "vanspace · 10 Nov 2026",
-    "",
-    "────────────────────────",
-    "",
-    "Schedule",
-    "",
-    "13:00  Doors · coffee · tables",
-    "13:15  Welcome · CoC · wifi",
-    "13:30  Keynote 1 · Kent C. Dodds",
-    "14:15  Session 1",
-    "14:45  Session 2",
-    "15:15  Break · hallway",
-    "15:35  Keynote 2 · Wes Bos",
-    "16:20  Session 3",
-    "16:55  Closing speaker · TBA",
-    "17:40  Hang · tables",
-    "19:00  Programme ends",
-    "",
-    "early bird  $99 · first 50",
-    "student     $99",
-    "standard    $160",
-    "",
-    "❭ Ask Devin to build features,",
-    "  fix bugs, or work on your code",
-    "",
-    "SWE-1.7 Max · /help"
+    "sponsored by Cognition",
+    "vanspace · 10 Nov 2026"
   ].join("\n");
 
   /* phase: boot | intro | speakers | day */
   let phase = "boot";
   let consoleTyped = 0;
   let consoleLastTick = 0;
+  let consoleTarget = "";
   let bsodDone = false;
   let bsodDoneAt = 0;
   let introAt = 0;
@@ -149,14 +156,58 @@
   let scrollVel = 0;
   let orbitForm = 0;
   let lastAnnouncedPhase = "";
+  let speakerDetailActive = false;
 
-  function setIntroVisible(on) {
+  function updateTitleBlock(forPhase, visible) {
+    const data = TITLE_BLOCKS[forPhase] || TITLE_BLOCKS.intro;
+    if (introKicker) introKicker.textContent = data.kicker;
+    if (introTitle) introTitle.textContent = data.title;
+    if (introMission) introMission.textContent = data.mission;
+    if (introMeta) introMeta.textContent = data.meta;
+
     if (!introEl) return;
-    introEl.classList.toggle("is-on", on);
-    introEl.setAttribute("aria-hidden", on ? "false" : "true");
-    if (bsodEl) bsodEl.classList.toggle("is-manifesto", on);
-    if (bsodCursor) bsodCursor.style.display = on ? "none" : "";
+    introEl.classList.toggle("is-on", visible);
+    introEl.setAttribute("aria-hidden", visible ? "false" : "true");
+    if (bsodEl) bsodEl.classList.toggle("is-manifesto", forPhase === "intro" && visible);
+    if (bsodCursor) bsodCursor.style.display = forPhase === "intro" ? "none" : "";
+    if (dayAddressEl) {
+      dayAddressEl.classList.toggle("is-on", forPhase === "day" && visible);
+      dayAddressEl.setAttribute("aria-hidden", forPhase === "day" && visible ? "false" : "true");
+    }
   }
+
+  /* Live countdown to the event in the Devin CLI header */
+  const EVENT_DATE = new Date("2026-11-10T13:00:00-08:00");
+
+  function formatCountdown(ms) {
+    if (ms <= 0) return "resets now";
+    const totalSeconds = Math.floor(ms / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    const pad = function (n) { return String(n).padStart(2, "0"); };
+    if (days > 0) {
+      return "resets in " + days + "d " + pad(hours) + "h " + pad(minutes) + "m " + pad(seconds) + "s";
+    }
+    return "resets in " + pad(hours) + "h " + pad(minutes) + "m " + pad(seconds) + "s";
+  }
+
+  function updateDevinCountdown() {
+    if (!devinLogoEl) return;
+    const now = new Date().getTime();
+    const remaining = EVENT_DATE.getTime() - now;
+    devinLogoEl.textContent = [
+      "⠀⣴⣾⣶⡄⠀⠀⠀⠀",
+      "⠀⠛⠿⠟⠻⣶⣾⣶⡄  Vanspace:Bios",
+      "⠀⣤⣶⣦⣴⠿⢿⠿⠃  Max · 100% remaining",
+      "⠀⠻⢿⠿⠃⠀⠀⠀⠀",
+      "           " + formatCountdown(remaining)
+    ].join("\n");
+  }
+
+  updateDevinCountdown();
+  setInterval(updateDevinCountdown, 1000);
 
   function setDevinMode(on) {
     if (bsodEl) bsodEl.classList.toggle("is-devin", on);
@@ -179,14 +230,15 @@
     phase = next;
     consoleTyped = 0;
     consoleLastTick = 0;
+    consoleTarget = phaseTarget();
     if (bsodEl) bsodEl.scrollTop = 0;
     setDevinMode(next === "day");
+    updateTitleBlock(next, next !== "boot");
+    if (next !== "day") closeTicketDetail();
+    if (next !== "speakers") closeSpeakerDetail();
     if (next === "intro") {
       introAt = now || performance.now();
-      setIntroVisible(true);
       if (bsodText) bsodText.textContent = "";
-    } else {
-      setIntroVisible(false);
     }
     if (statusEl && next !== "boot") {
       const labels = {
@@ -201,38 +253,129 @@
     }
   }
 
+  /* ---- Speaker detail in the left console ---------------------------- */
+  function closeSpeakerDetail() {
+    speakerDetailActive = false;
+    if (speakerBack) speakerBack.classList.remove("is-on");
+    if (phase === "speakers") {
+      consoleTyped = 0;
+      consoleLastTick = 0;
+      consoleTarget = SCHEDULE_LINES;
+      if (bsodText) bsodText.textContent = "";
+      updateTitleBlock("speakers", true);
+    }
+  }
+
+  function openSpeakerDetail(card) {
+    if (!card) return;
+    speakerDetailActive = true;
+    const name = card.getAttribute("data-name") || "";
+    const tag = card.getAttribute("data-tag") || "";
+    const meta = card.getAttribute("data-meta") || "";
+    const desc = card.getAttribute("data-desc") || "";
+
+    if (introKicker) introKicker.textContent = "LINEUP";
+    if (introTitle) introTitle.textContent = name;
+    if (introMission) introMission.textContent = tag;
+    if (introMeta) introMeta.textContent = meta;
+    if (speakerBack) speakerBack.classList.add("is-on");
+
+    consoleTyped = 0;
+    consoleLastTick = 0;
+    consoleTarget = desc;
+    if (bsodText) bsodText.textContent = "";
+  }
+
+  if (speakerBack) {
+    speakerBack.addEventListener("click", function () {
+      closeSpeakerDetail();
+    });
+  }
+
+  if (speakerCards.length) {
+    speakerCards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        openSpeakerDetail(card);
+      });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openSpeakerDetail(card);
+        }
+      });
+    });
+  }
+
+  /* ---- Ticket detail overlay in the day panel ------------------------ */
+  function closeTicketDetail() {
+    if (ticketDetail) ticketDetail.classList.remove("is-on");
+  }
+
+  function openTicketDetail(card) {
+    if (!ticketDetail || !ticketDetailTitle || !ticketDetailPrice || !ticketDetailDesc || !ticketDetailCta) return;
+    ticketDetailTitle.textContent = card.querySelector(".orbit-tix-tag")?.textContent || "Ticket";
+    ticketDetailPrice.textContent = card.getAttribute("data-price") || "";
+    ticketDetailDesc.textContent = card.getAttribute("data-desc") || "";
+    ticketDetailCta.textContent = card.getAttribute("data-cta") || "Get ticket";
+    ticketDetailCta.href = card.getAttribute("data-luma") || "#";
+    ticketDetail.classList.add("is-on");
+    ticketDetail.setAttribute("aria-hidden", "false");
+  }
+
+  if (ticketCards.length) {
+    ticketCards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        openTicketDetail(card);
+      });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openTicketDetail(card);
+        }
+      });
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+    });
+  }
+
+  if (ticketBack) {
+    ticketBack.addEventListener("click", function () {
+      closeTicketDetail();
+    });
+  }
+
   /* ---- the day, as an orbit ------------------------------------------ */
   const RINGS = [
     {
-      name: "Keynotes",
+      name: "Speakers",
       r: 0.24,
       tilt: 0.32,
       nodes: [
         { label: "Kent C. Dodds", sub: "Keynote", filled: true },
         { label: "Wes Bos", sub: "Keynote", filled: true },
-        { label: "Closing speaker", sub: "TBA", filled: false }
+        { label: "Devin", sub: "Closing", filled: false }
       ]
     },
     {
-      name: "Sessions",
+      name: "Topics",
       r: 0.4,
       tilt: 0.34,
       nodes: [
-        { label: "Session", sub: "Announcing soon", filled: false },
-        { label: "Session", sub: "Announcing soon", filled: false },
-        { label: "Session", sub: "Announcing soon", filled: false },
-        { label: "Session", sub: "Announcing soon", filled: false },
-        { label: "Session", sub: "Announcing soon", filled: false }
+        { label: "Agents", sub: "The future", filled: true },
+        { label: "AI", sub: "The new medium", filled: true },
+        { label: "Systems", sub: "Think in loops", filled: true },
+        { label: "Teams", sub: "Build together", filled: true },
+        { label: "Craft", sub: "Make it good", filled: true }
       ]
     },
     {
-      name: "The room",
+      name: "VanSpace",
       r: 0.58,
       tilt: 0.36,
       nodes: [
-        { label: "Break · tables", sub: "15:15", filled: true },
-        { label: "Sponsor tables", sub: "All day", filled: true },
-        { label: "Hallway", sub: "Where it happens", filled: true }
+        { label: "Science World", sub: "Vancouver", filled: true },
+        { label: "Community", sub: "One room", filled: true },
+        { label: "Builders", sub: "Single track", filled: true }
       ]
     }
   ];
@@ -462,17 +605,8 @@
   canvas.addEventListener("pointerup", function () {
     dragging = false;
   });
-  canvas.addEventListener("click", function (e) {
-    if (pointerMoved && performance.now() - pointerDownAt < 1000) return;
-    triggerWormhole();
-  });
   ["pointercancel", "pointerleave"].forEach(function (ev) {
     canvas.addEventListener(ev, function () { dragging = false; });
-  });
-  canvas.addEventListener("keydown", function (e) {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    triggerWormhole();
   });
   /* ---- frame ----------------------------------------------------------- */
   let p = 0;
@@ -563,7 +697,7 @@
     const bootActive = invert > 0.5 && !warping;
     if (bsodEl && bsodText && !reduce) {
       /* type boot, then manifesto, then module scripts */
-      const target = phaseTarget();
+      const target = phase === "boot" ? phaseTarget() : consoleTarget;
       const targetLen = target.length;
 
       if (phase === "boot" && bootActive && consoleTyped < targetLen) {
@@ -911,5 +1045,5 @@
     requestAnimationFrame(frame);
   };
   img.onerror = function () { stage.classList.add("is-static"); };
-  img.src = canvas.dataset.src || "./science-world-hero.jpg";
+  img.src = canvas.dataset.src || "/science-world-hero-photo.jpg";
 })();

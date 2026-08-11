@@ -1516,6 +1516,10 @@ input {
   gap: 0;
   min-height: 0;
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  align-self: stretch;
   border: 0;
   background: #0000aa;
 }
@@ -1528,7 +1532,13 @@ input {
   background: #0000aa;
   opacity: 0;
   transform: translateY(4px);
+  cursor: pointer;
   transition: opacity 0.35s ease, transform 0.35s ease, background 0.2s ease;
+}
+.orbit-spk:hover,
+.orbit-spk:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
 }
 .orbit-speakers.is-on .orbit-spk {
   opacity: 1;
@@ -1567,7 +1577,7 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center;
   filter: grayscale(1) contrast(1.25);
   opacity: 1;
   display: block;
@@ -1629,6 +1639,12 @@ input {
   background: #0000aa;
 }
 @media (max-width: 899px) {
+  .orbit-intro-kicker {
+    display: none;
+  }
+  .orbit-intro-title {
+    font-size: clamp(1.2rem, 5vw, 1.65rem);
+  }
   .orbit-app {
     --exe-gap: 8px;
     overflow: auto;
@@ -1666,8 +1682,10 @@ input {
   inset: 0;
   z-index: 3;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 1.25rem;
   padding: clamp(1.5rem, 4.5vw, 2.75rem);
   padding-top: clamp(1.5rem, 4vh, 2.5rem);
   pointer-events: none;
@@ -1706,6 +1724,75 @@ input {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
+}
+
+/* Transition flash: Devin "thinking → rendering" over the console */
+.orbit-thinking {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: inherit;
+  background: #0000aa;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+.orbit-thinking.is-on {
+  display: flex;
+}
+.orbit-thinking.is-fading {
+  opacity: 0;
+}
+.orbit-thinking-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.orbit-thinking-cursor {
+  display: inline-block;
+  color: #ffffff;
+  animation: bsod-blink 0.85s step-end infinite;
+}
+
+/* Address card for the day console */
+.orbit-day-address {
+  display: none !important;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 100%;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  line-height: 1.45;
+  pointer-events: auto;
+}
+.orbit-bsod.is-devin .orbit-day-address.is-on {
+  display: flex !important;
+}
+.orbit-addr-name {
+  margin: 0;
+  font-weight: 500;
+}
+.orbit-addr-street {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+.orbit-addr-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.orbit-addr-link:hover,
+.orbit-addr-link:focus {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Tickets / sponsors / Devin CLI panels */
@@ -1932,7 +2019,8 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  filter: contrast(1.25) brightness(1.08);
+  filter: invert(1) contrast(1.25) brightness(1.08);
+  mix-blend-mode: screen;
   opacity: 1;
 }
 /* Cognition lockup top-right over blueprint */
@@ -1982,12 +2070,23 @@ input {
   padding: 0.75rem 0.8rem 0.85rem;
   border-right: 1px solid rgba(255, 255, 255, 0.4);
   background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.orbit-day-tix:hover,
+.orbit-day-tix:focus {
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
 }
 .orbit-day-tix:last-child {
   border-right: 0;
 }
 .orbit-day-tix.is-hero {
   background: rgba(255, 255, 255, 0.06);
+}
+.orbit-day-tix.is-hero:hover,
+.orbit-day-tix.is-hero:focus {
+  background: rgba(255, 255, 255, 0.18);
 }
 .orbit-tix-price.is-row {
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
@@ -1998,6 +2097,109 @@ input {
 .orbit-day-tix .orbit-tix-note {
   color: rgba(255, 255, 255, 0.75);
 }
+
+/* Ticket detail overlay inside the day panel */
+.orbit-ticket-detail {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  background: #0000aa;
+  color: #fff;
+  pointer-events: auto;
+}
+.orbit-ticket-detail.is-on {
+  display: flex;
+}
+.orbit-ticket-detail-inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.orbit-ticket-detail-header {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  background: #0000aa;
+  font-family: var(--mono);
+}
+.orbit-ticket-back {
+  appearance: none;
+  border: 0;
+  padding: 0.2rem 0.35rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.orbit-ticket-back:hover,
+.orbit-ticket-back:focus {
+  color: #fff;
+  outline: none;
+}
+.orbit-ticket-detail-title {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.orbit-ticket-detail-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1rem;
+  overflow: auto;
+}
+.orbit-ticket-detail-price {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  color: #fff;
+}
+.orbit-ticket-detail-desc {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(0.8rem, 1.15vw, 0.95rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 34ch;
+}
+.orbit-ticket-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid #fff;
+  background: #fff;
+  color: #0000aa;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.orbit-ticket-cta:hover,
+.orbit-ticket-cta:focus {
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+
 .orbit-bsod.is-on.is-glitch {
   opacity: 0.92;
   width: 100%;
@@ -2047,6 +2249,18 @@ input {
   padding: 0.15rem 0 0;
   color: #fff;
 }
+.orbit-devin-logo {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: clamp(0.7rem, 1vw, 0.88rem);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
+  white-space: pre-wrap;
+  opacity: 1;
+}
 .orbit-bsod.is-manifesto .orbit-intro,
 .orbit-intro.is-on {
   display: flex;
@@ -2083,6 +2297,30 @@ input {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
+}
+.orbit-speaker-back {
+  display: none;
+  margin: 0.25rem 0 0;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.orbit-speaker-back:hover,
+.orbit-speaker-back:focus {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  outline: none;
+}
+.orbit-speaker-back.is-on {
+  display: inline-block;
 }
 .orbit-bsod.is-split .orbit-bsod-inner {
   max-width: 100%;
