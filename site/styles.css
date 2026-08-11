@@ -1243,10 +1243,10 @@ input {
 .poster-lockup {
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 1.25rem;
   display: flex;
   align-items: center;
-  gap: clamp(0.45rem, 1.8vw, 1rem);
+  gap: clamp(0.35rem, 1.2vw, 0.7rem);
   transform: translate(-50%, -50%);
   white-space: nowrap;
 }
@@ -1259,7 +1259,7 @@ input {
 .poster-lockup-name {
   color: #fff;
   font-family: var(--display);
-  font-size: clamp(1.2rem, 3.2vw, 2.5rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.8rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -1269,7 +1269,7 @@ input {
 .poster-lockup-sub {
   color: #fff;
   font-family: var(--display);
-  font-size: clamp(1rem, 2.8vw, 2rem);
+  font-size: clamp(0.78rem, 1.8vw, 1.35rem);
   font-weight: 500;
   line-height: 0.8;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18), 0 0 12px rgba(0, 0, 0, 0.25);
@@ -1277,8 +1277,8 @@ input {
 .poster-space-key {
   display: grid;
   place-items: center;
-  width: clamp(7rem, 22vw, 13rem);
-  height: clamp(2rem, 5vw, 3.2rem);
+  width: clamp(6rem, 18vw, 10rem);
+  height: clamp(1.7rem, 4vw, 2.6rem);
   border: 2px solid #fff;
   border-radius: 0.4rem;
   color: #fff;
