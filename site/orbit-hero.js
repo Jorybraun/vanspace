@@ -269,7 +269,7 @@
   }
 
   function setProgrammeView(view) {
-    const showSchedule = view === "schedule";
+    const showSchedule = view === "schedule" && window.matchMedia("(max-width: 899px)").matches;
     if (lineUpPanel) lineUpPanel.hidden = showSchedule;
     if (schedulePanel) {
       schedulePanel.hidden = !showSchedule;

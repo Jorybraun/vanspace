@@ -1958,6 +1958,17 @@ input {
     outline: none;
   }
 }
+@media (min-width: 900px) {
+  #orbit-schedule-tab,
+  #orbit-schedule-panel {
+    display: none !important;
+  }
+
+  #orbit-lineup-tab {
+    flex: 1 1 100%;
+  }
+}
+
 @media (max-width: 520px) {
   .orbit-speakers-grid {
     grid-template-columns: 1fr 1fr;
