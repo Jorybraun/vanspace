@@ -1912,6 +1912,51 @@ input {
     aspect-ratio: 1;
     min-height: 6rem;
   }
+
+  .orbit-speakers .orbit-app-inner {
+    position: relative;
+  }
+
+  .orbit-speaker-detail:not([hidden]),
+  .orbit-schedule-panel:not([hidden]) {
+    position: absolute;
+    z-index: 20;
+    inset: 10% 6%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-height: 80%;
+    min-height: 0;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: #0000aa;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 170, 0.68);
+  }
+
+  .orbit-speaker-detail-back,
+  .orbit-schedule-back {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin: 0 0 1.5rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    font: 0.58rem var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .orbit-speaker-detail-back:hover,
+  .orbit-speaker-detail-back:focus-visible,
+  .orbit-schedule-back:hover,
+  .orbit-schedule-back:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    outline: none;
+  }
 }
 @media (max-width: 520px) {
   .orbit-speakers-grid {

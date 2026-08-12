@@ -9,11 +9,11 @@
       content="BIOS SPHERE: Mon 2 Nov 2026, 1–7pm at Science World, Vancouver. Keynote from Kent C. Dodds, with more speakers to be announced."
     />
     <meta name="theme-color" content="#e5e0cf" />
-    <link rel="canonical" href="https://bios.vanspace.dev/" />
+    <link rel="canonical" href="https://vanspace.dev/" />
 
     <!-- Share card: this page's whole job is to be pasted into a DM -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bios.vanspace.dev/" />
+    <meta property="og:url" content="https://vanspace.dev/" />
     <meta property="og:title" content="BIOS SPHERE — a micro-conference with big-conference energy" />
     <meta
       property="og:description"
@@ -206,14 +206,15 @@
                 </div>
               </article>
               </div>
-              <article class="orbit-speaker-detail" id="orbit-speaker-detail" aria-live="polite" hidden>
+              <article class="orbit-speaker-detail" id="orbit-speaker-detail" role="dialog" aria-modal="true" aria-labelledby="orbit-speaker-detail-name" aria-describedby="orbit-speaker-detail-desc" aria-live="polite" aria-hidden="true" tabindex="-1" hidden>
                 <button type="button" class="orbit-speaker-detail-back" id="orbit-speaker-detail-back">← Back to line-up</button>
                 <p class="orbit-speaker-detail-tag" id="orbit-speaker-detail-tag"></p>
                 <h2 id="orbit-speaker-detail-name"></h2>
                 <p class="orbit-speaker-detail-meta" id="orbit-speaker-detail-meta"></p>
                 <p class="orbit-speaker-detail-desc" id="orbit-speaker-detail-desc"></p>
               </article>
-              <section class="orbit-schedule-panel" id="orbit-schedule-panel" aria-labelledby="orbit-schedule-heading" hidden>
+              <section class="orbit-schedule-panel" id="orbit-schedule-panel" role="dialog" aria-modal="true" aria-labelledby="orbit-schedule-heading" aria-hidden="true" tabindex="-1" hidden>
+                <button type="button" class="orbit-schedule-back" id="orbit-schedule-back">← Back to line-up</button>
                 <p class="orbit-schedule-kicker">PROGRAMME · 2 NOV 2026 · SCIENCE WORLD</p>
                 <h2 id="orbit-schedule-heading">The day</h2>
                 <ol class="orbit-schedule-list">
@@ -402,14 +403,6 @@
         </div>
       </section>
 
-      <div class="chapter-rail" aria-label="VanSpace narrative arc">
-        <span>Break</span>
-        <span>Dissolve</span>
-        <span>Mutate</span>
-        <span>Emerge</span>
-        <span>Fly</span>
-      </div>
-
       <!-- SPONSORS -->
       <section id="sponsors" class="section section-alt">
         <div class="wrap-xl sponsors-block">
@@ -439,6 +432,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=66" defer></script>
+    <script src="/orbit-hero.js?v=67" defer></script>
   </body>
 </html>

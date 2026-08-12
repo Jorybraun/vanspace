@@ -50,6 +50,7 @@
   const schedulePanel = document.getElementById("orbit-schedule-panel");
   const lineUpTab = document.getElementById("orbit-lineup-tab");
   const scheduleTab = document.getElementById("orbit-schedule-tab");
+  const scheduleBack = document.getElementById("orbit-schedule-back");
   const speakerDetail = document.getElementById("orbit-speaker-detail");
   const speakerDetailBack = document.getElementById("orbit-speaker-detail-back");
   const speakerDetailTag = document.getElementById("orbit-speaker-detail-tag");
@@ -170,6 +171,7 @@
   let orbitForm = 0;
   let lastAnnouncedPhase = "";
   let speakerDetailActive = false;
+  let mobileDialogTrigger = null;
 
   function updateTitleBlock(forPhase, visible) {
     const data = TITLE_BLOCKS[forPhase] || TITLE_BLOCKS.intro;
@@ -269,7 +271,10 @@
   function setProgrammeView(view) {
     const showSchedule = view === "schedule";
     if (lineUpPanel) lineUpPanel.hidden = showSchedule;
-    if (schedulePanel) schedulePanel.hidden = !showSchedule;
+    if (schedulePanel) {
+      schedulePanel.hidden = !showSchedule;
+      schedulePanel.setAttribute("aria-hidden", showSchedule ? "false" : "true");
+    }
     if (lineUpTab) {
       lineUpTab.classList.toggle("is-active", !showSchedule);
       lineUpTab.setAttribute("aria-selected", String(!showSchedule));
@@ -280,13 +285,47 @@
     }
   }
 
-  if (lineUpTab) lineUpTab.addEventListener("click", function () { setProgrammeView("lineup"); });
-  if (scheduleTab) scheduleTab.addEventListener("click", function () { setProgrammeView("schedule"); });
+  function focusMobileDialog(dialog) {
+    if (window.matchMedia("(max-width: 899px)").matches && dialog) {
+      window.requestAnimationFrame(function () { dialog.focus(); });
+    }
+  }
+
+  function restoreMobileDialogFocus() {
+    const trigger = mobileDialogTrigger;
+    mobileDialogTrigger = null;
+    if (trigger && typeof trigger.focus === "function") trigger.focus();
+  }
+
+  if (lineUpTab) {
+    lineUpTab.addEventListener("click", function () {
+      if (speakerDetail) speakerDetail.hidden = true;
+      setProgrammeView("lineup");
+      restoreMobileDialogFocus();
+    });
+  }
+  if (scheduleTab) {
+    scheduleTab.addEventListener("click", function () {
+      mobileDialogTrigger = scheduleTab;
+      setProgrammeView("schedule");
+      focusMobileDialog(schedulePanel);
+    });
+  }
 
   function closeMobileSpeakerDetail() {
     if (!speakerDetail) return;
     speakerDetail.hidden = true;
+    speakerDetail.setAttribute("aria-hidden", "true");
     setProgrammeView("lineup");
+    restoreMobileDialogFocus();
+  }
+
+  function closeMobileSchedule() {
+    if (!schedulePanel) return;
+    schedulePanel.hidden = true;
+    schedulePanel.setAttribute("aria-hidden", "true");
+    setProgrammeView("lineup");
+    restoreMobileDialogFocus();
   }
 
   /* ---- Speaker detail in the left console ---------------------------- */
@@ -321,9 +360,12 @@
     if (speakerDetailMeta) speakerDetailMeta.textContent = meta;
     if (speakerDetailDesc) speakerDetailDesc.textContent = desc || "Details announcing soon.";
     if (window.matchMedia("(max-width: 899px)").matches && speakerDetail) {
+      mobileDialogTrigger = card;
       setProgrammeView("lineup");
       speakerDetail.hidden = false;
+      speakerDetail.setAttribute("aria-hidden", "false");
       if (lineUpPanel) lineUpPanel.hidden = true;
+      focusMobileDialog(speakerDetail);
     }
 
     consoleTyped = 0;
@@ -340,6 +382,14 @@
   if (speakerDetailBack) {
     speakerDetailBack.addEventListener("click", closeMobileSpeakerDetail);
   }
+  if (scheduleBack) {
+    scheduleBack.addEventListener("click", closeMobileSchedule);
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || !window.matchMedia("(max-width: 899px)").matches) return;
+    if (speakerDetail && !speakerDetail.hidden) closeMobileSpeakerDetail();
+    else if (schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
+  });
 
   if (speakerCards.length) {
     speakerCards.forEach(function (card) {
