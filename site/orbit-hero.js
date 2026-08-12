@@ -60,26 +60,26 @@
   /* Dynamic title block shown above the console body for each phase */
   const TITLE_BLOCKS = {
     intro: {
-      kicker: "BIOS",
+      kicker: "BIOS SPHERE",
       title: "A micro-conference in Vancouver with big-conference energy",
       mission: "We bring big names to community events in Vancouver at a reasonable cost.",
-      meta: "Tue 10 Nov 2026 · 13:00–19:00 · Science World"
+      meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
     },
     speakers: {
       kicker: "LINEUP",
       title: "Kent C. Dodds · ?",
       mission: "Kent C. Dodds · ? · Devin · Agents · AI · Systems.",
-      meta: "Tue 10 Nov 2026 · Science World"
+      meta: "Mon 2 Nov 2026 · Science World"
     },
     day: {
       kicker: "THE DAY",
       title: "Science World",
       mission: "Doors at 13:00 · programme ends at 19:00.",
-      meta: "Tue 10 Nov 2026 · 13:00–19:00"
+      meta: "Mon 2 Nov 2026 · 13:00–19:00"
     }
   };
   const BOOT_SCRIPT = [
-    "VanSpace BIOS (C) 2026",
+    "BIOS SPHERE (C) 2026",
     "",
     "C:\\VANSPACE> boot programme.exe",
     "Loading micro-conference...",
@@ -87,7 +87,7 @@
     "  keynotes........... OK",
     "  single track....... OK",
     "  Science World...... OK",
-    "  10 Nov 2026........ OK",
+    "  2 Nov 2026........ OK",
     "  13:00–19:00........ OK",
     "  loading devin...... OK",
     "",
@@ -119,7 +119,7 @@
 
   /* Speakers phase — schedule only (no DOS prompt) */
   const SCHEDULE_LINES = [
-    "Schedule · 10 Nov 2026 · 13:00–19:00",
+    "Schedule · 2 Nov 2026 · 13:00–19:00",
     "Science World, Vancouver",
     "",
     "13:00  Doors · coffee · tables",
@@ -141,7 +141,7 @@
     "1455 Quebec Street, Vancouver, BC V6A 3Z7",
     "",
     "sponsored by Cognition",
-    "vanspace · 10 Nov 2026"
+    "vanspace · 2 Nov 2026"
   ].join("\n");
 
   /* phase: boot | intro | speakers | day */
@@ -177,7 +177,7 @@
   }
 
   /* Live countdown to the event in the Devin CLI header */
-  const EVENT_DATE = new Date("2026-11-10T13:00:00-08:00");
+  const EVENT_DATE = new Date("2026-11-02T13:00:00-08:00");
 
   function formatCountdown(ms) {
     if (ms <= 0) return "resets now";
@@ -199,7 +199,7 @@
     const remaining = EVENT_DATE.getTime() - now;
     devinLogoEl.textContent = [
       "⠀⣴⣾⣶⡄⠀⠀⠀⠀",
-      "⠀⠛⠿⠟⠻⣶⣾⣶⡄  Vanspace:Bios",
+      "⠀⠛⠿⠟⠻⣶⣾⣶⡄  BIOS SPHERE",
       "⠀⣤⣶⣦⣴⠿⢿⠿⠃  Max · 100% remaining",
       "⠀⠻⢿⠿⠃⠀⠀⠀⠀",
       "           " + formatCountdown(remaining)
@@ -1045,5 +1045,5 @@
     requestAnimationFrame(frame);
   };
   img.onerror = function () { stage.classList.add("is-static"); };
-  img.src = canvas.dataset.src || "/ariel-correct-blue-scienceworld.png";
+  img.src = canvas.dataset.src || "/science-world-aug11-blue.png";
 })();
