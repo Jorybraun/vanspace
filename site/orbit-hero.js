@@ -45,6 +45,16 @@
   const devinLogoEl = document.getElementById("orbit-devin-logo");
   const speakerBack = document.getElementById("orbit-speaker-back");
   const speakerCards = stage ? stage.querySelectorAll(".orbit-spk") : [];
+  const lineUpPanel = document.getElementById("orbit-lineup-panel");
+  const schedulePanel = document.getElementById("orbit-schedule-panel");
+  const lineUpTab = document.getElementById("orbit-lineup-tab");
+  const scheduleTab = document.getElementById("orbit-schedule-tab");
+  const speakerDetail = document.getElementById("orbit-speaker-detail");
+  const speakerDetailBack = document.getElementById("orbit-speaker-detail-back");
+  const speakerDetailTag = document.getElementById("orbit-speaker-detail-tag");
+  const speakerDetailName = document.getElementById("orbit-speaker-detail-name");
+  const speakerDetailMeta = document.getElementById("orbit-speaker-detail-meta");
+  const speakerDetailDesc = document.getElementById("orbit-speaker-detail-desc");
   const ticketDetail = document.getElementById("orbit-ticket-detail");
   const ticketDetailTitle = document.getElementById("orbit-ticket-detail-title");
   const ticketDetailPrice = document.getElementById("orbit-ticket-detail-price");
@@ -253,9 +263,33 @@
     }
   }
 
+  function setProgrammeView(view) {
+    const showSchedule = view === "schedule";
+    if (lineUpPanel) lineUpPanel.hidden = showSchedule;
+    if (schedulePanel) schedulePanel.hidden = !showSchedule;
+    if (lineUpTab) {
+      lineUpTab.classList.toggle("is-active", !showSchedule);
+      lineUpTab.setAttribute("aria-selected", String(!showSchedule));
+    }
+    if (scheduleTab) {
+      scheduleTab.classList.toggle("is-active", showSchedule);
+      scheduleTab.setAttribute("aria-selected", String(showSchedule));
+    }
+  }
+
+  if (lineUpTab) lineUpTab.addEventListener("click", function () { setProgrammeView("lineup"); });
+  if (scheduleTab) scheduleTab.addEventListener("click", function () { setProgrammeView("schedule"); });
+
+  function closeMobileSpeakerDetail() {
+    if (!speakerDetail) return;
+    speakerDetail.hidden = true;
+    setProgrammeView("lineup");
+  }
+
   /* ---- Speaker detail in the left console ---------------------------- */
   function closeSpeakerDetail() {
     speakerDetailActive = false;
+    closeMobileSpeakerDetail();
     if (speakerBack) speakerBack.classList.remove("is-on");
     if (phase === "speakers") {
       consoleTyped = 0;
@@ -279,6 +313,15 @@
     if (introMission) introMission.textContent = tag;
     if (introMeta) introMeta.textContent = meta;
     if (speakerBack) speakerBack.classList.add("is-on");
+    if (speakerDetailTag) speakerDetailTag.textContent = tag;
+    if (speakerDetailName) speakerDetailName.textContent = name;
+    if (speakerDetailMeta) speakerDetailMeta.textContent = meta;
+    if (speakerDetailDesc) speakerDetailDesc.textContent = desc || "Details announcing soon.";
+    if (window.matchMedia("(max-width: 899px)").matches && speakerDetail) {
+      setProgrammeView("lineup");
+      speakerDetail.hidden = false;
+      if (lineUpPanel) lineUpPanel.hidden = true;
+    }
 
     consoleTyped = 0;
     consoleLastTick = 0;
@@ -290,6 +333,9 @@
     speakerBack.addEventListener("click", function () {
       closeSpeakerDetail();
     });
+  }
+  if (speakerDetailBack) {
+    speakerDetailBack.addEventListener("click", closeMobileSpeakerDetail);
   }
 
   if (speakerCards.length) {

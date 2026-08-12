@@ -1645,6 +1645,126 @@ input {
   background: #0000aa;
 }
 
+/* Programme views — line-up and schedule share the same terminal window */
+.orbit-speakers-tabs {
+  display: flex;
+  flex: 0 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  background: #0000aa;
+}
+
+.orbit-speakers-tab {
+  flex: 1 1 50%;
+  padding: 0.32rem 0.5rem;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font: 0.55rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.orbit-speakers-tab:last-child {
+  border-right: 0;
+}
+
+.orbit-speakers-tab.is-active,
+.orbit-speakers-tab:hover,
+.orbit-speakers-tab:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+}
+
+.orbit-speaker-detail,
+.orbit-schedule-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: #0000aa;
+  color: #fff;
+  font-family: var(--mono);
+}
+
+.orbit-speaker-detail-back {
+  margin: 0 0 2rem;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font: 0.58rem var(--mono);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.orbit-speaker-detail-back:hover,
+.orbit-speaker-detail-back:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  outline: none;
+}
+
+.orbit-speaker-detail-tag,
+.orbit-schedule-kicker {
+  margin: 0 0 0.45rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.orbit-speaker-detail h2,
+.orbit-schedule-panel h2 {
+  margin: 0;
+  font: 500 clamp(1.15rem, 3vw, 1.8rem) / 1.1 var(--mono);
+}
+
+.orbit-speaker-detail-meta {
+  margin: 0.45rem 0 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.65rem;
+}
+
+.orbit-speaker-detail-desc {
+  max-width: 48ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.orbit-schedule-list,
+.schedule-fallback-list {
+  display: grid;
+  gap: 0;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orbit-schedule-list li,
+.schedule-fallback-list li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.48rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.orbit-schedule-list li:last-child,
+.schedule-fallback-list li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.orbit-schedule-list time {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 /* Speakers grid — same pure BSOD blue as the shell */
 .orbit-speakers-grid {
   flex: 1 1 auto;
@@ -2640,6 +2760,38 @@ input {
 .wormhole-transition.is-revealing {
   opacity: 0;
   transition-duration: 0.62s;
+}
+
+.schedule-fallback {
+  background-color: var(--deep);
+  color: #fff;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.schedule-fallback .eyebrow,
+.schedule-fallback .section-title {
+  color: #fff;
+}
+
+.schedule-fallback-inner {
+  max-width: 52rem;
+}
+
+.schedule-fallback-list {
+  max-width: 42rem;
+  color: #fff;
+  font-family: var(--mono);
+}
+
+.schedule-fallback-list li {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.schedule-fallback-list time {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .chapter-rail {

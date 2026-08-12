@@ -118,7 +118,11 @@
                 <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
               </header>
               <p class="orbit-app-status">LINE-UP · 2 Nov 2026 · 2 keynotes · closing TBA · Science World</p>
-              <div class="orbit-speakers-grid" role="list" aria-labelledby="orbit-speakers-heading">
+              <div class="orbit-speakers-tabs" role="tablist" aria-label="Programme views">
+                <button type="button" class="orbit-speakers-tab is-active" id="orbit-lineup-tab" role="tab" aria-selected="true" aria-controls="orbit-lineup-panel">Line-up</button>
+                <button type="button" class="orbit-speakers-tab" id="orbit-schedule-tab" role="tab" aria-selected="false" aria-controls="orbit-schedule-panel">Schedule</button>
+              </div>
+              <div class="orbit-speakers-grid" id="orbit-lineup-panel" role="list" aria-labelledby="orbit-speakers-heading">
               <article class="orbit-spk is-key" role="listitem" data-name="Kent C. Dodds" data-tag="Keynote" data-meta="EpicWeb" data-desc="Kent C. Dodds is a world-renowned web development educator and engineer. He is the creator of EpicWeb.dev, EpicReact.dev, and TestingJavaScript.com, and a Microsoft MVP, GitHub Star, and instructor on egghead and Frontend Masters." tabindex="0">
                 <div class="orbit-spk-photo">
                   <img
@@ -202,6 +206,30 @@
                 </div>
               </article>
               </div>
+              <article class="orbit-speaker-detail" id="orbit-speaker-detail" aria-live="polite" hidden>
+                <button type="button" class="orbit-speaker-detail-back" id="orbit-speaker-detail-back">← Back to line-up</button>
+                <p class="orbit-speaker-detail-tag" id="orbit-speaker-detail-tag"></p>
+                <h2 id="orbit-speaker-detail-name"></h2>
+                <p class="orbit-speaker-detail-meta" id="orbit-speaker-detail-meta"></p>
+                <p class="orbit-speaker-detail-desc" id="orbit-speaker-detail-desc"></p>
+              </article>
+              <section class="orbit-schedule-panel" id="orbit-schedule-panel" aria-labelledby="orbit-schedule-heading" hidden>
+                <p class="orbit-schedule-kicker">PROGRAMME · 2 NOV 2026 · SCIENCE WORLD</p>
+                <h2 id="orbit-schedule-heading">The day</h2>
+                <ol class="orbit-schedule-list">
+                  <li><time datetime="13:00">13:00</time><span>Doors · coffee · tables</span></li>
+                  <li><time datetime="13:15">13:15</time><span>Welcome · CoC · wifi</span></li>
+                  <li><time datetime="13:30">13:30</time><span>Keynote 1 · Kent C. Dodds</span></li>
+                  <li><time datetime="14:15">14:15</time><span>Agents</span></li>
+                  <li><time datetime="14:45">14:45</time><span>AI + Systems</span></li>
+                  <li><time datetime="15:15">15:15</time><span>Break</span></li>
+                  <li><time datetime="15:35">15:35</time><span>Keynote 2 · To be announced</span></li>
+                  <li><time datetime="16:20">16:20</time><span>Teams + Craft</span></li>
+                  <li><time datetime="16:55">16:55</time><span>Closing · Devin</span></li>
+                  <li><time datetime="17:40">17:40</time><span>Community</span></li>
+                  <li><time datetime="19:00">19:00</time><span>Programme ends</span></li>
+                </ol>
+              </section>
               <p class="orbit-app-footer" aria-hidden="true">ESC exit · SCROLL next module · F1 help</p>
               </div>
             </div>
@@ -340,6 +368,26 @@
         </div>
       </section>
 
+      <section class="schedule-fallback section" id="schedule" aria-labelledby="schedule-heading">
+        <div class="wrap schedule-fallback-inner">
+          <p class="eyebrow">Schedule · 2 Nov 2026 · Science World</p>
+          <h2 class="section-title" id="schedule-heading">The day, in order.</h2>
+          <ol class="schedule-fallback-list">
+            <li><time datetime="13:00">13:00</time><span>Doors · coffee · tables</span></li>
+            <li><time datetime="13:15">13:15</time><span>Welcome · CoC · wifi</span></li>
+            <li><time datetime="13:30">13:30</time><span>Keynote 1 · Kent C. Dodds</span></li>
+            <li><time datetime="14:15">14:15</time><span>Agents</span></li>
+            <li><time datetime="14:45">14:45</time><span>AI + Systems</span></li>
+            <li><time datetime="15:15">15:15</time><span>Break</span></li>
+            <li><time datetime="15:35">15:35</time><span>Keynote 2 · To be announced</span></li>
+            <li><time datetime="16:20">16:20</time><span>Teams + Craft</span></li>
+            <li><time datetime="16:55">16:55</time><span>Closing · Devin</span></li>
+            <li><time datetime="17:40">17:40</time><span>Community</span></li>
+            <li><time datetime="19:00">19:00</time><span>Programme ends</span></li>
+          </ol>
+        </div>
+      </section>
+
       <div class="chapter-rail" aria-label="VanSpace narrative arc">
         <span>Break</span>
         <span>Dissolve</span>
@@ -377,6 +425,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=60" defer></script>
+    <script src="/orbit-hero.js?v=61" defer></script>
   </body>
 </html>
