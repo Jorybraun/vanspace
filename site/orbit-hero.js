@@ -21,6 +21,7 @@
   const transition = document.getElementById("wormhole-transition");
   const cogSun = document.getElementById("orbit-cog-sun");
   const speakersPanel = document.getElementById("orbit-speakers");
+  const sponsorPanel = document.getElementById("orbit-sponsors");
   const venuePanel = document.getElementById("orbit-venue");
   const biosChrome = document.getElementById("orbit-bios-chrome");
   const biosNav = document.getElementById("orbit-bios-nav");
@@ -70,7 +71,7 @@
   /* Dynamic title block shown above the console body for each phase */
   const TITLE_BLOCKS = {
     intro: {
-      kicker: "BIOS SPHERE",
+      kicker: "SCIENCE WORLD",
       title: "A micro-conference in Vancouver with big-conference energy",
       mission: "We bring big names to community events in Vancouver at a reasonable cost.",
       meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
@@ -81,11 +82,11 @@
       mission: "Kent C. Dodds · ? · Devin · Agents · AI · Systems.",
       meta: "Mon 2 Nov 2026 · Science World"
     },
-    day: {
-      kicker: "THE DAY",
-      title: "Science World",
-      mission: "Doors at 13:00 · programme ends at 19:00.",
-      meta: "Mon 2 Nov 2026 · 13:00–19:00"
+    sponsors: {
+      kicker: "SPONSORS",
+      title: "The room is supported by Cognition",
+      mission: "Devin · Cognition · helping builders meet, learn, and ship.",
+      meta: "Lead sponsor · November 2, 2026 · Science World"
     }
   };
   const BOOT_SCRIPT = [
@@ -104,9 +105,9 @@
     "Boot complete."
   ].join("\n");
 
-  /* Scroll gates (0–1 over the orbit stage). Wide speakers band so it can't be skipped. */
-  const SPEAKERS_AT = 0.28;
-  const DAY_AT = 0.72;
+  /* Scroll gates: venue → sponsors → schedule + speakers. */
+  const SPONSORS_AT = 0.28;
+  const SPEAKERS_AT = 0.72;
 
   /** Scroll the page so stage progress ≈ targetP (0–1) */
   function scrollStageTo(targetP) {
@@ -122,8 +123,9 @@
       if (!btn) return;
       e.preventDefault();
       const jump = btn.getAttribute("data-bios-jump");
-      if (jump === "speakers") scrollStageTo(SPEAKERS_AT + 0.06);
-      else if (jump === "day") scrollStageTo(DAY_AT + 0.04);
+      if (jump === "venue") scrollStageTo(0.04);
+      else if (jump === "sponsors") scrollStageTo(SPONSORS_AT + 0.04);
+      else if (jump === "speakers") scrollStageTo(SPEAKERS_AT + 0.04);
     });
   }
 
@@ -145,16 +147,17 @@
     "19:00  Programme ends"
   ].join("\n");
 
-  /* Day phase — address + byline */
-  const DAY_LINES = [
-    "Science World",
-    "1455 Quebec Street, Vancouver, BC V6A 3Z7",
+  /* Sponsors phase — lead sponsor and open places */
+  const SPONSOR_LINES = [
+    "Sponsors · November 2, 2026",
     "",
-    "sponsored by Cognition",
-    "vanspace · 2 Nov 2026"
+    "Cognition.......... LEAD SPONSOR",
+    "Devin.............. BUILDING THE ROOM",
+    "",
+    "Supporting sponsor places OPEN"
   ].join("\n");
 
-  /* phase: boot | intro | speakers | day */
+  /* phase: boot | intro | sponsors | speakers */
   let phase = "boot";
   let consoleTyped = 0;
   let consoleLastTick = 0;
@@ -230,8 +233,8 @@
   function phaseTarget() {
     if (phase === "boot") return BOOT_SCRIPT;
     if (phase === "intro") return "";
+    if (phase === "sponsors") return SPONSOR_LINES;
     if (phase === "speakers") return SCHEDULE_LINES;
-    if (phase === "day") return DAY_LINES;
     return "";
   }
 
@@ -242,9 +245,9 @@
     consoleLastTick = 0;
     consoleTarget = phaseTarget();
     if (bsodEl) bsodEl.scrollTop = 0;
-    setDevinMode(next === "day");
+    setDevinMode(next === "sponsors");
     updateTitleBlock(next, next !== "boot");
-    if (next !== "day") closeTicketDetail();
+    if (next !== "intro") closeTicketDetail();
     if (next !== "speakers") closeSpeakerDetail();
     if (next === "intro") {
       introAt = now || performance.now();
@@ -253,8 +256,8 @@
     if (statusEl && next !== "boot") {
       const labels = {
         intro: "VanSpace",
-        speakers: "Schedule loaded — line-up on the right",
-        day: "Day loaded — Science World and tickets"
+        sponsors: "Sponsors loaded — Cognition and open places",
+        speakers: "Schedule loaded — line-up on the right"
       };
       if (labels[next] && labels[next] !== lastAnnouncedPhase) {
         lastAnnouncedPhase = labels[next];
@@ -714,31 +717,29 @@
     const chapterP = bsodDone ? Math.min(1, Math.max(0, p)) : 0;
 
     /*
-     * Sequential phases only — never jump intro → day and skip speakers.
-     * intro holds briefly, then scroll unlocks speakers, then day.
+     * Sequential phases: venue → sponsors → schedule + speakers.
+     * The left console and right window change together at each stop.
      */
     const introHeld = phase !== "intro" || (introAt && now - introAt > 1600);
     if (!warping && bsodDone && introHeld) {
-      if (phase === "intro" && chapterP >= SPEAKERS_AT) {
+      if (phase === "intro" && chapterP >= SPONSORS_AT) {
+        setPhase("sponsors", now);
+      } else if (phase === "sponsors" && chapterP >= SPEAKERS_AT) {
         setPhase("speakers", now);
-      } else if (phase === "speakers" && chapterP >= DAY_AT) {
-        setPhase("day", now);
-      } else if (phase === "day" && chapterP < DAY_AT) {
-        setPhase("speakers", now);
-      } else if (
-        (phase === "speakers" || phase === "day") &&
-        chapterP < SPEAKERS_AT
-      ) {
+      } else if (phase === "speakers" && chapterP < SPEAKERS_AT) {
+        setPhase("sponsors", now);
+      } else if (phase === "sponsors" && chapterP < SPONSORS_AT) {
         setPhase("intro", now);
       }
     }
 
-    const spkOn = phase === "speakers";
-    const dayOn = phase === "day";
-    const speakersReveal = spkOn ? 1 : 0;
-    const dayReveal = dayOn ? 1 : 0;
-    /* hide orbit when a right-panel module is up */
-    const orbitFade = spkOn || dayOn ? 0 : 1;
+    const venueOn = phase === "intro";
+    const sponsorOn = phase === "sponsors";
+    const speakerOn = phase === "speakers";
+    const sponsorReveal = sponsorOn ? 1 : 0;
+    const speakerReveal = speakerOn ? 1 : 0;
+    /* The orbit is the visual layer behind the sponsor section. */
+    const orbitFade = sponsorOn ? 1 : 0;
 
     const bootActive = invert > 0.5 && !warping;
     if (bsodEl && bsodText && !reduce) {
@@ -760,7 +761,7 @@
           setPhase("intro", now);
         }
         bsodText.textContent = target.slice(0, consoleTyped);
-      } else if (phase === "speakers" || phase === "day") {
+      } else if (phase === "sponsors" || phase === "speakers") {
         if (bootActive && consoleTyped < targetLen) {
           const speed = Math.max(1, 6 - scrollVel * 400);
           const burst = Math.max(2, Math.min(32, 4 + Math.floor(scrollVel * 100)));
@@ -801,7 +802,7 @@
       }
       bsodEl.classList.toggle(
         "is-speakers-yield",
-        (spkOn || dayOn) && W < 900 && !exitGlitch
+        (sponsorOn || speakerOn) && W < 900 && !exitGlitch
       );
       bsodEl.setAttribute("aria-hidden", bsodVisible ? "false" : "true");
 
@@ -881,25 +882,29 @@
 
     /* Cognition sun — hide when speakers panel owns the right stage */
     if (cogSun) {
-      const showCog = form > 0.1 && warp < 0.55 && speakersReveal < 0.35;
+      const showCog = sponsorReveal > 0.2 && warp < 0.55;
       cogSun.classList.toggle("is-on", showCog);
       cogSun.classList.toggle("is-split", split);
-      cogSun.classList.toggle("is-warping", warp > 0.2 || speakersReveal > 0.2);
+      cogSun.classList.toggle("is-warping", warp > 0.2 || speakerReveal > 0.2);
       cogSun.setAttribute("aria-hidden", showCog ? "false" : "true");
     }
 
-    /* Right: speakers, then merged day (Science World + tickets + Cognition/Devin) */
+    /* Right: venue, sponsors, then schedule + speakers */
     const stageOn = !warping && invert > 0.5;
     if (speakersPanel) {
-      const showSpk =
-        stageOn && speakersReveal > 0.08 && dayReveal < 0.2;
-      speakersPanel.classList.toggle("is-on", showSpk);
-      speakersPanel.setAttribute("aria-hidden", showSpk ? "false" : "true");
+      const showSpeakers = stageOn && speakerReveal > 0.08;
+      speakersPanel.classList.toggle("is-on", showSpeakers);
+      speakersPanel.setAttribute("aria-hidden", showSpeakers ? "false" : "true");
+    }
+    if (sponsorPanel) {
+      const showSponsors = stageOn && sponsorReveal > 0.08;
+      sponsorPanel.classList.toggle("is-on", showSponsors);
+      sponsorPanel.setAttribute("aria-hidden", showSponsors ? "false" : "true");
     }
     if (venuePanel) {
-      const showDay = stageOn && dayReveal > 0.08;
-      venuePanel.classList.toggle("is-on", showDay);
-      venuePanel.setAttribute("aria-hidden", showDay ? "false" : "true");
+      const showVenue = stageOn && venueOn;
+      venuePanel.classList.toggle("is-on", showVenue);
+      venuePanel.setAttribute("aria-hidden", showVenue ? "false" : "true");
     }
 
     // particles
@@ -1048,7 +1053,7 @@
     if (legend) {
       legend.classList.toggle(
         "is-in",
-        form > 0.55 && speakersReveal < 0.12 && dayReveal < 0.12
+        form > 0.55 && sponsorReveal < 0.12 && speakerReveal < 0.12
       );
       legend.classList.toggle("is-split", split);
     }

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 56" role="img" aria-label="van[space].dev">
+  <title>van[space].dev — code-bracket alt</title>
+  <!-- Alt lockup: van[space].dev with [space] as a wide key-shaped bracket -->
+  <defs>
+    <style>
+      .t { font-family: ui-monospace, "IBM Plex Mono", "SF Mono", Menlo, monospace; font-size: 26px; font-weight: 500; fill: #1A1A1A; }
+      .s { font-family: ui-monospace, "IBM Plex Mono", "SF Mono", Menlo, monospace; font-size: 26px; font-weight: 500; fill: #8B8499; }
+    </style>
+  </defs>
+  <text class="t" x="0" y="38">van</text>
+  <!-- key-shaped brackets around space -->
+  <g transform="translate(62, 10)">
+    <rect x="0" y="0" width="132" height="34" rx="5" fill="none" stroke="#1A1A1A" stroke-width="1.5"/>
+    <text class="s" x="66" y="24" text-anchor="middle" font-size="18" letter-spacing="0.08em">space</text>
+  </g>
+  <text class="t" x="202" y="38">.dev</text>
+</svg>

@@ -1,0 +1,44 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VanSpace//BIOS SPHERE//EN
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Vancouver
+BEGIN:STANDARD
+DTSTART:20261101T020000
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:vanspace-kent-keynote-20261102T133000-PST@vanspace.dev
+DTSTAMP:20260808T185454Z
+DTSTART;TZID=America/Vancouver:20261102T133000
+DTEND;TZID=America/Vancouver:20261102T141500
+SUMMARY:BIOS SPHERE - Opening Keynote (Kent C. Dodds)
+DESCRIPTION:BIOS SPHERE opening keynote\n
+ Mon 2 Nov 2026\, 13:30-14:15 PST (45 min)\n
+ Theme: agentic / AI-era engineering\n
+ Venue: Science World\, 1455 Quebec St\, Vancouver\, BC V6A 3Z7 (90% 
+ confirmed\, final by Monday)\n
+ Organizer: Jory Braun (jorybraun@icloud.com / hello@vanspace.dev)\n
+ LinkedIn: https://www.linkedin.com/in/jory-braun\n
+ Event: https://bios.vanspace.dev/\n
+ No Q&A. 
+ You can book your own flight and we will reimburse via Wise or PayPal. 
+ We will also cover your conference ticket and hotel; 
+ we'll confirm details once the venue is locked. 
+ Please reply with your preferred arrival/departure dates and which 
+ bio/photo to use from https://kentcdodds.com/info.
+LOCATION:Science World\, 1455 Quebec St\, Vancouver\, BC V6A 3Z7
+URL:https://bios.vanspace.dev/
+ORGANIZER;CN=Jory Braun:MAILTO:jorybraun@icloud.com
+ATTENDEE;CN=Kent C. Dodds;ROLE=REQ-PARTICIPANT;RSVP=TRUE:
+ MAILTO:me@kentcdodds.com
+CATEGORIES:KEYNOTE,CONFERENCE
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR

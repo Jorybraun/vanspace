@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>VanSpace Luma cover — 1920×1080</title>
+<style>
+  @font-face {
+    font-family: "IBM Plex Mono";
+    src: url("./assets/IBMPlexMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "IBM Plex Mono";
+    src: url("./assets/IBMPlexMono-Medium.ttf") format("truetype");
+    font-weight: 500;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #ddd; }
+  .card {
+    width: 1920px;
+    height: 1080px;
+    background: #f5f4f1;
+    color: #191919;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 0.85fr 1.25fr;
+  }
+  .left {
+    padding: 80px 56px 80px 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cog { height: 96px; width: auto; display: block; }
+  .flag-label {
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(25, 25, 25, 0.45);
+  }
+  .meta-block { max-width: 520px; }
+  .rule {
+    height: 1px;
+    background: rgba(25, 25, 25, 0.16);
+    margin-bottom: 22px;
+    max-width: 440px;
+  }
+  .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 24px;
+    letter-spacing: 0.03em;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .meta .slash { color: rgba(25, 25, 25, 0.3); }
+  .lineup-label {
+    margin-top: 28px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(25, 25, 25, 0.42);
+  }
+  .lineup {
+    margin-top: 14px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .lineup li {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: #191919;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .lineup .role {
+    color: rgba(25, 25, 25, 0.45);
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .lineup .name { font-weight: 500; }
+  .right {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: 48px 80px 48px 24px;
+  }
+  .right .skybox {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    max-height: 920px;
+    object-fit: contain;
+    object-position: center;
+  }
+  .overlay-logo {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 2;
+    width: min(70%, 640px);
+    height: auto;
+    justify-self: center;
+    align-self: center;
+    transform: translateY(32%);
+    filter: drop-shadow(0 2px 0 rgba(245, 244, 241, 0.95))
+            drop-shadow(0 0 28px rgba(245, 244, 241, 0.98));
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <div>
+        <img class="cog" src="./assets/cognition-lockup.svg" alt="Cognition" />
+        <div class="flag-label">Platinum sponsor</div>
+      </div>
+      <div class="meta-block">
+        <div class="rule"></div>
+        <div class="meta">
+          <span>Date TBA</span>
+          <span class="slash">/</span>
+          <span>MacMillan Space Centre</span>
+        </div>
+        <p class="lineup-label">Line-up</p>
+        <ul class="lineup">
+          <li><span class="name">Kent C. Dodds</span><span class="role">Opening</span></li>
+          <li><span class="name">Open stage</span><span class="role">TBA</span></li>
+          <li><span class="name">Wes Bos</span><span class="role">Keynote</span></li>
+          <li><span class="name">Cognition</span><span class="role">Closing</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <img class="skybox" src="./assets/space-centre-sketch.jpg" alt="Space Centre" />
+      <img class="overlay-logo" src="./assets/logo-wordmark.svg" alt="van space .dev" />
+    </div>
+  </div>
+</body>
+</html>

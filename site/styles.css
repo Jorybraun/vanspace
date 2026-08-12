@@ -1736,8 +1736,7 @@ input {
   line-height: 1.55;
 }
 
-.orbit-schedule-list,
-.schedule-fallback-list {
+.orbit-schedule-list {
   display: grid;
   gap: 0;
   margin: 1.25rem 0 0;
@@ -1745,8 +1744,7 @@ input {
   list-style: none;
 }
 
-.orbit-schedule-list li,
-.schedule-fallback-list li {
+.orbit-schedule-list li {
   display: grid;
   grid-template-columns: 4.5rem 1fr;
   gap: 0.75rem;
@@ -1756,8 +1754,7 @@ input {
   line-height: 1.35;
 }
 
-.orbit-schedule-list li:last-child,
-.schedule-fallback-list li:last-child {
+.orbit-schedule-list li:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -2173,6 +2170,30 @@ input {
   color: #fff;
 }
 
+/* The sponsor chapter is the orbit: keep its content as a small top-left overlay. */
+.orbit-sponsors .orbit-app-frame,
+.orbit-sponsors .orbit-app-inner,
+.orbit-sponsors .orbit-app-titlebar,
+.orbit-sponsors .orbit-app-status,
+.orbit-sponsors .orbit-sponsors-body,
+.orbit-sponsors .orbit-app-footer {
+  background: transparent;
+}
+
+.orbit-sponsors .orbit-sponsors-body {
+  display: block;
+  padding: 1rem;
+}
+
+.orbit-sponsors .orbit-sponsor-card,
+.orbit-sponsors .orbit-sponsor-open {
+  margin: 0;
+}
+
+.orbit-sponsors .orbit-sponsor-open {
+  margin-top: 1rem;
+}
+
 .orbit-devin-inner {
   background: #0a0a0a;
   border-color: rgba(255, 255, 255, 0.2);
@@ -2281,7 +2302,7 @@ input {
   transform-origin: center;
   filter: none;
   mix-blend-mode: normal;
-  opacity: 1;
+  opacity: 0.5;
 }
 /* VanSpace lockup over the Science World illustration */
 .orbit-day-wordmark {
@@ -2377,19 +2398,25 @@ input {
   z-index: 10;
   inset: 0;
   display: none;
-  flex-direction: column;
-  background: #0000aa;
+  place-items: center;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: rgba(0, 0, 170, 0.72);
   color: #fff;
   pointer-events: auto;
 }
 .orbit-ticket-detail.is-on {
-  display: flex;
+  display: grid;
 }
 .orbit-ticket-detail-inner {
-  flex: 1 1 auto;
-  min-height: 0;
+  width: min(100%, 30rem);
+  max-height: min(100%, 28rem);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: #0000aa;
+  box-shadow: 0 0 0 1px rgba(0, 0, 170, 0.8);
 }
 .orbit-ticket-detail-header {
   flex: 0 0 auto;
@@ -2430,10 +2457,11 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  padding: 1.25rem 1rem;
+  padding: 1.5rem 1.25rem;
   overflow: auto;
+  text-align: center;
 }
 .orbit-ticket-detail-price {
   margin: 0;
@@ -2760,38 +2788,6 @@ input {
 .wormhole-transition.is-revealing {
   opacity: 0;
   transition-duration: 0.62s;
-}
-
-.schedule-fallback {
-  background-color: var(--deep);
-  color: #fff;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.schedule-fallback .eyebrow,
-.schedule-fallback .section-title {
-  color: #fff;
-}
-
-.schedule-fallback-inner {
-  max-width: 52rem;
-}
-
-.schedule-fallback-list {
-  max-width: 42rem;
-  color: #fff;
-  font-family: var(--mono);
-}
-
-.schedule-fallback-list li {
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-.schedule-fallback-list time {
-  color: rgba(255, 255, 255, 0.6);
 }
 
 .chapter-rail {
