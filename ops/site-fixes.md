@@ -22,6 +22,8 @@ _Add the next one here._
 - [x] **Ticket window chrome doesn’t close** — `_ □ ×` were decorative. `×` and the back arrow close the dialog; backdrop and Escape do too.
 - [x] **Sponsor copy** — dropped “helping builders meet, learn, and ship.” Lead with Cognition as lead sponsor; supporting places still open.
 - [x] **Footer** — removed the leftover “Other slots open” strip (duplicate of the orbit sponsors chapter). Footer is name + email + CoC.
+- [x] **Top header** — cream `vanspace` / tickets bar on the landing page. Gone. About/events keep a nav so you can get back.
+- [x] **Drag-to-rotate died** — orbit code was fine; venue/sponsor windows sat on top and ate the pointer. Drag the field again (sponsor chapter is the main grab). Cards/buttons still click.
 
 ---
 

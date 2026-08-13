@@ -679,17 +679,32 @@
     canvas.setAttribute("aria-pressed", "true");
   }
 
-  canvas.addEventListener("pointerdown", function (e) {
-    if (warping) return;
+  const dragSurface = stage.querySelector(".orbit-sticky") || canvas;
+
+  function ignoreOrbitDrag(target) {
+    return !!(target && target.closest && target.closest(
+      "a, button, input, textarea, select, label, [role='button'], [role='tab'], [role='dialog'], .orbit-spk, .orbit-day-tix, .orbit-ticket-detail, .orbit-speaker-detail, .orbit-schedule-panel, .orbit-bios-nav, .orbit-sponsor-card, .orbit-sponsor-open"
+    ));
+  }
+
+  function endOrbitDrag() {
+    dragging = false;
+    if (dragSurface) dragSurface.classList.remove("is-dragging");
+  }
+
+  dragSurface.addEventListener("pointerdown", function (e) {
+    if (warping || ignoreOrbitDrag(e.target)) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
     dragging = true;
     pointerMoved = false;
     pointerDownAt = performance.now();
     pointerStartX = e.clientX;
     pointerStartY = e.clientY;
     lastX = e.clientX;
-    try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    dragSurface.classList.add("is-dragging");
+    try { dragSurface.setPointerCapture(e.pointerId); } catch (err) {}
   });
-  canvas.addEventListener("pointermove", function (e) {
+  dragSurface.addEventListener("pointermove", function (e) {
     if (!dragging) return;
     const dx = e.clientX - lastX;
     if (Math.hypot(e.clientX - pointerStartX, e.clientY - pointerStartY) > 7) {
@@ -699,12 +714,8 @@
     rot += dx * 0.006;
     vel = dx * 0.006;
   });
-  canvas.addEventListener("pointerup", function () {
-    dragging = false;
-  });
-  ["pointercancel", "pointerleave"].forEach(function (ev) {
-    canvas.addEventListener(ev, function () { dragging = false; });
-  });
+  dragSurface.addEventListener("pointerup", endOrbitDrag);
+  dragSurface.addEventListener("pointercancel", endOrbitDrag);
   /* ---- frame ----------------------------------------------------------- */
   let p = 0;
   function frame(now) {

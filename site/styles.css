@@ -107,6 +107,10 @@ a {
 }
 
 /* —— Nav —— */
+body.no-top-nav {
+  --nav-h: 0px;
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -777,6 +781,12 @@ a {
   height: 100vh;
   height: 100svh;
   overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.orbit-sticky.is-dragging,
+.orbit-sticky.is-dragging #orbit-canvas {
+  cursor: grabbing;
 }
 
 #orbit-canvas {
@@ -2258,6 +2268,15 @@ input {
   font-size: 1.35rem;
   letter-spacing: 0.08em;
   color: #fff;
+}
+
+/* The sponsor chapter is the orbit: let drag pass through empty space. */
+.orbit-sponsors.is-on {
+  pointer-events: none;
+}
+.orbit-sponsors .orbit-sponsor-card,
+.orbit-sponsors .orbit-sponsor-open {
+  pointer-events: auto;
 }
 
 /* The sponsor chapter is the orbit: keep its content as a small top-left overlay. */
