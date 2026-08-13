@@ -63,8 +63,10 @@
   const ticketDetailDesc = document.getElementById("orbit-ticket-detail-desc");
   const ticketDetailCta = document.getElementById("orbit-ticket-cta");
   const ticketBack = document.getElementById("orbit-ticket-back");
+  const ticketClose = document.getElementById("orbit-ticket-close");
   const ticketCards = stage ? stage.querySelectorAll("[data-ticket]") : [];
   const navEl = document.querySelector(".nav");
+  const TICKETS_LIVE = false;
 
   /* Blue-first: boot on blue → manifesto → scroll modules */
   const BLUE_FIRST = true;
@@ -78,16 +80,16 @@
       meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
     },
     speakers: {
-      kicker: "LINEUP",
-      title: "Kent C. Dodds · ?",
-      mission: "Kent C. Dodds · ? · Devin · Agents · AI · Systems.",
+      kicker: "LINE-UP",
+      title: "Kent C. Dodds opens",
+      mission: "Opening keynote locked. Second keynote and sessions announcing soon.",
       meta: "Mon 2 Nov 2026 · Science World"
     },
     sponsors: {
       kicker: "SPONSORS",
-      title: "The room is supported by Cognition",
-      mission: "Devin · Cognition · helping builders meet, learn, and ship.",
-      meta: "Lead sponsor · November 2, 2026 · Science World"
+      title: "Cognition is the lead sponsor.",
+      mission: "Supporting places still open.",
+      meta: "hello@vanspace.dev"
     }
   };
   const BOOT_SCRIPT = [
@@ -130,32 +132,19 @@
     });
   }
 
-  /* Speakers phase — schedule only (no DOS prompt) */
+  /* Speakers phase — no public run-of-show until times are real */
   const SCHEDULE_LINES = [
-    "Schedule · 2 Nov 2026 · 13:00–19:00",
-    "Science World, Vancouver",
+    "Schedule coming soon.",
     "",
-    "13:00  Doors · coffee · tables",
-    "13:15  Welcome · CoC · wifi",
-    "13:30  Keynote 1 · Kent C. Dodds",
-    "14:15  Agents",
-    "14:45  AI + Systems",
-    "15:15  Break",
-    "15:35  Keynote 2 · ? · TBA",
-    "16:20  Teams + Craft",
-    "16:55  Closing · Devin",
-    "17:40  Community",
-    "19:00  Programme ends"
+    "Mon 2 Nov 2026 · 13:00–19:00",
+    "Science World, Vancouver."
   ].join("\n");
 
-  /* Sponsors phase — lead sponsor and open places */
+  /* Sponsors phase — don't retype the headline */
   const SPONSOR_LINES = [
-    "Sponsors · November 2, 2026",
+    "Cognition · lead sponsor",
     "",
-    "Cognition.......... LEAD SPONSOR",
-    "Devin.............. BUILDING THE ROOM",
-    "",
-    "Supporting sponsor places OPEN"
+    "Supporting places still open."
   ].join("\n");
 
   /* phase: boot | intro | sponsors | speakers */
@@ -386,7 +375,12 @@
     scheduleBack.addEventListener("click", closeMobileSchedule);
   }
   document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape" || !window.matchMedia("(max-width: 899px)").matches) return;
+    if (e.key !== "Escape") return;
+    if (ticketDetail && ticketDetail.classList.contains("is-on")) {
+      closeTicketDetail();
+      return;
+    }
+    if (!window.matchMedia("(max-width: 899px)").matches) return;
     if (speakerDetail && !speakerDetail.hidden) closeMobileSpeakerDetail();
     else if (schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
   });
@@ -407,11 +401,13 @@
 
   /* ---- Ticket detail overlay in the day panel ------------------------ */
   function closeTicketDetail() {
-    if (ticketDetail) ticketDetail.classList.remove("is-on");
+    if (!ticketDetail) return;
+    ticketDetail.classList.remove("is-on");
+    ticketDetail.setAttribute("aria-hidden", "true");
   }
 
   function openTicketDetail(card) {
-    if (!ticketDetail || !ticketDetailTitle || !ticketDetailPrice || !ticketDetailDesc || !ticketDetailCta) return;
+    if (!TICKETS_LIVE || !ticketDetail || !ticketDetailTitle || !ticketDetailPrice || !ticketDetailDesc || !ticketDetailCta) return;
     ticketDetailTitle.textContent = card.querySelector(".orbit-tix-tag")?.textContent || "Ticket";
     ticketDetailPrice.textContent = card.getAttribute("data-price") || "";
     ticketDetailDesc.textContent = card.getAttribute("data-desc") || "";
@@ -421,7 +417,7 @@
     ticketDetail.setAttribute("aria-hidden", "false");
   }
 
-  if (ticketCards.length) {
+  if (TICKETS_LIVE && ticketCards.length) {
     ticketCards.forEach(function (card) {
       card.addEventListener("click", function () {
         openTicketDetail(card);
@@ -437,9 +433,11 @@
     });
   }
 
-  if (ticketBack) {
-    ticketBack.addEventListener("click", function () {
-      closeTicketDetail();
+  if (ticketBack) ticketBack.addEventListener("click", closeTicketDetail);
+  if (ticketClose) ticketClose.addEventListener("click", closeTicketDetail);
+  if (ticketDetail) {
+    ticketDetail.addEventListener("click", function (e) {
+      if (e.target === ticketDetail) closeTicketDetail();
     });
   }
 
@@ -451,7 +449,7 @@
       tilt: 0.32,
       nodes: [
         { label: "Kent C. Dodds", sub: "Keynote", filled: true },
-        { label: "?", sub: "TBA", filled: false },
+        { label: "Second keynote", sub: "Soon", filled: false },
         { label: "Devin", sub: "Closing", filled: false }
       ]
     },
@@ -757,10 +755,10 @@
 
     /* ---- Simple phases: boot → intro → speakers → day ---- */
     const sinceDone = bsodDone ? (now - bsodDoneAt) / 1000 : 0;
-    /* orbit forms after boot (time + a bit of scroll) */
-    const form = bsodDone
-      ? ease(Math.min(1, Math.max(sinceDone / 1.35, (p - 0.05) / 0.4)))
-      : 0;
+    /* Give the boot a breath, then ease the particles into their orbit. */
+    const bootOrbit = ease((sinceDone - 0.28) / 1.8);
+    const scrollOrbit = ease((p - 0.08) / 0.55);
+    const form = bsodDone ? Math.max(bootOrbit, scrollOrbit) : 0;
     orbitForm = form;
 
     /* chapter progress = linear scroll after boot (no ease — easier to land in bands) */
@@ -788,8 +786,8 @@
     const speakerOn = phase === "speakers";
     const sponsorReveal = sponsorOn ? 1 : 0;
     const speakerReveal = speakerOn ? 1 : 0;
-    /* The orbit is the visual layer behind the sponsor section. */
-    const orbitFade = sponsorOn ? 1 : 0;
+    /* Keep the particle field visible from the initial BIOS boot onward. */
+    const orbitFade = 1;
 
     const bootActive = invert > 0.5 && !warping;
     if (bsodEl && bsodText && !reduce) {
@@ -968,7 +966,7 @@
       const pt = parts[i];
       /* stay on poster until BIOS finishes, then form drives scatter */
       const t = form > 0
-        ? ease(Math.min(1, (form - pt.delay * 0.35) / 0.55))
+        ? ease(Math.min(1, (form - pt.delay * 0.55) / 0.72))
         : 0;
       let tx, ty, depth = 0.6;
 

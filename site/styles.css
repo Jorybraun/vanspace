@@ -210,6 +210,21 @@ a {
   border-color: var(--ink);
   color: var(--ink);
 }
+.btn.is-soon,
+.nav-cta.is-soon {
+  cursor: default;
+  opacity: 0.62;
+  box-shadow: none;
+  pointer-events: none;
+}
+.btn.is-soon:hover,
+.nav-cta.is-soon:hover,
+.btn.is-soon:active,
+.nav-cta.is-soon:active {
+  background: var(--ground);
+  transform: none;
+  box-shadow: none;
+}
 
 /* —— Hero (event flow) —— */
 .hero {
@@ -1115,6 +1130,18 @@ input {
   transform: translate(1px, 2px);
   box-shadow: 0 1px 0 rgba(23, 0, 115, 0.1);
 }
+.btn.is-soon,
+.nav-cta.is-soon,
+.btn.is-soon:hover,
+.nav-cta.is-soon:hover,
+.btn.is-soon:active,
+.nav-cta.is-soon:active {
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: default;
+  opacity: 0.62;
+  pointer-events: none;
+}
 
 .orbit-stage {
   border-bottom: 1px solid var(--black-line);
@@ -1501,6 +1528,13 @@ input {
   background: transparent;
   color: #fff;
 }
+.orbit-bios-nav-btn.is-soon {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.35);
+  cursor: default;
+  pointer-events: none;
+}
 @media (max-width: 899px) {
   .orbit-bios-nav {
     left: calc(0.75rem + 8px);
@@ -1615,6 +1649,9 @@ input {
 }
 .orbit-app-winbtns {
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
   font-size: 0.58rem;
   letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.8);
@@ -1689,22 +1726,37 @@ input {
   font-family: var(--mono);
 }
 
-.orbit-speaker-detail-back {
-  margin: 0 0 2rem;
-  padding: 0.25rem 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  font: 0.58rem var(--mono);
+.orbit-speaker-detail-back,
+.orbit-schedule-back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin: auto 0 0;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #fff;
+  background: #fff;
+  color: #0000aa;
+  font: 500 0.65rem var(--mono);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
 }
 
 .orbit-speaker-detail-back:hover,
-.orbit-speaker-detail-back:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
+.orbit-speaker-detail-back:focus-visible,
+.orbit-schedule-back:hover,
+.orbit-schedule-back:focus-visible {
+  background: transparent;
   color: #fff;
   outline: none;
+}
+
+.orbit-schedule-soon {
+  max-width: 36ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.78rem;
+  line-height: 1.55;
 }
 
 .orbit-speaker-detail-tag,
@@ -1937,25 +1989,7 @@ input {
   .orbit-speaker-detail-back,
   .orbit-schedule-back {
     flex: 0 0 auto;
-    align-self: flex-start;
-    margin: 0 0 1.5rem;
-    padding: 0.3rem 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    background: transparent;
-    color: rgba(255, 255, 255, 0.85);
-    font: 0.58rem var(--mono);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  .orbit-speaker-detail-back:hover,
-  .orbit-speaker-detail-back:focus-visible,
-  .orbit-schedule-back:hover,
-  .orbit-schedule-back:focus-visible {
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    outline: none;
+    margin-top: auto;
   }
 }
 @media (min-width: 900px) {
@@ -2428,6 +2462,20 @@ input {
   background: rgba(255, 255, 255, 0.12);
   outline: none;
 }
+.orbit-day-tickets.is-soon .orbit-day-tix {
+  cursor: default;
+}
+.orbit-day-tickets.is-soon .orbit-day-tix:hover,
+.orbit-day-tickets.is-soon .orbit-day-tix:focus {
+  background: transparent;
+}
+.orbit-day-tickets.is-soon .orbit-day-tix.is-hero:hover,
+.orbit-day-tickets.is-soon .orbit-day-tix.is-hero:focus {
+  background: rgba(255, 255, 255, 0.06);
+}
+.orbit-day-tickets.is-soon .orbit-tix-price {
+  display: none;
+}
 .orbit-day-tix:last-child {
   border-right: 0;
 }
@@ -2496,9 +2544,23 @@ input {
   cursor: pointer;
 }
 .orbit-ticket-back:hover,
-.orbit-ticket-back:focus {
+.orbit-ticket-back:focus,
+.orbit-ticket-close:hover,
+.orbit-ticket-close:focus {
   color: #fff;
   outline: none;
+}
+.orbit-ticket-close {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0.1rem 0.25rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
 }
 .orbit-ticket-detail-title {
   flex: 1 1 auto;
@@ -2657,14 +2719,16 @@ input {
 }
 .orbit-speaker-back {
   display: none;
-  margin: 0.25rem 0 0;
-  padding: 0.2rem 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.75);
+  align-items: center;
+  margin: auto 0 0;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #fff;
+  background: #fff;
+  color: #0000aa;
   font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   pointer-events: auto;
@@ -2672,12 +2736,12 @@ input {
 }
 .orbit-speaker-back:hover,
 .orbit-speaker-back:focus {
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
   color: #fff;
   outline: none;
 }
 .orbit-speaker-back.is-on {
-  display: inline-block;
+  display: inline-flex;
 }
 .orbit-bsod.is-split .orbit-bsod-inner {
   max-width: 100%;
@@ -3269,15 +3333,35 @@ input {
 }
 
 .footer {
-  border-top: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
   background: var(--deep);
   color: var(--ground);
+  padding: 1.5rem 0 2rem;
+}
+
+.footer-inner {
+  align-items: baseline;
+}
+
+.footer-title {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
 }
 
 .footer .fine,
 .footer-links a,
 .footer-links a:hover {
   color: var(--ground);
+}
+
+.footer-links {
+  gap: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
 }
 
 @media (min-width: 720px) and (max-width: 1050px) {

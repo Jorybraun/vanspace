@@ -35,9 +35,9 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=91" />
+    <link rel="stylesheet" href="/styles.css?v=93" />
   </head>
-  <body>
+  <body id="top">
     <a class="skip" href="#main">Skip to content</a>
 
     <!-- Sticky event bar -->
@@ -47,8 +47,8 @@
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="/about/">About</a>
-        <a href="#sponsors">Sponsors</a>
-        <a class="nav-cta" href="/about/">Get tickets</a>
+        <a href="#orbit-sponsors">Sponsors</a>
+        <span class="nav-cta is-soon" aria-disabled="true">Tickets soon</span>
       </nav>
     </header>
 
@@ -76,7 +76,7 @@
                 <div class="orbit-copy-panel">
                   <p class="orbit-meta">Mon 2 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
                   <div class="orbit-actions">
-                    <a class="btn btn-primary" href="/about/">Get tickets</a>
+                    <span class="btn btn-primary is-soon" aria-disabled="true">Tickets soon</span>
                   </div>
                 </div>
               </div>
@@ -139,12 +139,12 @@
                   <p class="orbit-spk-meta">EpicWeb</p>
                 </div>
               </article>
-              <article class="orbit-spk is-key is-tba" role="listitem" data-name="?" data-tag="Keynote" data-meta="To be announced" data-desc="Speaker announcement coming soon." tabindex="0">
-                <div class="orbit-spk-photo is-slot">?</div>
+              <article class="orbit-spk is-key is-tba" role="listitem" data-name="Second keynote" data-tag="Keynote" data-meta="Announcing soon" data-desc="Second keynote announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">Soon</div>
                 <div class="orbit-spk-body">
                   <p class="orbit-spk-tag">Keynote</p>
-                  <h3>?</h3>
-                  <p class="orbit-spk-meta">To be announced</p>
+                  <h3>Second keynote</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
                 </div>
               </article>
               <article class="orbit-spk is-closing" role="listitem" data-name="To be announced" data-tag="Closing" data-meta="Devin · Cognition" data-desc="Announcing soon." tabindex="0">
@@ -207,29 +207,17 @@
               </article>
               </div>
               <article class="orbit-speaker-detail" id="orbit-speaker-detail" role="dialog" aria-modal="true" aria-labelledby="orbit-speaker-detail-name" aria-describedby="orbit-speaker-detail-desc" aria-live="polite" aria-hidden="true" tabindex="-1" hidden>
-                <button type="button" class="orbit-speaker-detail-back" id="orbit-speaker-detail-back">← Back to line-up</button>
                 <p class="orbit-speaker-detail-tag" id="orbit-speaker-detail-tag"></p>
                 <h2 id="orbit-speaker-detail-name"></h2>
                 <p class="orbit-speaker-detail-meta" id="orbit-speaker-detail-meta"></p>
                 <p class="orbit-speaker-detail-desc" id="orbit-speaker-detail-desc"></p>
+                <button type="button" class="orbit-speaker-detail-back" id="orbit-speaker-detail-back">← Back to line-up</button>
               </article>
               <section class="orbit-schedule-panel" id="orbit-schedule-panel" role="dialog" aria-modal="true" aria-labelledby="orbit-schedule-heading" aria-hidden="true" tabindex="-1" hidden>
-                <button type="button" class="orbit-schedule-back" id="orbit-schedule-back">← Back to line-up</button>
                 <p class="orbit-schedule-kicker">PROGRAMME · 2 NOV 2026 · SCIENCE WORLD</p>
-                <h2 id="orbit-schedule-heading">The day</h2>
-                <ol class="orbit-schedule-list">
-                  <li><time datetime="13:00">13:00</time><span>Doors · coffee · tables</span></li>
-                  <li><time datetime="13:15">13:15</time><span>Welcome · CoC · wifi</span></li>
-                  <li><time datetime="13:30">13:30</time><span>Keynote 1 · Kent C. Dodds</span></li>
-                  <li><time datetime="14:15">14:15</time><span>Agents</span></li>
-                  <li><time datetime="14:45">14:45</time><span>AI + Systems</span></li>
-                  <li><time datetime="15:15">15:15</time><span>Break</span></li>
-                  <li><time datetime="15:35">15:35</time><span>Keynote 2 · To be announced</span></li>
-                  <li><time datetime="16:20">16:20</time><span>Teams + Craft</span></li>
-                  <li><time datetime="16:55">16:55</time><span>Closing · Devin</span></li>
-                  <li><time datetime="17:40">17:40</time><span>Community</span></li>
-                  <li><time datetime="19:00">19:00</time><span>Programme ends</span></li>
-                </ol>
+                <h2 id="orbit-schedule-heading">Coming soon</h2>
+                <p class="orbit-schedule-soon">The day's run of show will land here.</p>
+                <button type="button" class="orbit-schedule-back" id="orbit-schedule-back">← Back to line-up</button>
               </section>
               <p class="orbit-app-footer" aria-hidden="true">ESC exit · SCROLL next module · F1 help</p>
               </div>
@@ -277,21 +265,18 @@
                       <p class="orbit-day-cognition-role">Sponsor</p>
                     </div>
                     <!-- Tickets row OVER the blueprint -->
-                    <div class="orbit-day-tickets" role="list">
-                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird" data-price="$99" data-desc="First 25 tickets at the best price. Full day access to keynotes, sessions, and the after-party." data-cta="Get early bird on Luma" data-luma="https://lu.ma/vanspace-2026-11-02">
+                    <div class="orbit-day-tickets is-soon" role="list">
+                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird">
                         <p class="orbit-tix-tag">Early bird · first 25</p>
-                        <p class="orbit-tix-price is-row">$99</p>
-                        <p class="orbit-tix-note">Full day access</p>
+                        <p class="orbit-tix-note">Coming soon</p>
                       </article>
-                      <article class="orbit-day-tix" role="listitem" data-ticket="student" data-price="$99" data-desc="Full day access with a valid student ID. Same access as standard, at a discounted price." data-cta="Get student ticket on Luma" data-luma="https://lu.ma/vanspace-2026-11-02">
+                      <article class="orbit-day-tix" role="listitem" data-ticket="student">
                         <p class="orbit-tix-tag">Student</p>
-                        <p class="orbit-tix-price is-row is-small">$99</p>
-                        <p class="orbit-tix-note">ID at door</p>
+                        <p class="orbit-tix-note">Coming soon</p>
                       </article>
-                      <article class="orbit-day-tix" role="listitem" data-ticket="standard" data-price="$160" data-desc="Full day access to all keynotes, sessions, and the after-party once early bird sells out." data-cta="Get standard ticket on Luma" data-luma="https://lu.ma/vanspace-2026-11-02">
+                      <article class="orbit-day-tix" role="listitem" data-ticket="standard">
                         <p class="orbit-tix-tag">Standard</p>
-                        <p class="orbit-tix-price is-row is-small">$160</p>
-                        <p class="orbit-tix-note">Full day access</p>
+                        <p class="orbit-tix-note">Coming soon</p>
                       </article>
                     </div>
                     <!-- Ticket detail overlay -->
@@ -300,7 +285,10 @@
                         <header class="orbit-ticket-detail-header">
                           <button type="button" class="orbit-ticket-back" id="orbit-ticket-back" aria-label="Back to day view">←</button>
                           <p class="orbit-ticket-detail-title" id="orbit-ticket-detail-title">Ticket</p>
-                          <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+                          <span class="orbit-app-winbtns">
+                            <span aria-hidden="true">_ □</span>
+                            <button type="button" class="orbit-ticket-close" id="orbit-ticket-close" aria-label="Close ticket">×</button>
+                          </span>
                         </header>
                         <div class="orbit-ticket-detail-body">
                           <p class="orbit-ticket-detail-price" id="orbit-ticket-detail-price">$0</p>
@@ -337,7 +325,6 @@
                   <article class="orbit-sponsor-card">
                     <img class="orbit-sponsor-logo" src="/cognition-lockup.svg" alt="Cognition" />
                     <p class="orbit-sponsor-role">Lead sponsor</p>
-                    <p class="orbit-sponsor-blurb">Supporting the room where builders meet, learn, and ship together.</p>
                   </article>
                   <div class="orbit-sponsor-open">
                     <p class="orbit-sponsor-role">Supporting sponsor places</p>
@@ -369,7 +356,6 @@
               <p class="orbit-intro-meta" id="orbit-intro-meta">
                 Mon 2 Nov 2026 · 13:00–19:00 · Science World
               </p>
-              <button type="button" class="orbit-speaker-back" id="orbit-speaker-back" aria-label="Back to line-up" hidden>← Back to line-up</button>
             </div>
             <div class="orbit-bsod-inner" id="orbit-bsod-inner">
               <pre class="orbit-bsod-text" id="orbit-bsod-text" aria-hidden="true"></pre>
@@ -380,6 +366,7 @@
               <p class="orbit-addr-street">1455 Quebec Street, Vancouver, BC V6A 3Z7</p>
               <a class="orbit-addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Science+World+1455+Quebec+St+Vancouver+BC+V6A+3Z7" target="_blank" rel="noopener">Open in Google Maps</a>
             </div>
+            <button type="button" class="orbit-speaker-back" id="orbit-speaker-back" aria-label="Back to line-up" hidden>← Back to line-up</button>
           </div>
 
           <!-- BIOS bottom nav — actions inside the double border -->
@@ -393,9 +380,7 @@
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="speakers">
               Schedule &amp; speakers
             </button>
-            <a class="orbit-bios-nav-btn is-primary" href="/about/">
-              Purchase
-            </a>
+            <span class="orbit-bios-nav-btn is-soon" aria-disabled="true">Tickets soon</span>
           </nav>
 
           <!-- Screen-reader status for chapter changes (not every typed character) -->
@@ -403,35 +388,18 @@
         </div>
       </section>
 
-      <!-- SPONSORS -->
-      <section id="sponsors" class="section section-alt">
-        <div class="wrap-xl sponsors-block">
-          <p class="eyebrow">Sponsors</p>
-          <p class="section-sub sponsors-note">
-            Other slots open.
-            <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
-          </p>
-        </div>
-      </section>
-
     </main>
 
     <footer class="footer">
       <div class="wrap footer-inner">
-        <div>
-          <p class="footer-title">VanSpace</p>
-          <p class="fine">vanspace.dev · Vancouver</p>
-        </div>
+        <p class="footer-title">BIOS SPHERE</p>
         <div class="footer-links">
           <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
-          <a href="https://www.scienceworld.ca" target="_blank" rel="noopener"
-            >Science World</a
-          >
           <a href="/about/#conduct">Code of Conduct</a>
         </div>
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=68" defer></script>
+    <script src="/orbit-hero.js?v=71" defer></script>
   </body>
 </html>
