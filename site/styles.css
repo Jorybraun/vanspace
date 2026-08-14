@@ -797,6 +797,7 @@ body.no-top-nav {
   height: 100%;
   touch-action: pan-y;
   cursor: grab;
+  pointer-events: none;
 }
 #orbit-canvas:active { cursor: grabbing; }
 
@@ -1570,7 +1571,7 @@ input {
     var(--bios-chrome-inset) + var(--bios-chrome-lines) + var(--exe-gap)
   );
   position: absolute;
-  z-index: 4;
+  z-index: 6;
   top: var(--exe-edge);
   right: var(--exe-edge);
   /* clear BIOS bottom nav bar */
