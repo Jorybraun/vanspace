@@ -87,7 +87,7 @@
     },
     sponsors: {
       kicker: "SPONSORS",
-      title: "Cognition is the lead sponsor.",
+      title: "Presented by Cognition.",
       mission: "Supporting places still open.",
       meta: "hello@vanspace.dev"
     }
@@ -142,7 +142,7 @@
 
   /* Sponsors phase — don't retype the headline */
   const SPONSOR_LINES = [
-    "Cognition · lead sponsor",
+    "Presented by Cognition",
     "",
     "Supporting places still open."
   ].join("\n");
@@ -497,6 +497,7 @@
   let parts = [];
   let ready = false;
   let img = null;
+  let particleRevealStartedAt = 0;
   let plateAspect = 1;
   let meteors = [];
 
@@ -799,6 +800,9 @@
     const speakerReveal = speakerOn ? 1 : 0;
     /* Keep the particle field visible from the initial BIOS boot onward. */
     const orbitFade = 1;
+    const particleReveal = particleRevealStartedAt
+      ? ease((now - particleRevealStartedAt) / 1.1)
+      : 0;
 
     const bootActive = invert > 0.5 && !warping;
     if (bsodEl && bsodText && !reduce) {
@@ -907,7 +911,7 @@
       Math.max(0, Math.floor(form * 3.2))
     );
 
-    drawMeteors(now, form * orbitFade * ease((invert - 0.62) / 0.38) * (1 - warp));
+    drawMeteors(now, form * orbitFade * particleReveal * ease((invert - 0.62) / 0.38) * (1 - warp));
 
     // orbit paths — only after BIOS done
     RINGS.forEach(function (ring, ri) {
@@ -923,12 +927,12 @@
         0,
         Math.PI * 2
       );
-      ctx.strokeStyle = "rgba(229,224,207," + (0.2 * rv * orbitFade * (1 - warp)) + ")";
+      ctx.strokeStyle = "rgba(229,224,207," + (0.2 * rv * orbitFade * particleReveal * (1 - warp)) + ")";
       ctx.lineWidth = 1;
       ctx.stroke();
       if (ri === activeRing && W >= 720 && form > 0.35) {
         ctx.font = '10px "IBM Plex Mono", ui-monospace, monospace';
-        ctx.fillStyle = "rgba(229,224,207," + (0.8 * rv * orbitFade) + ")";
+        ctx.fillStyle = "rgba(229,224,207," + (0.8 * rv * orbitFade * particleReveal) + ")";
         ctx.textAlign = "right";
         const labelX = Math.max(
           split ? W * 0.36 : 8,
@@ -1026,7 +1030,7 @@
         alpha *= lerp(1, Math.max(0.15, rv), ease(form));
       }
 
-      alpha *= orbitFade;
+      alpha *= orbitFade * particleReveal;
       ctx.fillStyle = colorHead + alpha.toFixed(3) + ")";
       ctx.fillRect(x, y, size * (1 + warp * 1.4), size * (1 + warp * 1.4));
     }
@@ -1048,7 +1052,7 @@
         const offsetY = (W < 720 ? 18 : 24) * vertical;
         let x = Math.min(W - 12, Math.max(labelMinX, pr[0] + offsetX));
         const y = Math.min(H - 26, Math.max(26, pr[1] + offsetY));
-        const a = rv * (0.76 + pr[2] * 0.24) * (1 - warp) * orbitFade;
+        const a = rv * (0.76 + pr[2] * 0.24) * (1 - warp) * orbitFade * particleReveal;
         ctx.font = n.filled
           ? '500 12px "IBM Plex Mono", ui-monospace, monospace'
           : '400 9px "IBM Plex Mono", ui-monospace, monospace';
@@ -1143,6 +1147,7 @@
       return;
     }
     ditherToParticles();
+    particleRevealStartedAt = performance.now();
     window.addEventListener("resize", function () {
       resize();
       ditherToParticles();
