@@ -1624,6 +1624,7 @@ input {
   border: 1px solid rgba(255, 255, 255, 0.55);
   background: #0000aa;
   overflow: hidden;
+  max-width: 900px;
 }
 .orbit-app-titlebar {
   flex: 0 0 auto;
