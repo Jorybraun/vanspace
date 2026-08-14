@@ -1599,7 +1599,7 @@ input {
     top: var(--exe-edge);
     right: var(--exe-edge);
     bottom: calc(var(--exe-edge) + 2.85rem);
-    left: calc(35% + 14px);
+    left: calc(50% + 14px);
   }
 }
 /* .EXE window fills the inset area; outer double border stays clear around it */
