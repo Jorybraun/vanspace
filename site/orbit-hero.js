@@ -387,6 +387,9 @@
 
   if (speakerCards.length) {
     speakerCards.forEach(function (card) {
+      card.addEventListener("pointerdown", function (e) {
+        e.stopPropagation();
+      });
       card.addEventListener("click", function () {
         openSpeakerDetail(card);
       });
