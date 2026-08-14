@@ -2289,11 +2289,14 @@ input {
 /* The sponsor chapter is the orbit: keep its content as a small top-left overlay. */
 .orbit-sponsors .orbit-app-frame,
 .orbit-sponsors .orbit-app-inner,
-.orbit-sponsors .orbit-app-titlebar,
-.orbit-sponsors .orbit-app-status,
-.orbit-sponsors .orbit-sponsors-body,
-.orbit-sponsors .orbit-app-footer {
+.orbit-sponsors .orbit-sponsors-body {
   background: transparent;
+}
+.orbit-sponsors .orbit-app-inner {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: auto;
+  max-width: none;
 }
 
 .orbit-sponsors .orbit-sponsors-body {
