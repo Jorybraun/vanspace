@@ -75,8 +75,8 @@
   const TITLE_BLOCKS = {
     intro: {
       kicker: "SCIENCE WORLD",
-      title: "A micro-conference in Vancouver with big-conference energy",
-      mission: "We bring big names to community events in Vancouver at a reasonable cost.",
+      title: "A one-day, single-track conference packed with value.",
+      mission: "A focused day for engineers, designers, and curious people making things.",
       meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
     },
     speakers: {
