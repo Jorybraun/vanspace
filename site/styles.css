@@ -1497,8 +1497,8 @@ input {
   align-items: center;
   gap: 0.45rem;
   padding: 0.45rem 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
-  background: #0000aa;
+  border-top: 1px solid #0000aa;
+  background: #fff;
   box-sizing: border-box;
   pointer-events: auto;
 }
@@ -1512,9 +1512,9 @@ input {
   justify-content: center;
   margin: 0;
   padding: 0.4rem 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  background: #0000aa;
-  color: #fff;
+  border: 1px solid #0000aa;
+  background: #fff;
+  color: #0000aa;
   font-family: var(--mono);
   font-size: 0.58rem;
   font-weight: 500;
@@ -1527,24 +1527,24 @@ input {
 }
 .orbit-bios-nav-btn:hover,
 .orbit-bios-nav-btn:focus-visible {
-  background: #fff;
-  color: #0000aa;
+  background: #0000aa;
+  color: #fff;
   outline: none;
 }
 .orbit-bios-nav-btn.is-primary {
-  background: #fff;
-  color: #0000aa;
-  border-color: #fff;
+  background: #0000aa;
+  color: #fff;
+  border-color: #0000aa;
 }
 .orbit-bios-nav-btn.is-primary:hover,
 .orbit-bios-nav-btn.is-primary:focus-visible {
-  background: transparent;
-  color: #fff;
+  background: #fff;
+  color: #0000aa;
 }
 .orbit-bios-nav-btn.is-soon {
   background: transparent;
-  color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 0, 170, 0.55);
+  border-color: rgba(0, 0, 170, 0.35);
   cursor: default;
   pointer-events: none;
 }
@@ -1635,15 +1635,15 @@ input {
   align-items: center;
   gap: 0.5rem;
   padding: 0.32rem 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-  background: #0000aa;
+  border-bottom: 1px solid #0000aa;
+  background: #fff;
   font-family: var(--mono);
 }
 .orbit-app-dot {
   width: 0.45rem;
   height: 0.45rem;
-  border: 1px solid #fff;
-  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #0000aa;
+  background: rgba(0, 0, 170, 0.4);
   flex: 0 0 auto;
 }
 .orbit-app-title {
@@ -1654,7 +1654,7 @@ input {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #fff;
+  color: #0000aa;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1667,7 +1667,7 @@ input {
   gap: 0.15rem;
   font-size: 0.58rem;
   letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.8);
+  color: #0000aa;
   white-space: nowrap;
   line-height: 1;
 }
@@ -1675,24 +1675,24 @@ input {
   flex: 0 0 auto;
   margin: 0;
   padding: 0.28rem 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid #0000aa;
   font-family: var(--mono);
   font-size: 0.55rem;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.8);
-  background: #0000aa;
+  color: #0000aa;
+  background: #fff;
 }
 .orbit-app-footer {
   flex: 0 0 auto;
   margin: 0;
   padding: 0.28rem 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-top: 1px solid #0000aa;
   font-family: var(--mono);
   font-size: 0.48rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  background: #0000aa;
+  color: #0000aa;
+  background: #fff;
 }
 
 /* Programme views — line-up and schedule share the same terminal window */
@@ -2235,17 +2235,17 @@ input {
 }
 .orbit-sponsor-card {
   width: min(100%, 28rem);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid #0000aa;
   padding: 1.75rem 1.5rem;
   text-align: center;
-  background: #0000aa;
+  background: #fff;
 }
 .orbit-sponsor-logo {
   display: block;
   margin: 0 auto 1rem;
   height: clamp(2.5rem, 5vw, 3.5rem);
   width: auto;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(0);
 }
 .orbit-sponsor-role {
   margin: 0;
@@ -2253,27 +2253,28 @@ input {
   font-size: 0.58rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: #0000aa;
 }
 .orbit-sponsor-blurb {
   margin: 0.55rem 0 0;
   font-family: var(--mono);
   font-size: 0.78rem;
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.8);
+  color: #0000aa;
 }
 .orbit-sponsor-open {
   width: min(100%, 28rem);
-  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border: 1px dashed #0000aa;
   padding: 0.9rem 1rem;
   text-align: center;
+  background: #fff;
 }
 .orbit-sponsor-open-line {
   margin: 0.2rem 0 0;
   font-family: var(--mono);
   font-size: 1.35rem;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: #0000aa;
 }
 
 /* The sponsor chapter is the orbit: let drag pass through empty space. */
