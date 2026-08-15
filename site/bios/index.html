@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=105" />
+    <link rel="stylesheet" href="/styles.css?v=106" />
   </head>
   <body id="top" class="no-top-nav">
     <a class="skip" href="#main">Skip to content</a>
@@ -46,6 +46,8 @@
         <div class="orbit-sticky">
           <!-- Full-window BIOS double outline (left console + right modules) -->
           <div class="orbit-bios-chrome" id="orbit-bios-chrome" aria-hidden="true"></div>
+
+          <img class="orbit-hermes-home" src="/hermes-white.png" alt="Hermes" aria-hidden="true" />
 
           <canvas
             id="orbit-canvas"
@@ -83,6 +85,11 @@
           <!-- Cognition sun — shown in the middle of the solar system -->
           <div class="orbit-cog-sun" id="orbit-cog-sun" aria-hidden="true">
             <img src="/cognition-mark.svg" alt="" width="72" height="76" />
+          </div>
+
+          <!-- Hermes mark in orbit -->
+          <div class="orbit-hermes-orbit" id="orbit-hermes-orbit" aria-hidden="true">
+            <img src="/hermes-white.png" alt="" width="52" height="52" />
           </div>
 
           <!-- Right panel: speakers as BIOS inset window -->
@@ -198,8 +205,8 @@
               </article>
               <section class="orbit-schedule-panel" id="orbit-schedule-panel" role="dialog" aria-modal="true" aria-labelledby="orbit-schedule-heading" aria-hidden="true" tabindex="-1" hidden>
                 <p class="orbit-schedule-kicker">PROGRAMME · 2 NOV 2026 · SCIENCE WORLD</p>
-                <h2 id="orbit-schedule-heading">Coming soon</h2>
-                <p class="orbit-schedule-soon">The day's run of show will land here.</p>
+                <h2 id="orbit-schedule-heading">Tentative</h2>
+                <p class="orbit-schedule-soon">The day's run of show is being finalized and will land here.</p>
                 <button type="button" class="orbit-schedule-back" id="orbit-schedule-back">← Back to line-up</button>
               </section>
               <p class="orbit-app-footer" aria-hidden="true">ESC exit · SCROLL next module · F1 help</p>
@@ -309,6 +316,10 @@
                     <img class="orbit-sponsor-logo" src="/cognition-lockup.svg" alt="Cognition" />
                     <p class="orbit-sponsor-role">Presented by</p>
                   </article>
+                  <article class="orbit-sponsor-card is-hermes">
+                    <img class="orbit-sponsor-logo" src="/hermes-white.png" alt="Hermes" />
+                    <p class="orbit-sponsor-role">In collaboration with</p>
+                  </article>
                   <div class="orbit-sponsor-open">
                     <p class="orbit-sponsor-role">Supporting sponsor places</p>
                     <p class="orbit-sponsor-open-line">OPEN</p>
@@ -383,6 +394,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=76" defer></script>
+    <script src="/orbit-hero.js?v=77" defer></script>
   </body>
 </html>

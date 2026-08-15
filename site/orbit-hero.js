@@ -956,7 +956,7 @@
     }
 
     /* Right: venue, sponsors, then schedule + speakers */
-    const stageOn = !warping && invert > 0.5;
+    const stageOn = !warping && invert > 0.5 && form > 0.35;
     if (speakersPanel) {
       const showSpeakers = stageOn && speakerReveal > 0.08;
       speakersPanel.classList.toggle("is-on", showSpeakers);

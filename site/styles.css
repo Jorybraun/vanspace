@@ -1439,6 +1439,34 @@ input {
   opacity: 0;
   transition: opacity 0.45s ease, left 0.35s ease;
 }
+
+/* Hermes mark top-left on the poster, and as an orbit node */
+.orbit-hermes-home {
+  position: absolute;
+  z-index: 3;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: clamp(2.25rem, 4vw, 3rem);
+  height: auto;
+  pointer-events: none;
+}
+.orbit-hermes-orbit {
+  position: absolute;
+  z-index: 3;
+  top: 38%;
+  left: 68%;
+  width: clamp(2rem, 3.5vw, 2.75rem);
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.9;
+}
+.orbit-hermes-orbit img,
+.orbit-hermes-home img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .orbit-cog-sun.is-on {
   opacity: 0.95;
 }
