@@ -964,10 +964,9 @@
     }
 
     /* Right: venue, sponsors, then schedule + speakers */
-    const baseStage = !warping && invert > 0.5;
-    const stageOn = baseStage && form > 0.35;
+    const baseStage = !warping && invert > 0.5 && form > 0.85;
     if (speakersPanel) {
-      const showSpeakers = stageOn && speakerReveal > 0.08;
+      const showSpeakers = baseStage && speakerReveal > 0.08;
       speakersPanel.classList.toggle("is-on", showSpeakers);
       speakersPanel.setAttribute("aria-hidden", showSpeakers ? "false" : "true");
     }
@@ -977,7 +976,7 @@
       sponsorPanel.setAttribute("aria-hidden", showSponsors ? "false" : "true");
     }
     if (venuePanel) {
-      const showVenue = stageOn && venueOn;
+      const showVenue = baseStage && venueOn;
       venuePanel.classList.toggle("is-on", showVenue);
       venuePanel.setAttribute("aria-hidden", showVenue ? "false" : "true");
     }
