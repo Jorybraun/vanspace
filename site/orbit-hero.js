@@ -20,6 +20,7 @@
   const posterFrame = stage.querySelector(".poster-art-frame");
   const transition = document.getElementById("wormhole-transition");
   const cogSun = document.getElementById("orbit-cog-sun");
+  const hermesOrbit = document.getElementById("orbit-hermes-orbit");
   const speakersPanel = document.getElementById("orbit-speakers");
   const sponsorPanel = document.getElementById("orbit-sponsors");
   const venuePanel = document.getElementById("orbit-venue");
@@ -901,6 +902,13 @@
       ? Math.min(W * 0.58, H) * 0.72
       : Math.min(W, H) * 0.66;
 
+    if (hermesOrbit && form > 0) {
+      const ring = RINGS[1];
+      const hpr = project(ring.r * scale, rot + now * 0.0005, ring.tilt, cx, cy, scale);
+      hermesOrbit.style.left = hpr[0] + "px";
+      hermesOrbit.style.top = hpr[1] + "px";
+    }
+
     const widePoster = W >= 900;
     const plateW = widePoster
       ? Math.min(W * 0.52, 840)
@@ -956,14 +964,15 @@
     }
 
     /* Right: venue, sponsors, then schedule + speakers */
-    const stageOn = !warping && invert > 0.5 && form > 0.35;
+    const baseStage = !warping && invert > 0.5;
+    const stageOn = baseStage && form > 0.35;
     if (speakersPanel) {
       const showSpeakers = stageOn && speakerReveal > 0.08;
       speakersPanel.classList.toggle("is-on", showSpeakers);
       speakersPanel.setAttribute("aria-hidden", showSpeakers ? "false" : "true");
     }
     if (sponsorPanel) {
-      const showSponsors = stageOn && sponsorReveal > 0.08;
+      const showSponsors = baseStage;
       sponsorPanel.classList.toggle("is-on", showSponsors);
       sponsorPanel.setAttribute("aria-hidden", showSponsors ? "false" : "true");
     }

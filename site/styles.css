@@ -1440,29 +1440,19 @@ input {
   transition: opacity 0.45s ease, left 0.35s ease;
 }
 
-/* Hermes mark top-left on the poster, and as an orbit node */
-.orbit-hermes-home {
-  position: absolute;
-  z-index: 3;
-  top: 1.25rem;
-  left: 1.25rem;
-  width: clamp(2.25rem, 4vw, 3rem);
-  height: auto;
-  pointer-events: none;
-}
+/* Hermes mark as an orbiting node */
 .orbit-hermes-orbit {
   position: absolute;
   z-index: 3;
-  top: 38%;
-  left: 68%;
+  top: 0;
+  left: 0;
   width: clamp(2rem, 3.5vw, 2.75rem);
   height: auto;
   transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0.9;
 }
-.orbit-hermes-orbit img,
-.orbit-hermes-home img {
+.orbit-hermes-orbit img {
   display: block;
   width: 100%;
   height: auto;
@@ -2314,7 +2304,14 @@ input {
   pointer-events: auto;
 }
 
-/* The sponsor chapter is the orbit: keep its content as a small top-left overlay. */
+/* The sponsor chapter is a persistent left-side .EXE panel */
+@media (min-width: 900px) {
+  .orbit-sponsors .orbit-app {
+    right: auto;
+    left: var(--exe-edge);
+    width: clamp(18rem, 22%, 24rem);
+  }
+}
 .orbit-sponsors .orbit-app-frame,
 .orbit-sponsors .orbit-app-inner,
 .orbit-sponsors .orbit-sponsors-body {
@@ -2322,9 +2319,7 @@ input {
 }
 .orbit-sponsors .orbit-app-inner {
   flex: 0 0 auto;
-  align-self: flex-start;
-  width: auto;
-  max-width: none;
+  width: 100%;
 }
 
 .orbit-sponsors .orbit-sponsors-body {
