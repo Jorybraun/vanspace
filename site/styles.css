@@ -2322,7 +2322,7 @@ input {
   .orbit-sponsors .orbit-app {
     right: auto;
     left: var(--exe-edge);
-    width: clamp(18rem, 22%, 24rem);
+    width: clamp(13rem, 18%, 17rem);
   }
 }
 .orbit-sponsors .orbit-app-frame,
