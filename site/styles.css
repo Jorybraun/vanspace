@@ -2317,13 +2317,18 @@ input {
   pointer-events: auto;
 }
 
-/* Venue/speakers .EXE on the left; sponsors persist on the right */
+/* Venue/speakers + sponsors both live on the right, side by side */
 @media (min-width: 900px) {
   .orbit-app.orbit-venue,
   .orbit-app.orbit-speakers {
-    right: auto;
-    left: var(--exe-edge);
-    width: clamp(16rem, 32%, 24rem);
+    left: calc(50% + 14px);
+    right: calc(var(--exe-edge) + clamp(10rem, 25%, 16rem));
+    width: auto;
+  }
+  .orbit-app.orbit-sponsors {
+    right: var(--exe-edge);
+    left: auto;
+    width: clamp(10rem, 25%, 16rem);
   }
 }
 .orbit-sponsors .orbit-app-frame,
