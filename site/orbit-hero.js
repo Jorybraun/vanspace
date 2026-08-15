@@ -109,9 +109,9 @@
     "Boot complete."
   ].join("\n");
 
-  /* Scroll gates: venue → sponsors → schedule + speakers. */
-  const SPONSORS_AT = 0.28;
-  const SPEAKERS_AT = 0.72;
+  /* Scroll gates: venue → speakers → sponsors. */
+  const SPEAKERS_AT = 0.28;
+  const SPONSORS_AT = 0.72;
 
   /** Scroll the page so stage progress ≈ targetP (0–1) */
   function scrollStageTo(targetP) {
@@ -786,13 +786,13 @@
      */
     const introHeld = phase !== "intro" || (introAt && now - introAt > 1600);
     if (!warping && bsodDone && introHeld) {
-      if (phase === "intro" && chapterP >= SPONSORS_AT) {
-        setPhase("sponsors", now);
-      } else if (phase === "sponsors" && chapterP >= SPEAKERS_AT) {
+      if (phase === "intro" && chapterP >= SPEAKERS_AT) {
         setPhase("speakers", now);
-      } else if (phase === "speakers" && chapterP < SPEAKERS_AT) {
+      } else if (phase === "speakers" && chapterP >= SPONSORS_AT) {
         setPhase("sponsors", now);
       } else if (phase === "sponsors" && chapterP < SPONSORS_AT) {
+        setPhase("speakers", now);
+      } else if (phase === "speakers" && chapterP < SPEAKERS_AT) {
         setPhase("intro", now);
       }
     }
