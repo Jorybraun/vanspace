@@ -2319,10 +2319,10 @@ input {
 
 /* The sponsor chapter is a persistent left-side .EXE panel */
 @media (min-width: 900px) {
-  .orbit-sponsors .orbit-app {
+  .orbit-app.orbit-sponsors {
     right: auto;
     left: var(--exe-edge);
-    width: clamp(13rem, 18%, 17rem);
+    width: clamp(16rem, 32%, 24rem);
   }
 }
 .orbit-sponsors .orbit-app-frame,
