@@ -1442,15 +1442,7 @@ input {
 
 /* Hermes mark as an orbiting node */
 .orbit-hermes-orbit {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: clamp(2.75rem, 5.5vw, 4rem);
-  height: auto;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 1;
+  display: none !important;
 }
 .orbit-hermes-orbit img {
   display: block;
@@ -1879,6 +1871,9 @@ input {
 .orbit-spk:focus-visible {
   background: rgba(255, 255, 255, 0.08);
   outline: none;
+}
+.orbit-spk.is-hermes {
+  display: none;
 }
 .orbit-speakers.is-on .orbit-spk {
   opacity: 1;
