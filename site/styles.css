@@ -2321,7 +2321,7 @@ input {
 @media (min-width: 900px) {
   .orbit-app.orbit-venue,
   .orbit-app.orbit-speakers {
-    left: calc(50% + 14px);
+    left: calc(35% + 14px);
     right: calc(var(--exe-edge) + clamp(10rem, 25%, 16rem));
     width: auto;
   }
