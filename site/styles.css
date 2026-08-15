@@ -2317,7 +2317,7 @@ input {
   .orbit-app.orbit-venue,
   .orbit-app.orbit-speakers {
     left: calc(35% + 14px);
-    right: calc(var(--exe-edge) + clamp(10rem, 25%, 16rem));
+    right: calc(var(--exe-edge) + clamp(10rem, 25%, 16rem) + 1.2rem);
     width: auto;
   }
   .orbit-app.orbit-sponsors {
