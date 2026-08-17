@@ -2315,9 +2315,15 @@ input {
 }
 @media (min-width: 900px) {
   .orbit-exe-dock {
+    --bios-chrome-inset: 0.85rem;
+    --bios-chrome-lines: 8px;
+    --exe-gap: 16px;
+    --exe-edge: calc(var(--bios-chrome-inset) + var(--bios-chrome-lines) + var(--exe-gap));
     position: absolute;
     z-index: 6;
-    inset: var(--exe-edge);
+    top: var(--exe-edge);
+    right: var(--exe-edge);
+    bottom: calc(var(--exe-edge) + 2.85rem);
     left: calc(35% + 14px);
     display: grid;
     grid-template-columns: minmax(220px, 600px) clamp(10rem, 18%, 16rem);
