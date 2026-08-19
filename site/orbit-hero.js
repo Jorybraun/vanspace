@@ -759,6 +759,7 @@
     const venueOn = phase === "intro";
     const sponsorOn = phase === "sponsors";
     const speakerOn = phase === "speakers";
+    stage.classList.toggle("is-workshop-phase", sponsorOn);
     const sponsorReveal = sponsorOn ? 1 : 0;
     const speakerReveal = speakerOn ? 1 : 0;
     /* Keep the particle field visible from the initial BIOS boot onward. */

@@ -2553,6 +2553,114 @@ input {
   color: #ff1717;
 }
 
+.orbit-workshop-footer {
+  display: flex;
+  min-height: 2.6rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-footer img {
+  width: 1.35rem;
+  height: auto;
+}
+
+.orbit-workshop-footer strong {
+  color: #f2eee0;
+  font-weight: 500;
+}
+
+@media (min-width: 900px) {
+  .orbit-stage.is-workshop-phase .orbit-exe-dock {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop {
+    grid-column: 1 / -1;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-body {
+    display: grid;
+    grid-template-areas: "copy portrait";
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    overflow: hidden;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-copy {
+    grid-area: copy;
+    align-self: center;
+    max-height: 100%;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    overflow-y: auto;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait {
+    grid-area: portrait;
+    min-height: 0;
+    border-bottom: 0;
+    border-left: 1px solid #1611ff;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-position: center;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-kicker {
+    margin-bottom: 1rem;
+    font-size: 0.62rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-copy h2 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 4.3vw, 4.5rem);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-copy > p:not(.orbit-workshop-kicker) {
+    max-width: 60ch;
+    margin-top: 1.25rem;
+    font-size: clamp(0.78rem, 1.15vw, 1rem);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.25rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-steps li {
+    padding: 0.6rem;
+    font-size: 0.58rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.25rem;
+    border-left: 1px solid rgba(22, 17, 255, 0.7);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-facts div {
+    display: block;
+    padding: 0.65rem;
+    border-right: 1px solid rgba(22, 17, 255, 0.7);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-facts dd {
+    margin-top: 0.3rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-cta {
+    width: fit-content;
+    min-width: 15rem;
+    margin-top: 1.25rem;
+  }
+}
+
 .orbit-devin-inner {
   background: #0a0a0a;
   border-color: rgba(255, 255, 255, 0.2);
