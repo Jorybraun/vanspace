@@ -2319,7 +2319,7 @@ input {
     bottom: calc(var(--exe-edge) + 2.85rem);
     left: calc(35% + 14px);
     display: grid;
-    grid-template-columns: minmax(220px, 600px) clamp(10rem, 18%, 16rem);
+    grid-template-columns: minmax(220px, 600px) clamp(17rem, 30%, 22rem);
     grid-template-rows: 1fr;
     gap: 1.2rem;
     justify-content: end;
@@ -2368,6 +2368,189 @@ input {
 
 .orbit-sponsors .orbit-sponsor-open {
   margin-top: 1rem;
+}
+
+.orbit-workshop.is-on {
+  pointer-events: auto;
+}
+
+.orbit-workshop .orbit-app-frame,
+.orbit-workshop .orbit-app-inner {
+  background: #050505;
+  border-color: #1611ff;
+}
+
+.orbit-workshop .orbit-app-inner {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.orbit-workshop .orbit-app-titlebar {
+  border-color: #1611ff;
+  background: #050505;
+  color: #ff1717;
+}
+
+.orbit-workshop .orbit-app-dot {
+  border-color: #ff1717;
+  background: #ff1717;
+}
+
+.orbit-workshop .orbit-app-status {
+  border-color: #1611ff;
+  background: #1611ff;
+  color: #fff;
+}
+
+.orbit-workshop-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  background: #050505;
+  color: #f2eee0;
+  scrollbar-color: #ff1717 #050505;
+  scrollbar-width: thin;
+}
+
+.orbit-workshop-portrait {
+  position: relative;
+  margin: 0;
+  border-bottom: 1px solid #1611ff;
+  background: #1611ff;
+}
+
+.orbit-workshop-portrait img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.orbit-workshop-portrait figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.35rem 0.45rem;
+  background: #050505;
+  color: #ff1717;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-copy {
+  padding: 0.85rem;
+}
+
+.orbit-workshop-kicker {
+  margin: 0 0 0.65rem;
+  color: #ff1717;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-copy h2 {
+  margin: 0;
+  color: #f2eee0;
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 2.65vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.orbit-workshop-copy > p:not(.orbit-workshop-kicker) {
+  margin: 0.8rem 0 0;
+  color: rgba(242, 238, 224, 0.7);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.orbit-workshop-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.85rem 0 0;
+  padding: 0;
+  border-top: 1px solid #1611ff;
+  border-left: 1px solid #1611ff;
+  list-style: none;
+}
+
+.orbit-workshop-steps li {
+  min-width: 0;
+  padding: 0.42rem;
+  border-right: 1px solid #1611ff;
+  border-bottom: 1px solid #1611ff;
+  color: #ff1717;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-facts {
+  margin: 0.85rem 0 0;
+  border-top: 1px solid rgba(22, 17, 255, 0.7);
+}
+
+.orbit-workshop-facts div {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.5rem;
+  padding: 0.38rem 0;
+  border-bottom: 1px solid rgba(22, 17, 255, 0.7);
+}
+
+.orbit-workshop-facts dt,
+.orbit-workshop-facts dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  line-height: 1.4;
+}
+
+.orbit-workshop-facts dt {
+  color: #ff1717;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-facts dd {
+  color: rgba(242, 238, 224, 0.82);
+}
+
+.orbit-workshop-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #ff1717;
+  background: #ff1717;
+  color: #050505;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.orbit-workshop-cta:hover,
+.orbit-workshop-cta:focus-visible {
+  background: #050505;
+  color: #ff1717;
+  outline: none;
+}
+
+.orbit-workshop .orbit-app-footer {
+  border-color: #1611ff;
+  background: #050505;
+  color: #ff1717;
 }
 
 .orbit-devin-inner {
