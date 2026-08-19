@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BIOS SPHERE — Micro-conference at Science World, Vancouver</title>
+    <meta
+      name="description"
+      content="BIOS SPHERE: A one-day, single-track conference packed with value. Monday, November 2, 2026 at Science World."
+    />
+    <meta name="theme-color" content="#e5e0cf" />
+    <link rel="canonical" href="https://vanspace.dev/" />
+
+    <!-- Share card: this page's whole job is to be pasted into a DM -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vanspace.dev/" />
+    <meta property="og:title" content="BIOS SPHERE — a one-day, single-track conference packed with value" />
+    <meta
+      property="og:description"
+      content="Monday, November 2, 2026 · 1–7pm · Science World, Vancouver. A one-day, single-track conference packed with value."
+    />
+    <meta property="og:image" content="https://vanspace.dev/science-world-aug11-blue.png" />
+    <meta property="og:image:alt" content="Blue dither illustration of Science World, Vancouver." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BIOS SPHERE — a one-day, single-track conference packed with value" />
+    <meta
+      name="twitter:description"
+      content="Monday, November 2, 2026 · 1–7pm · Science World. A one-day, single-track conference packed with value."
+    />
+    <meta name="twitter:image" content="https://vanspace.dev/science-world-aug11-blue.png" />
+    <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=118" />
+  </head>
+  <body id="top" class="no-top-nav">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <main id="main">
+      <!-- HERO — Science World that scrolls into the orbit map. -->
+      <section class="orbit-stage" id="orbit-stage">
+        <div class="orbit-sticky">
+          <!-- Full-window BIOS double outline (left console + right modules) -->
+          <div class="orbit-bios-chrome" id="orbit-bios-chrome" aria-hidden="true"></div>
+
+          <canvas
+            id="orbit-canvas"
+            data-src="/science-world-aug11-blue.png"
+            aria-label="Interactive VanSpace programme map. Schedule and tickets are also available further down the page without this animation."
+          ></canvas>
+
+          <div class="orbit-copy" id="orbit-copy">
+            <!-- One row: left column height = poster image height → buttons flush to crab bottom -->
+            <div class="orbit-hero-main">
+              <div class="orbit-col-copy">
+                <div class="orbit-lead">
+                  <p class="orbit-kicker">vancouver</p>
+                  <h1 class="orbit-title">A one-day, single-track conference packed with value.</h1>
+                </div>
+                <div class="orbit-copy-panel">
+                  <p class="orbit-meta">Mon 2 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
+                  <div class="orbit-actions">
+                    <span class="btn btn-primary is-soon" aria-disabled="true">Tickets soon</span>
+                  </div>
+                </div>
+              </div>
+              <div class="poster-art-frame">
+                <img class="poster-art" src="/science-world-aug11-blue.png" alt="Blue dither illustration of Science World, Vancouver" />
+                <img class="bios-sphere-lockup" src="/bios-sphere-lockup.svg" alt="BIOS SPHERE" />
+              </div>
+            </div>
+            <div class="poster-foot">
+              <div class="orbit-flagship">
+                <img src="/cognition-lockup.svg" alt="Cognition" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Cognition sun — shown in the middle of the solar system -->
+          <div class="orbit-cog-sun" id="orbit-cog-sun" aria-hidden="true">
+            <img src="/cognition-mark.svg" alt="" width="72" height="76" />
+          </div>
+
+          <!-- Hermes mark in orbit -->
+          <div class="orbit-hermes-orbit" id="orbit-hermes-orbit" aria-hidden="true">
+            <img src="/hermes-white.png" alt="" width="52" height="52" />
+          </div>
+
+          <!-- .EXE dock: venue/speakers on the left of the right, sponsors on the right -->
+          <div class="orbit-exe-dock" id="orbit-exe-dock">
+            <!-- Right panel: speakers as BIOS inset window -->
+            <section
+              class="orbit-app orbit-speakers"
+            id="orbit-speakers"
+            aria-hidden="true"
+            aria-label="Line-up"
+            tabindex="-1"
+          >
+            <div class="orbit-app-frame">
+              <div class="orbit-app-inner">
+              <header class="orbit-app-titlebar">
+                <span class="orbit-app-dot" aria-hidden="true"></span>
+                <p class="orbit-app-title" id="orbit-speakers-heading">C:\VANSPACE\SPEAKERS.EXE</p>
+                <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+              </header>
+              <p class="orbit-app-status">LINE-UP · 2 Nov 2026 · 2 keynotes · closing TBA · Science World</p>
+              <div class="orbit-speakers-tabs" role="tablist" aria-label="Programme views">
+                <button type="button" class="orbit-speakers-tab is-active" id="orbit-lineup-tab" role="tab" aria-selected="true" aria-controls="orbit-lineup-panel">Line-up</button>
+                <button type="button" class="orbit-speakers-tab" id="orbit-schedule-tab" role="tab" aria-selected="false" aria-controls="orbit-schedule-panel">Schedule</button>
+              </div>
+              <div class="orbit-speakers-grid" id="orbit-lineup-panel" role="list" aria-labelledby="orbit-speakers-heading">
+              <article class="orbit-spk is-key" role="listitem" data-name="Kent C. Dodds" data-tag="Keynote" data-meta="EpicWeb" data-desc="Kent C. Dodds is a web development educator and engineer. He created EpicWeb.dev, EpicReact.dev, and TestingJavaScript.com." tabindex="0">
+                <div class="orbit-spk-photo">
+                  <img
+                    src="https://gitnation.imgix.net/stichting-frontend-amsterdam/image/upload/v1663241015/dev/Kent_C._Dodds_cekgpk.jpg?auto=format,compress&fit=crop&w=400&h=400&crop=faces"
+                    alt="Kent C. Dodds"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Keynote</p>
+                  <h3>Kent C. Dodds</h3>
+                  <p class="orbit-spk-meta">EpicWeb</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-key is-tba" role="listitem" data-name="Second keynote" data-tag="Keynote" data-meta="Announcing soon" data-desc="Second keynote announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">Soon</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Keynote</p>
+                  <h3>Second keynote</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-closing" role="listitem" data-name="Cognition" data-tag="Closing" data-meta="Devin · Cognition" data-desc="Devin &amp; Cognition closing session. 45 minutes." tabindex="0">
+                <div class="orbit-spk-photo is-logo">
+                  <img src="/devin-mark.svg" alt="Devin" width="80" height="92" />
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Closing</p>
+                  <h3>Cognition</h3>
+                  <p class="orbit-spk-meta">Devin · Cognition · 45 minutes</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">01</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">02</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">03</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">04</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">05</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="0">
+                <div class="orbit-spk-photo is-slot">06</div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Talk</p>
+                  <h3>Session</h3>
+                  <p class="orbit-spk-meta">Announcing soon</p>
+                </div>
+              </article>
+              </div>
+              <article class="orbit-speaker-detail" id="orbit-speaker-detail" role="dialog" aria-modal="true" aria-labelledby="orbit-speaker-detail-name" aria-describedby="orbit-speaker-detail-desc" aria-live="polite" aria-hidden="true" tabindex="-1" hidden>
+                <p class="orbit-speaker-detail-tag" id="orbit-speaker-detail-tag"></p>
+                <h2 id="orbit-speaker-detail-name"></h2>
+                <p class="orbit-speaker-detail-meta" id="orbit-speaker-detail-meta"></p>
+                <p class="orbit-speaker-detail-desc" id="orbit-speaker-detail-desc"></p>
+                <button type="button" class="orbit-speaker-detail-back" id="orbit-speaker-detail-back">← Back to line-up</button>
+              </article>
+              <section class="orbit-schedule-panel" id="orbit-schedule-panel" role="dialog" aria-modal="true" aria-labelledby="orbit-schedule-heading" aria-hidden="true" tabindex="-1" hidden>
+                <p class="orbit-schedule-kicker">PROGRAMME · 2 NOV 2026 · SCIENCE WORLD</p>
+                <h2 id="orbit-schedule-heading">Tentative</h2>
+                <p class="orbit-schedule-soon">The day's run of show is being finalized and will land here.</p>
+                <button type="button" class="orbit-schedule-back" id="orbit-schedule-back">← Back to line-up</button>
+              </section>
+              <p class="orbit-app-footer" aria-hidden="true">ESC exit · SCROLL next module · F1 help</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- First right panel: Science World + tickets -->
+          <section
+            class="orbit-app orbit-venue"
+            id="orbit-venue"
+            aria-hidden="true"
+            aria-label="Science World, tickets, and Cognition"
+            tabindex="-1"
+          >
+            <div class="orbit-app-frame">
+              <div class="orbit-app-inner">
+                <header class="orbit-app-titlebar">
+                  <span class="orbit-app-dot" aria-hidden="true"></span>
+                  <p class="orbit-app-title" id="orbit-venue-heading">
+                    C:\VANSPACE\VENUE.EXE
+                  </p>
+                  <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+                </header>
+                <p class="orbit-app-status">
+                  SCIENCE WORLD · TICKETS · NOVEMBER 2, 2026
+                </p>
+                <div class="orbit-day-stage">
+                  <div class="orbit-venue-blueprint">
+                    <img
+                      class="orbit-day-blueprint-img"
+                      src="/science-world-aug11-blue.png"
+                      alt="Science World, Vancouver"
+                      width="1800"
+                      height="1255"
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <img class="orbit-day-wordmark bios-sphere-lockup" src="/bios-sphere-lockup.svg" alt="BIOS SPHERE" />
+                    <!-- Tickets row OVER the blueprint -->
+                    <div class="orbit-day-tickets is-soon" role="list">
+                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird">
+                        <p class="orbit-tix-tag">Early bird · first 25</p>
+                        <p class="orbit-tix-note">Coming soon</p>
+                      </article>
+                      <article class="orbit-day-tix" role="listitem" data-ticket="student">
+                        <p class="orbit-tix-tag">Student</p>
+                        <p class="orbit-tix-note">Coming soon</p>
+                      </article>
+                      <article class="orbit-day-tix" role="listitem" data-ticket="standard">
+                        <p class="orbit-tix-tag">Standard</p>
+                        <p class="orbit-tix-note">Coming soon</p>
+                      </article>
+                    </div>
+                    <!-- Ticket detail overlay -->
+                    <div class="orbit-ticket-detail" id="orbit-ticket-detail" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="orbit-ticket-detail-title">
+                      <div class="orbit-ticket-detail-inner">
+                        <header class="orbit-ticket-detail-header">
+                          <button type="button" class="orbit-ticket-back" id="orbit-ticket-back" aria-label="Back to day view">←</button>
+                          <p class="orbit-ticket-detail-title" id="orbit-ticket-detail-title">Ticket</p>
+                          <span class="orbit-app-winbtns">
+                            <span aria-hidden="true">_ □</span>
+                            <button type="button" class="orbit-ticket-close" id="orbit-ticket-close" aria-label="Close ticket">×</button>
+                          </span>
+                        </header>
+                        <div class="orbit-ticket-detail-body">
+                          <p class="orbit-ticket-detail-price" id="orbit-ticket-detail-price">$0</p>
+                          <p class="orbit-ticket-detail-desc" id="orbit-ticket-detail-desc"></p>
+                          <a class="orbit-ticket-cta" id="orbit-ticket-cta" href="#" target="_blank" rel="noopener">Get ticket</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="orbit-app-footer" aria-hidden="true">
+                  DEVIN · COGNITION · VANSPACE
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="orbit-app orbit-sponsors"
+            id="orbit-sponsors"
+            aria-hidden="true"
+            aria-label="Sponsors"
+            tabindex="-1"
+          >
+            <div class="orbit-app-frame">
+              <div class="orbit-app-inner">
+                <header class="orbit-app-titlebar">
+                  <span class="orbit-app-dot" aria-hidden="true"></span>
+                  <p class="orbit-app-title">C:\VANSPACE\SPONSORS.EXE</p>
+                  <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
+                </header>
+                <p class="orbit-app-status">SPONSORS · NOVEMBER 2, 2026 · SCIENCE WORLD</p>
+                <div class="orbit-sponsors-body">
+                  <article class="orbit-sponsor-card">
+                    <img class="orbit-sponsor-logo" src="/cognition-lockup.svg" alt="Cognition" />
+                    <p class="orbit-sponsor-role">Presented by</p>
+                  </article>
+                  <div class="orbit-sponsor-open">
+                    <p class="orbit-sponsor-role">Supporting sponsor places</p>
+                    <p class="orbit-sponsor-open-line">OPEN</p>
+                  </div>
+                </div>
+                <p class="orbit-app-footer" aria-hidden="true">DEVIN · COGNITION · VANSPACE</p>
+              </div>
+            </div>
+          </section>
+          </div>
+
+          <!-- Console: BIOS boot → scroll modules -->
+          <div class="orbit-bsod" id="orbit-bsod" aria-hidden="true">
+            <div class="orbit-intro" id="orbit-intro" aria-hidden="true">
+              <pre class="orbit-devin-logo" id="orbit-devin-logo" aria-hidden="true">
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  BIOS SPHERE
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  Max · 100% remaining
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+           resets in {count-down}
+              </pre>
+              <p class="orbit-intro-kicker" id="orbit-intro-kicker">BIOS SPHERE</p>
+              <h2 class="orbit-intro-title" id="orbit-intro-title">
+                A one-day, single-track conference packed with value.
+              </h2>
+              <p class="orbit-intro-mission" id="orbit-intro-mission">
+                A focused day for engineers, designers, and curious people making things.
+              </p>
+              <p class="orbit-intro-meta" id="orbit-intro-meta">
+                Mon 2 Nov 2026 · 13:00–19:00 · Science World
+              </p>
+            </div>
+            <div class="orbit-bsod-inner" id="orbit-bsod-inner">
+              <pre class="orbit-bsod-text" id="orbit-bsod-text" aria-hidden="true"></pre>
+              <span class="orbit-bsod-cursor" id="orbit-bsod-cursor" aria-hidden="true">█</span>
+            </div>
+            <div class="orbit-day-address" id="orbit-day-address" aria-hidden="true">
+              <p class="orbit-addr-name">Science World</p>
+              <p class="orbit-addr-street">1455 Quebec Street, Vancouver, BC V6A 3Z7</p>
+              <a class="orbit-addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Science+World+1455+Quebec+St+Vancouver+BC+V6A+3Z7" target="_blank" rel="noopener">Open in Google Maps</a>
+            </div>
+            <button type="button" class="orbit-speaker-back" id="orbit-speaker-back" aria-label="Back to line-up" hidden>← Back to line-up</button>
+          </div>
+
+          <!-- BIOS bottom nav — actions inside the double border -->
+          <nav class="orbit-bios-nav" id="orbit-bios-nav" aria-label="VanSpace shortcuts" hidden>
+            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="venue">
+              Venue &amp; tickets
+            </button>
+            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="sponsors">
+              Sponsors
+            </button>
+            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="speakers">
+              Schedule &amp; speakers
+            </button>
+            <span class="orbit-bios-nav-btn is-soon" aria-disabled="true">Tickets soon</span>
+          </nav>
+
+          <!-- Screen-reader status for chapter changes (not every typed character) -->
+          <p class="sr-only" id="orbit-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <p class="footer-title">BIOS SPHERE</p>
+        <div class="footer-links">
+          <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
+          <a href="/about/#conduct">Code of Conduct</a>
+        </div>
+      </div>
+    </footer>
+    <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
+    <script src="/orbit-hero.js?v=81" defer></script>
+  </body>
+</html>

@@ -23,3 +23,6 @@ node_modules/
 
 # OS
 Thumbs.db
+
+# Wrangler local cache
+.wrangler/
