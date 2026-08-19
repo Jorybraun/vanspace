@@ -660,10 +660,8 @@
     }
   }
 
-  /* ---- drag to rotate / click to collapse ----------------------------- */
-  let rot = 0, vel = 0, dragging = false, lastX = 0;
-  let pointerStartX = 0, pointerStartY = 0, pointerMoved = false;
-  let pointerDownAt = 0;
+  /* ---- rotation / click to collapse ----------------------------------- */
+  let rot = 0;
   let warping = false, warpStart = 0, warp = 0, warpNavigated = false;
   let transitionCovering = false;
 
@@ -684,43 +682,6 @@
     canvas.setAttribute("aria-pressed", "true");
   }
 
-  const dragSurface = stage.querySelector(".orbit-sticky") || canvas;
-
-  function ignoreOrbitDrag(target) {
-    return !!(target && target.closest && target.closest(
-      "a, button, input, textarea, select, label, [role='button'], [role='tab'], [role='dialog'], .orbit-spk, .orbit-day-tix, .orbit-ticket-detail, .orbit-speaker-detail, .orbit-schedule-panel, .orbit-bios-nav, .orbit-sponsor-card, .orbit-sponsor-open"
-    ));
-  }
-
-  function endOrbitDrag() {
-    dragging = false;
-    if (dragSurface) dragSurface.classList.remove("is-dragging");
-  }
-
-  dragSurface.addEventListener("pointerdown", function (e) {
-    if (warping || ignoreOrbitDrag(e.target)) return;
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    dragging = true;
-    pointerMoved = false;
-    pointerDownAt = performance.now();
-    pointerStartX = e.clientX;
-    pointerStartY = e.clientY;
-    lastX = e.clientX;
-    dragSurface.classList.add("is-dragging");
-    try { dragSurface.setPointerCapture(e.pointerId); } catch (err) {}
-  });
-  dragSurface.addEventListener("pointermove", function (e) {
-    if (!dragging) return;
-    const dx = e.clientX - lastX;
-    if (Math.hypot(e.clientX - pointerStartX, e.clientY - pointerStartY) > 7) {
-      pointerMoved = true;
-    }
-    lastX = e.clientX;
-    rot += dx * 0.006;
-    vel = dx * 0.006;
-  });
-  dragSurface.addEventListener("pointerup", endOrbitDrag);
-  dragSurface.addEventListener("pointercancel", endOrbitDrag);
   /* ---- frame ----------------------------------------------------------- */
   let p = 0;
   function frame(now) {
@@ -751,10 +712,7 @@
         if (transition) transition.classList.remove("is-covering", "is-revealing");
       }
     }
-    if (!dragging) {
-      rot += (warping ? 0.026 : 0.00032) + vel;
-      vel *= 0.94;
-    }
+    rot += warping ? 0.026 : 0.00032;
 
     /* Blue-first: land on BSOD + orbit without cream poster dwell */
     const invertScroll = ease((p - 0.06) / 0.32);

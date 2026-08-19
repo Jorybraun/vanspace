@@ -784,11 +784,6 @@ body.no-top-nav {
   height: 100svh;
   overflow: hidden;
   touch-action: pan-y;
-  cursor: grab;
-}
-.orbit-sticky.is-dragging,
-.orbit-sticky.is-dragging #orbit-canvas {
-  cursor: grabbing;
 }
 
 #orbit-canvas {
@@ -796,10 +791,8 @@ body.no-top-nav {
   width: 100%;
   height: 100%;
   touch-action: pan-y;
-  cursor: grab;
   pointer-events: none;
 }
-#orbit-canvas:active { cursor: grabbing; }
 
 /* hero copy sits over the dithered plate, then clears out */
 .orbit-copy {
@@ -2300,7 +2293,7 @@ input {
   color: #0000aa;
 }
 
-/* The sponsor chapter is the orbit: let drag pass through empty space. */
+/* The sponsor chapter is the orbit: let pointer events pass through empty space. */
 .orbit-sponsors.is-on {
   pointer-events: none;
 }
