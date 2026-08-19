@@ -87,10 +87,10 @@
       meta: "Mon 2 Nov 2026 · Science World"
     },
     sponsors: {
-      kicker: "SPONSORS",
-      title: "Presented by Cognition.",
-      mission: "Supporting places still open.",
-      meta: "hello@vanspace.dev"
+      kicker: "MEGA.DEV · PRODUCT WEEK",
+      title: "AI-Native Product Development.",
+      mission: "Three hands-on hours with Kent C. Dodds. Thirty seats.",
+      meta: "Morning · Mon 2 Nov 2026 · Science World"
     }
   };
   const BOOT_SCRIPT = [
@@ -141,11 +141,12 @@
     "Science World, Vancouver."
   ].join("\n");
 
-  /* Sponsors phase — don't retype the headline */
+  /* Workshop phase — don't retype the headline */
   const SPONSOR_LINES = [
-    "Presented by Cognition",
+    "Explore > Plan > Execute",
+    "Feedback > Engineer > Deliver",
     "",
-    "Supporting places still open."
+    "Bring your laptop. Leave with a system."
   ].join("\n");
 
   /* phase: boot | intro | sponsors | speakers */
@@ -248,7 +249,7 @@
     if (statusEl && next !== "boot") {
       const labels = {
         intro: "VanSpace",
-        sponsors: "Sponsors loaded — Cognition and open places",
+        sponsors: "Workshop loaded — AI-Native Product Development with Kent C. Dodds",
         speakers: "Schedule loaded — line-up on the right"
       };
       if (labels[next] && labels[next] !== lastAnnouncedPhase) {

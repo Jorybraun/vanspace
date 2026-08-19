@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=119" />
+    <link rel="stylesheet" href="/styles.css?v=120" />
   </head>
   <body id="top" class="no-top-nav">
     <a class="skip" href="#main">Skip to content</a>
@@ -65,7 +65,7 @@
                   <p class="orbit-meta">Mon 2 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
                   <div class="orbit-actions">
                     <span class="btn btn-primary is-soon" aria-disabled="true">Tickets soon</span>
-                    <a class="btn btn-ghost" href="#workshop">Kent workshop · 30 seats</a>
+                    <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Kent workshop · 30 seats</a>
                   </div>
                 </div>
               </div>
@@ -290,31 +290,46 @@
           </section>
 
           <section
-            class="orbit-app orbit-sponsors"
+            class="orbit-app orbit-sponsors orbit-workshop"
             id="orbit-sponsors"
             aria-hidden="true"
-            aria-label="Sponsors"
+            aria-label="Kent C. Dodds workshop"
             tabindex="-1"
           >
             <div class="orbit-app-frame">
               <div class="orbit-app-inner">
                 <header class="orbit-app-titlebar">
                   <span class="orbit-app-dot" aria-hidden="true"></span>
-                  <p class="orbit-app-title">C:\VANSPACE\SPONSORS.EXE</p>
+                  <p class="orbit-app-title">C:\VANSPACE\MEGA.EXE</p>
                   <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
                 </header>
-                <p class="orbit-app-status">SPONSORS · NOVEMBER 2, 2026 · SCIENCE WORLD</p>
-                <div class="orbit-sponsors-body">
-                  <article class="orbit-sponsor-card">
-                    <img class="orbit-sponsor-logo" src="/cognition-lockup.svg" alt="Cognition" />
-                    <p class="orbit-sponsor-role">Presented by</p>
-                  </article>
-                  <div class="orbit-sponsor-open">
-                    <p class="orbit-sponsor-role">Supporting sponsor places</p>
-                    <p class="orbit-sponsor-open-line">OPEN</p>
+                <p class="orbit-app-status">KENT C. DODDS · 3 HOURS · 30 SEATS</p>
+                <div class="orbit-workshop-body">
+                  <figure class="orbit-workshop-portrait">
+                    <img src="https://res.cloudinary.com/mega-dev/image/upload/c_limit,w_933/v1/art/landing/program/kent-v2" alt="Red, black, and blue pixel portrait of Kent C. Dodds" width="933" height="933" />
+                    <figcaption>MEGA.dev · Product week</figcaption>
+                  </figure>
+                  <div class="orbit-workshop-copy">
+                    <p class="orbit-workshop-kicker">Live in Vancouver · November 2</p>
+                    <h2>AI-Native Product Development.</h2>
+                    <p>A hands-on session from Kent's MEGA curriculum. Learn one repeatable system for taking product work from intent to delivery with AI agents in the loop.</p>
+                    <ol class="orbit-workshop-steps" aria-label="Workshop system">
+                      <li>Explore</li>
+                      <li>Plan</li>
+                      <li>Execute</li>
+                      <li>Feedback</li>
+                      <li>Engineer</li>
+                      <li>Deliver</li>
+                    </ol>
+                    <dl class="orbit-workshop-facts">
+                      <div><dt>When</dt><dd>Morning · 3 hours</dd></div>
+                      <div><dt>Where</dt><dd>Science World</dd></div>
+                      <div><dt>Room</dt><dd>30 participants</dd></div>
+                    </dl>
+                    <a class="orbit-workshop-cta" href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Join workshop waitlist</a>
                   </div>
                 </div>
-                <p class="orbit-app-footer" aria-hidden="true">DEVIN · COGNITION · VANSPACE</p>
+                <p class="orbit-app-footer">PRESENTED BY ORCHID · MEGA.DEV · VANSPACE</p>
               </div>
             </div>
           </section>
@@ -358,66 +373,17 @@
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="venue">
               Venue &amp; tickets
             </button>
-            <button type="button" class="orbit-bios-nav-btn" data-bios-jump="sponsors">
-              Sponsors
+            <button type="button" class="orbit-bios-nav-btn is-primary" data-bios-jump="sponsors">
+              Kent workshop
             </button>
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="speakers">
               Schedule &amp; speakers
             </button>
-            <a class="orbit-bios-nav-btn is-primary" href="#workshop">Kent workshop</a>
             <span class="orbit-bios-nav-btn is-soon" aria-disabled="true">Tickets soon</span>
           </nav>
 
           <!-- Screen-reader status for chapter changes (not every typed character) -->
           <p class="sr-only" id="orbit-status" role="status" aria-live="polite" aria-atomic="true"></p>
-        </div>
-      </section>
-
-      <section class="mega-workshop" id="workshop" aria-labelledby="workshop-title">
-        <div class="mega-workshop-shell wrap-xl">
-          <div class="mega-workshop-bar">
-            <p>MEGA.dev × BIOS SPHERE</p>
-            <p>WORKSHOP_01 · 30 SEATS</p>
-          </div>
-
-          <div class="mega-workshop-hero">
-            <div class="mega-workshop-copy">
-              <p class="mega-workshop-kicker">Kent C. Dodds · live in Vancouver</p>
-              <h2 id="workshop-title">AI-Native Product Development.</h2>
-              <p class="mega-workshop-lead">A three-hour, hands-on workshop from Kent's Product curriculum at <a href="https://mega.dev/#program" target="_blank" rel="noopener">MEGA.dev</a>—brought into the room at Science World.</p>
-              <p class="mega-workshop-body">Learn a repeatable way to take product work from intent to delivery with AI agents in the loop. You will work through the complete system with Kent: exploring the problem, turning ambiguity into a plan, executing with agents, building feedback loops, applying engineering judgment, and shipping an outcome you can trust.</p>
-              <div class="mega-workshop-actions">
-                <a class="mega-workshop-cta" href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Join the workshop waitlist</a>
-                <a class="mega-workshop-link" href="https://mega.dev/#program" target="_blank" rel="noopener">Explore the full MEGA program ↗</a>
-              </div>
-            </div>
-
-            <figure class="mega-workshop-portrait">
-              <img src="https://res.cloudinary.com/mega-dev/image/upload/c_limit,w_933/v1/art/landing/program/kent-v2" alt="Red, black, and blue pixel portrait of Kent C. Dodds" width="933" height="933" />
-              <figcaption>Product week · Kent C. Dodds</figcaption>
-            </figure>
-          </div>
-
-          <ol class="mega-workshop-system" aria-label="Workshop system">
-            <li><span>01</span><strong>Explore</strong><small>Find the real problem</small></li>
-            <li><span>02</span><strong>Plan</strong><small>Shape intent for agents</small></li>
-            <li><span>03</span><strong>Execute</strong><small>Delegate useful work</small></li>
-            <li><span>04</span><strong>Feedback</strong><small>Build tighter loops</small></li>
-            <li><span>05</span><strong>Engineer</strong><small>Apply judgment and gates</small></li>
-            <li><span>06</span><strong>Deliver</strong><small>Own what ships</small></li>
-          </ol>
-
-          <dl class="mega-workshop-facts">
-            <div><dt>When</dt><dd>Morning · Monday, November 2</dd></div>
-            <div><dt>Format</dt><dd>Three hours · hands on keyboards</dd></div>
-            <div><dt>Where</dt><dd>Science World · Vancouver</dd></div>
-            <div><dt>Capacity</dt><dd>30 participants</dd></div>
-          </dl>
-
-          <div class="mega-workshop-footer">
-            <p><strong>For developers already building with AI.</strong> Bring your laptop. Leave with a system—not a list of prompts.</p>
-            <p>Presented by Orchid</p>
-          </div>
         </div>
       </section>
 
@@ -433,6 +399,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=81" defer></script>
+    <script src="/orbit-hero.js?v=82" defer></script>
   </body>
 </html>
