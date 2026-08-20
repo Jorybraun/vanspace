@@ -945,7 +945,7 @@
       }
       bsodEl.classList.toggle(
         "is-speakers-yield",
-        (venueOn || workshopOn || partnersOn || ticketsOn) && W < 900 && !exitGlitch
+        (venueOn || speakerOn || workshopOn || partnersOn || ticketsOn) && W < 900 && !exitGlitch
       );
       bsodEl.setAttribute("aria-hidden", bsodVisible ? "false" : "true");
 

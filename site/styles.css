@@ -907,7 +907,7 @@ body.no-top-nav {
 .orbit-stage.is-static #orbit-canvas { display: none; }
 
 @media (max-width: 760px) {
-  .orbit-stage { height: 460vh; height: 460svh; }
+  .orbit-stage { height: 700vh; height: 700svh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2251,6 +2251,9 @@ input {
     bottom: calc(var(--exe-edge) + 4.35rem);
     overflow: auto;
   }
+  .orbit-bsod.is-speakers-yield {
+    display: none;
+  }
   .orbit-speakers-grid {
     width: 100%;
     grid-template-rows: none;
@@ -2421,24 +2424,6 @@ input {
 
   #orbit-lineup-tab {
     flex: 1 1 100%;
-  }
-}
-
-@media (max-width: 520px) {
-  .orbit-speakers-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .orbit-spk:nth-child(3n) {
-    border-right: 1px solid rgba(255, 255, 255, 0.35);
-  }
-  .orbit-spk:nth-child(2n) {
-    border-right: 0;
-  }
-  .orbit-spk:nth-child(n + 7) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  }
-  .orbit-spk:nth-last-child(-n + 2) {
-    border-bottom: 0;
   }
 }
 
@@ -3841,7 +3826,7 @@ input {
 
   .orbit-partner-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 0.7rem;
+    margin-top: auto;
   }
 
   .orbit-partner-card {
@@ -4103,7 +4088,8 @@ input {
   }
 }
 
-.orbit-mobile-pitch {
+.orbit-mobile-pitch,
+.orbit-mobile-wordmark {
   display: none;
 }
 
@@ -4159,13 +4145,19 @@ input {
   }
 
   .orbit-mobile-wordmark {
+    position: absolute;
+    z-index: 6;
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
     display: flex;
-    width: 100%;
+    width: auto;
     min-height: 5.75rem;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.85rem;
+    margin: 0;
     padding: 0.8rem 1rem;
+    border: 1px solid #fff;
     background: #0000aa;
   }
 
