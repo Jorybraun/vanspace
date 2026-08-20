@@ -101,22 +101,22 @@
       meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
     },
     workshop: {
-      kicker: "FEATURED MORNING WORKSHOP",
-      title: "Thirty builders. Three hours. Hands on.",
-      mission: "Before the main stage opens, Kent C. Dodds leads an intimate working session inside Science Theatre.",
-      meta: "Nov 2 · 09:00–12:00 · Science Theatre · 30 seats"
+      kicker: "KENT C. DODDS · IN VANCOUVER",
+      title: "A rare chance to learn with one of the web’s most experienced teachers.",
+      mission: "From representing PayPal at TC39 to creating React Testing Library, Kent has spent more than a decade turning deep engineering experience into practical teaching.",
+      meta: "Nov 2 · 09:00–12:00 · Science Theatre"
     },
     partners: {
-      kicker: "PARTNERS MAKING THE ROOM POSSIBLE",
-      title: "They backed the room, not the noise.",
-      mission: "Cognition presents BIOS SPHERE. Orchid supports the morning workshop. Future partner places remain intentionally open.",
-      meta: "Useful participation · no logo wall · hello@vanspace.dev"
+      kicker: "WITH GRATITUDE",
+      title: "Thank you for making this possible.",
+      mission: "Cognition and Orchid help us keep BIOS SPHERE affordable and bring Vancouver the people you genuinely want to hear speak.",
+      meta: "We could not build this room without their support."
     },
     tickets: {
-      kicker: "ADMISSION · 200 SEATS",
-      title: "One ticket. The whole room.",
-      mission: "Every main-stage session, one shared programme, and no competing track. Workshop admission stays separate and limited.",
-      meta: "200 seats · pricing and policies announced at launch"
+      kicker: "OUR MISSION",
+      title: "Great events should stay within reach.",
+      mission: "We want to keep BIOS SPHERE affordable and continue bringing Vancouver the people you genuinely want to hear speak.",
+      meta: "We can only do that with your support. Thank you."
     }
   };
   const BOOT_SCRIPT = [
@@ -173,49 +173,41 @@
     "Every speaker gets the whole room.",
     "Everyone leaves with the same signal.",
     "",
-    "KENT C. DODDS / OPENING KEYNOTE / 45 MIN",
-    "MORE VOICES LOADING..."
+    "ORCHID / PREMIUM TALK",
+    "AGENTGRID / LIGHTNING TALK / 20 MIN",
+    "MORE VOICES LOADING...",
+    "",
+    "17:00 / KENT C. DODDS / KEYNOTE / 45 MIN",
+    "18:00 / COGNITION / CLOSING SESSION"
   ].join("\n");
 
   /* Workshop phase — don't retype the headline */
   const WORKSHOP_LINES = [
-    "KENT C. DODDS",
-    "Software educator, engineer, and speaker.",
-    "Creator of React Testing Library,",
-    "EpicProduct.engineer, and EpicAI.pro.",
+    "Now he is applying that experience to AI-native",
+    "product development—without giving up judgment,",
+    "craft, or responsibility.",
     "",
-    "A THREE-HOUR WORKING SESSION.",
-    "",
-    "Explore the problem.",
-    "Plan the outcome.",
-    "Execute with agents.",
-    "Build feedback loops and quality gates.",
-    "Engineer the gaps.",
-    "Deliver the result.",
-    "",
-    "NOV 2. 09:00–12:00. SCIENCE THEATRE.",
-    "30 PARTICIPANTS."
+    "Vancouver rarely gets a working session like this.",
+    "Be in the room."
   ].join("\n");
 
   const PARTNER_LINES = [
-    "PRESENTED BY COGNITION.",
-    "WORKSHOP SUPPORTED BY ORCHID.",
+    "THANK YOU, COGNITION.",
+    "THANK YOU, ORCHID.",
     "",
-    "Partners help protect the programme:",
-    "one room, useful talks, accessible tickets.",
+    "Your support helps us keep tickets affordable",
+    "and invite speakers worth gathering for.",
     "",
-    "Future places remain open by design."
+    "We could not do this without you."
   ].join("\n");
 
   const TICKET_LINES = [
-    "ONE TICKET. THE WHOLE ROOM.",
+    "YOUR TICKET SUPPORTS THE WHOLE PROGRAMME.",
     "",
-    "Main-stage sessions included.",
-    "Cleared talks recorded for release.",
-    "No competing sessions.",
+    "It helps cover the venue, the speakers,",
+    "and the work that makes this day possible.",
     "",
-    "200 SEATS · RELEASE DETAILS COMING SOON.",
-    "PRICING AND POLICIES ANNOUNCED AT LAUNCH."
+    "Thank you for helping us build the next one."
   ].join("\n");
 
   /* phase: boot | intro | speakers | workshop | partners | tickets */
@@ -305,6 +297,15 @@
   function setPhase(next, now) {
     if (phase === next) return;
     phase = next;
+    if (biosNav) {
+      const activeJump = next === "intro" ? "venue" : next;
+      biosNav.querySelectorAll("[data-bios-jump]").forEach(function (button) {
+        const isActive = button.getAttribute("data-bios-jump") === activeJump;
+        button.classList.toggle("is-active", isActive);
+        if (isActive) button.setAttribute("aria-current", "page");
+        else button.removeAttribute("aria-current");
+      });
+    }
     consoleTyped = 0;
     consoleLastTick = 0;
     consoleTarget = phaseTarget();
@@ -321,7 +322,7 @@
       const labels = {
         intro: "VanSpace",
         speakers: "Line-up loaded — one stage on the right",
-        workshop: "Workshop loaded — AI-Native Product Development with Kent C. Dodds",
+        workshop: "Workshop loaded — AI-Native Product Development Workshop with Kent C. Dodds",
         partners: "Sponsors loaded — Cognition, Orchid, and open partner places",
         tickets: "Tickets loaded — one conference admission release and separate workshop admission"
       };
@@ -553,9 +554,10 @@
       r: 0.24,
       tilt: 0.32,
       nodes: [
-        { label: "Kent C. Dodds", sub: "Keynote", filled: true },
-        { label: "Second keynote", sub: "Soon", filled: false },
-        { label: "Devin", sub: "Closing", filled: false }
+        { label: "Orchid", sub: "Premium talk", filled: true },
+        { label: "AgentGrid", sub: "20 min lightning", filled: true },
+        { label: "Kent C. Dodds", sub: "17:00 keynote", filled: true },
+        { label: "Cognition", sub: "18:00 closing", filled: true }
       ]
     },
     {
