@@ -472,7 +472,7 @@
     });
   }
   if (speakerDetailBack) {
-    speakerDetailBack.addEventListener("click", closeMobileSpeakerDetail);
+    speakerDetailBack.addEventListener("click", closeSpeakerDetail);
   }
   if (scheduleBack) {
     scheduleBack.addEventListener("click", closeMobileSchedule);
@@ -484,7 +484,7 @@
       return;
     }
     if (!window.matchMedia("(max-width: 899px)").matches) return;
-    if (speakerDetail && !speakerDetail.hidden) closeMobileSpeakerDetail();
+    if (speakerDetail && !speakerDetail.hidden) closeSpeakerDetail();
     else if (schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
   });
 
