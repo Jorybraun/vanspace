@@ -3219,7 +3219,7 @@ input {
 .orbit-workshop-details .orbit-workshop-cta {
   border-color: #ff1717;
   background: #ff1717;
-  color: #fff;
+  color: #050505;
 }
 
 .orbit-workshop-details .orbit-workshop-cta:hover,
@@ -3415,7 +3415,7 @@ input {
   .orbit-stage.is-workshop-phase .orbit-workshop-body {
     display: grid;
     grid-template-areas:
-      "lead lead"
+      "lead portrait"
       "details portrait";
     grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
     grid-template-rows: auto minmax(0, 1fr);
