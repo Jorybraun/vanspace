@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code of Conduct · BIOS SPHERE</title>
+    <meta
+      name="description"
+      content="The BIOS SPHERE Code of Conduct: expectations, reporting, and enforcement for a respectful event at Science World in Vancouver."
+    />
+    <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=161" />
+    <style>
+      body.conduct-page {
+        min-height: 100vh;
+        background: #0000aa;
+        color: #fff;
+      }
+
+      .conduct-nav {
+        position: sticky;
+        z-index: 50;
+        top: 0;
+        display: flex;
+        min-height: 4.5rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+        background: rgba(0, 0, 170, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .conduct-brand {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        color: #fff;
+        font: 500 1rem var(--mono);
+        text-decoration: none;
+      }
+
+      .conduct-links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .conduct-links a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        color: #fff;
+        font: 500 0.62rem var(--mono);
+        letter-spacing: 0.07em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .conduct-links a[aria-current="page"] {
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .conduct-brand:focus-visible,
+      .conduct-links a:focus-visible,
+      .conduct-report a:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 3px;
+      }
+
+      .conduct-main {
+        min-height: calc(100vh - 4.5rem);
+      }
+
+      .conduct-hero {
+        width: min(100% - 2rem, 76rem);
+        margin-inline: auto;
+        padding: clamp(4rem, 11vw, 8rem) 0 clamp(3rem, 7vw, 5rem);
+      }
+
+      .conduct-kicker {
+        margin: 0 0 1rem;
+        color: rgba(255, 255, 255, 0.72);
+        font: 500 0.68rem var(--mono);
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .conduct-hero h1 {
+        max-width: 11ch;
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(3.25rem, 9vw, 7.5rem);
+        font-weight: 500;
+        letter-spacing: -0.06em;
+        line-height: 0.88;
+      }
+
+      .conduct-lede {
+        max-width: 56ch;
+        margin: 1.75rem 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: clamp(1rem, 2vw, 1.28rem);
+        line-height: 1.55;
+      }
+
+      .conduct-grid {
+        display: grid;
+        width: min(100% - 2rem, 76rem);
+        margin: 0 auto clamp(3rem, 8vw, 7rem);
+        border-top: 1px solid rgba(255, 255, 255, 0.55);
+        border-left: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .conduct-intro,
+      .conduct-principles {
+        min-width: 0;
+        padding: clamp(1.25rem, 4vw, 3rem);
+        border-right: 1px solid rgba(255, 255, 255, 0.55);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .conduct-intro h2,
+      .conduct-principles h2 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(1.85rem, 4vw, 3.25rem);
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1;
+      }
+
+      .conduct-intro > p {
+        margin: 1.25rem 0 0;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .conduct-report {
+        margin-top: 2rem;
+        padding: 1.25rem;
+        border: 1px solid #fff;
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .conduct-report strong,
+      .conduct-report span,
+      .conduct-report a {
+        display: block;
+      }
+
+      .conduct-report strong {
+        font: 500 0.65rem var(--mono);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .conduct-report span {
+        margin-top: 0.55rem;
+        line-height: 1.45;
+      }
+
+      .conduct-report a {
+        width: fit-content;
+        margin-top: 0.8rem;
+        font: 500 0.82rem var(--mono);
+      }
+
+      .conduct-principles ol {
+        display: grid;
+        gap: 0;
+        margin: 1.5rem 0 0;
+        padding: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.45);
+        list-style: none;
+        counter-reset: conduct;
+      }
+
+      .conduct-principles li {
+        position: relative;
+        padding: 1.15rem 0 1.15rem 3.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+        counter-increment: conduct;
+      }
+
+      .conduct-principles li::before {
+        content: "0" counter(conduct);
+        position: absolute;
+        top: 1.25rem;
+        left: 0;
+        color: rgba(255, 255, 255, 0.58);
+        font: 500 0.62rem var(--mono);
+      }
+
+      .conduct-principles strong {
+        display: block;
+        font: 500 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .conduct-principles span {
+        display: block;
+        margin-top: 0.45rem;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.98rem;
+        line-height: 1.5;
+      }
+
+      .conduct-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.5rem clamp(1rem, 3vw, 2.5rem);
+        border-top: 1px solid rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.78);
+        font: 0.62rem var(--mono);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .conduct-footer a {
+        color: #fff;
+      }
+
+      @media (min-width: 760px) {
+        .conduct-grid {
+          grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .conduct-nav {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 0.35rem;
+          padding: 0.45rem 0.75rem 0.6rem;
+        }
+
+        .conduct-brand {
+          min-height: 36px;
+        }
+
+        .conduct-links {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .conduct-links a {
+          min-width: 0;
+          padding-inline: 0.35rem;
+          font-size: 0.56rem;
+        }
+
+        .conduct-hero,
+        .conduct-grid {
+          width: min(100% - 1.5rem, 76rem);
+        }
+
+        .conduct-hero {
+          padding-top: 3.5rem;
+        }
+
+        .conduct-hero h1 {
+          font-size: clamp(3rem, 17vw, 4.2rem);
+          overflow-wrap: anywhere;
+        }
+
+        .conduct-footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body class="conduct-page">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="conduct-nav">
+      <a class="conduct-brand" href="/bios/">vanspace</a>
+      <nav class="conduct-links" aria-label="Primary">
+        <a href="/bios/">BIOS SPHERE</a>
+        <a href="/conduct/" aria-current="page">Code of Conduct</a>
+      </nav>
+    </header>
+
+    <main class="conduct-main" id="main">
+      <header class="conduct-hero">
+        <p class="conduct-kicker">BIOS SPHERE · COMMUNITY STANDARD</p>
+        <h1>A safe room for builders.</h1>
+        <p class="conduct-lede">
+          BIOS SPHERE is a day for builders, creators, and curious people. We
+          expect attendees, speakers, sponsors, staff, and volunteers to treat
+          each other with respect, honesty, and professionalism.
+        </p>
+      </header>
+
+      <section class="conduct-grid" aria-labelledby="conduct-heading">
+        <article class="conduct-intro">
+          <p class="conduct-kicker">OUR COMMITMENT</p>
+          <h2 id="conduct-heading">Everyone deserves to participate safely.</h2>
+          <p>
+            This code applies throughout the venue, at related social events,
+            and in event-related online spaces. Asking someone to stop is enough:
+            respect the boundary immediately.
+          </p>
+
+          <aside class="conduct-report" aria-label="Report a concern">
+            <strong>Report a concern</strong>
+            <span>
+              Contact Jory Braun by email or speak with any staff member at the
+              registration desk. We will respond as promptly and discreetly as we can.
+            </span>
+            <a href="mailto:hello@vanspace.dev?subject=Code%20of%20Conduct%20report">hello@vanspace.dev</a>
+          </aside>
+        </article>
+
+        <article class="conduct-principles">
+          <p class="conduct-kicker">EXPECTED CONDUCT</p>
+          <h2>Respect the people sharing the room.</h2>
+          <ol>
+            <li>
+              <strong>Be respectful</strong>
+              <span>
+                Welcome newcomers, disagree with ideas rather than people, and
+                be mindful of the space you take up.
+              </span>
+            </li>
+            <li>
+              <strong>No harassment</strong>
+              <span>
+                We do not tolerate discrimination, intimidation, unwanted contact,
+                or behaviour targeting age, body size, disability, ethnicity, gender,
+                nationality, race, religion, sexual orientation, or any other personal
+                characteristic.
+              </span>
+            </li>
+            <li>
+              <strong>Report what you experience or witness</strong>
+              <span>
+                Tell Jory Braun at hello@vanspace.dev or any staff member at the
+                registration desk. You do not need to confront anyone yourself.
+              </span>
+            </li>
+            <li>
+              <strong>We act on violations</strong>
+              <span>
+                We may warn, remove, or ban anyone who violates this code, without
+                a refund, at our sole discretion.
+              </span>
+            </li>
+          </ol>
+        </article>
+      </section>
+    </main>
+
+    <footer class="conduct-footer">
+      <span>BIOS SPHERE · VANCOUVER · NOVEMBER 2, 2026</span>
+      <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
+    </footer>
+  </body>
+</html>
