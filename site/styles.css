@@ -6988,12 +6988,13 @@ input {
   }
 
   .site-footer-kicker {
-    margin-top: 3.25rem;
+    margin-top: 2.5rem;
   }
 
   .site-footer-intro h2 {
     max-width: 19ch;
-    font-size: clamp(1.9rem, 9.2vw, 2.65rem);
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.85rem, 8.6vw, 2.45rem);
   }
 
   .site-footer-contact {
@@ -7001,7 +7002,7 @@ input {
   }
 
   .site-footer-event h3 {
-    margin-bottom: 2.75rem;
+    margin-bottom: 2.25rem;
   }
 
   .site-footer-nav a {
@@ -7018,12 +7019,15 @@ input {
   }
 
   .site-footer-logo {
-    padding: 3.5rem 0 1.25rem;
+    display: flex;
+    justify-content: center;
+    padding: 2.75rem 0.75rem 1.5rem;
   }
 
   .site-footer-logo img {
-    width: 138%;
-    margin-left: -8%;
+    width: 100%;
+    margin-left: 0;
+    opacity: 0.45;
   }
 }
 
