@@ -4250,7 +4250,7 @@ input {
   .orbit-mobile-wordmark {
     position: absolute;
     z-index: 6;
-    top: 1rem;
+    top: calc(clamp(15rem, 40svh, 23rem) / 2);
     right: 1rem;
     left: 1rem;
     display: flex;
@@ -4263,6 +4263,7 @@ input {
     border: 0;
     background: transparent;
     filter: drop-shadow(0 2px 10px rgba(0, 0, 72, 0.92));
+    transform: translateY(-50%);
   }
 
   .orbit-mobile-wordmark img {
@@ -6568,10 +6569,10 @@ input {
   }
 
   .orbit-mobile-wordmark {
-    top: 0.75rem;
+    top: 50%;
     right: auto;
-    left: 0.75rem;
-    width: calc(34% - 1.5rem);
+    left: 0;
+    width: max(13rem, 38%);
     min-height: 0;
     padding: 0;
   }
@@ -6687,7 +6688,7 @@ input {
   }
 
   .orbit-stage.is-static-mobile .orbit-mobile-wordmark {
-    top: 1rem;
+    top: calc(clamp(15rem, 40svh, 23rem) / 2);
     right: 1rem;
     left: 1rem;
     width: auto;
