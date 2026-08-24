@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=161" />
+    <link rel="stylesheet" href="/styles.css?v=162" />
     <style>
       .orbit-spk.is-key .orbit-spk-photo img {
         object-fit: contain;
@@ -736,19 +736,68 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="wrap footer-inner">
-        <div class="footer-wordmark">
-          <img src="/vanspace-wordmark-v2-reverse.svg" alt="VanSpace.dev" />
-        </div>
-        <div class="footer-presented">
+    <footer class="site-footer" id="site-footer">
+      <div class="site-footer-grid">
+        <section class="site-footer-intro" aria-labelledby="site-footer-heading">
+          <a class="site-footer-brand" href="/bios/" aria-label="VanSpace home">
+            <img src="/logo-mark.svg" alt="" width="40" height="40" />
+            <span>vanspace.dev</span>
+          </a>
+          <p class="site-footer-kicker">BIOS SPHERE · 2026</p>
+          <h2 id="site-footer-heading">A focused room for people building what comes next.</h2>
+          <a class="site-footer-contact" href="mailto:hello@vanspace.dev">
+            <span>Talk to us</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </section>
+
+        <section class="site-footer-event" aria-labelledby="site-footer-event-heading">
+          <p class="site-footer-label">The gathering</p>
+          <h3 id="site-footer-event-heading">BIOS SPHERE</h3>
+          <dl>
+            <div>
+              <dt>When</dt>
+              <dd>November 2, 2026</dd>
+            </div>
+            <div>
+              <dt>Where</dt>
+              <dd>Science World</dd>
+            </div>
+            <div>
+              <dt>City</dt>
+              <dd>Vancouver, BC</dd>
+            </div>
+          </dl>
+        </section>
+
+        <nav class="site-footer-nav" aria-label="Footer">
+          <p class="site-footer-label">Explore</p>
+          <a href="/bios/" aria-current="page">
+            <span>BIOS SPHERE</span>
+            <span aria-hidden="true">01</span>
+          </a>
+          <a href="/conduct/">
+            <span>Code of Conduct</span>
+            <span aria-hidden="true">02</span>
+          </a>
+          <a href="mailto:hello@vanspace.dev">
+            <span>hello@vanspace.dev</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="site-footer-utility">
+        <div class="site-footer-presented">
           <span>Presented by</span>
           <img src="/cognition-lockup.svg" alt="Cognition" />
         </div>
-        <div class="footer-links">
-          <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>
-          <a href="/conduct/">Code of Conduct</a>
-        </div>
+        <p>One day · One room · Built in Vancouver</p>
+        <p>© 2026 VanSpace.dev</p>
+      </div>
+
+      <div class="site-footer-logo" aria-hidden="true">
+        <img src="/bios-sphere-lockup.svg" alt="" width="520" height="96" />
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
