@@ -51,6 +51,11 @@ img {
   display: block;
 }
 
+/* Let responsive <picture> sources preserve the existing image layout. */
+.mobile-image-source {
+  display: contents;
+}
+
 a {
   color: inherit;
 }
@@ -2105,7 +2110,7 @@ input {
   min-height: 0;
   height: 100%;
   width: 100%;
-  max-width: 920px;
+  max-width: none;
   margin-inline: auto;
   align-self: stretch;
   border: 0;
@@ -2169,6 +2174,10 @@ input {
   filter: none;
   opacity: 1;
   display: block;
+}
+.orbit-spk.is-key .orbit-spk-photo img {
+  object-fit: contain;
+  object-position: center;
 }
 .orbit-spk-photo.is-logo {
   display: grid;
@@ -2461,6 +2470,8 @@ input {
   border-right: 1px solid rgba(255, 255, 255, 0.35);
   overflow-y: auto;
   overflow-x: hidden;
+  pointer-events: auto;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
   scrollbar-gutter: stable;
@@ -3320,7 +3331,13 @@ input {
   }
 
   .orbit-workshop-lead > p:last-child {
-    display: none;
+    display: block;
+    max-width: 44ch;
+    margin-top: 0.85rem;
+    color: rgba(0, 0, 170, 0.72);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    line-height: 1.45;
   }
 
   .orbit-workshop-steps {
@@ -3414,8 +3431,11 @@ input {
   }
 
   .orbit-stage.is-workshop-phase .orbit-workshop-lead {
+    position: relative;
+    z-index: 2;
     grid-area: lead;
     align-self: start;
+    pointer-events: none;
   }
 
   .orbit-stage.is-workshop-phase .orbit-workshop-details {
@@ -3429,7 +3449,7 @@ input {
     width: 100%;
     max-width: 320px;
     min-height: 0;
-    align-self: end;
+    align-self: start;
     margin: 0 0 0 auto;
     border: 1px solid rgba(255, 255, 255, 0.55);
   }
@@ -3483,8 +3503,17 @@ input {
   }
 
   .orbit-stage.is-workshop-phase .orbit-workshop-copy h2 {
-    max-width: 12ch;
+    position: relative;
+    z-index: 2;
+    width: max-content;
+    max-width: none;
     font-size: clamp(2.8rem, 4.3vw, 4.5rem);
+    text-shadow: 0 0 1.5rem rgba(0, 0, 170, 0.9);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-copy h2 > span {
+    display: block;
+    white-space: nowrap;
   }
 
   .orbit-stage.is-workshop-phase .orbit-workshop-lead > p:last-child {
@@ -3521,9 +3550,82 @@ input {
   }
 
   .orbit-stage.is-workshop-phase .orbit-workshop-cta {
-    width: fit-content;
-    min-width: 15rem;
+    width: min(100%, 15rem);
+    min-width: 0;
     margin-top: 1.25rem;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 850px) {
+  .orbit-stage.is-workshop-phase .orbit-workshop-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-kicker {
+    margin-bottom: 0.55rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-copy h2 {
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(2rem, 3.4vw, 2.4rem);
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-lead > p:last-child {
+    display: block;
+    max-width: 52ch;
+    margin-top: 0.65rem;
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait {
+    max-width: 280px;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait figcaption {
+    gap: 0.2rem;
+    padding: 0.55rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait figcaption strong {
+    font-size: 0.85rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-portrait figcaption small {
+    font-size: 0.45rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-details {
+    align-self: end;
+    padding: 0.65rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-steps {
+    margin-top: 0;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-steps li,
+  .orbit-stage.is-workshop-phase .orbit-workshop-facts div {
+    padding: 0.4rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-facts,
+  .orbit-stage.is-workshop-phase .orbit-workshop-cta {
+    margin-top: 0.65rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-cta {
+    min-height: 2rem;
+    padding-block: 0.35rem;
+  }
+
+  .orbit-stage.is-workshop-phase .orbit-workshop-footer {
+    min-height: 1.8rem;
+    margin-top: 0.5rem;
+    padding-top: 0.35rem;
   }
 }
 
@@ -4279,27 +4381,29 @@ input {
 
   .orbit-mobile-cognition-credit {
     display: flex;
-    min-height: 4.5rem;
-    flex: 1 1 4.5rem;
+    min-height: 4.25rem;
+    flex: 0 0 4.25rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
-    color: #0000aa;
+    gap: 0.2rem;
+    margin-top: 0.35rem;
+    padding-top: 0.3rem;
+    color: #000;
     text-align: center;
   }
 
   .orbit-mobile-cognition-credit span {
-    font: 500 0.58rem var(--mono);
+    font: 500 0.52rem var(--mono);
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
   .orbit-mobile-cognition-credit img {
     display: block;
-    width: min(72%, 15rem);
+    width: min(42%, 8rem);
     height: auto;
-    filter: brightness(0) saturate(100%) invert(10%) sepia(99%) saturate(7468%) hue-rotate(244deg) brightness(69%) contrast(135%);
+    filter: none;
   }
 }
 
@@ -6293,5 +6397,284 @@ input {
   .waitlist-block {
     align-items: stretch;
     flex-direction: column;
+  }
+}
+
+/* ============================================================
+   MOBILE HARDENING
+   Desktop is intentionally locked. Every visual rule below is
+   constrained to the existing phone/tablet breakpoints.
+   ============================================================ */
+
+@media (max-width: 899px) {
+  /* Keep all five destinations on one reachable, 44px touch row. */
+  .orbit-bios-nav.is-on {
+    display: grid;
+  }
+
+  .orbit-bios-nav {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 2px;
+    padding: 0.25rem;
+  }
+
+  .orbit-bios-nav-btn {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.2rem 0.1rem;
+    font-size: 0.48rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .orbit-app,
+  .orbit-workshop {
+    bottom: calc(var(--exe-edge) + 3.55rem);
+  }
+
+  /* Every constrained panel has its own vertical escape route. */
+  .orbit-mobile-pitch,
+  .orbit-partners-body,
+  .orbit-tickets-page-body,
+  .orbit-profile-content,
+  .orbit-speakers-grid {
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .orbit-speakers-grid {
+    height: 100%;
+    min-height: 0;
+    grid-template-rows: none;
+    grid-auto-rows: minmax(10.5rem, auto);
+    align-content: start;
+  }
+
+  .orbit-profile-layout {
+    min-height: 0;
+  }
+
+  .orbit-profile-content {
+    scrollbar-gutter: stable;
+  }
+
+  .orbit-mobile-pitch,
+  .orbit-partners-body,
+  .orbit-tickets-page-body,
+  .orbit-speakers-grid {
+    overscroll-behavior-y: auto;
+  }
+
+  .orbit-speakers-tab,
+  .orbit-speaker-detail-back,
+  .orbit-schedule-back,
+  .orbit-workshop-cta,
+  .orbit-page-cta,
+  .orbit-mobile-ticket-row button {
+    min-height: 44px;
+  }
+
+  .orbit-partner-grid,
+  .orbit-ticket-row {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .orbit-speakers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orbit-spk {
+    min-height: 10.5rem;
+  }
+
+  .orbit-spk-photo {
+    min-height: 0;
+  }
+
+  .orbit-spk-body {
+    padding: 0.4rem 0.45rem 0.45rem;
+  }
+
+  .orbit-spk-body h3 {
+    font-size: 0.62rem;
+    line-height: 1.2;
+  }
+
+  .orbit-spk-meta {
+    font-size: 0.5rem;
+    line-height: 1.25;
+  }
+}
+
+@media (max-width: 420px), (max-width: 899px) and (max-height: 600px) {
+  .orbit-workshop-copy h2 > span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .orbit-workshop-body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 899px) and (orientation: landscape) {
+  .orbit-venue .orbit-venue-blueprint {
+    grid-template-columns: minmax(13rem, 38%) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .orbit-venue .orbit-day-blueprint-img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .orbit-mobile-wordmark {
+    top: 0.75rem;
+    right: auto;
+    left: 0.75rem;
+    width: calc(38% - 1.5rem);
+    min-height: 4.25rem;
+    padding: 0.5rem;
+  }
+
+  .orbit-mobile-pitch {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0.75rem;
+    border-top: 0;
+    border-left: 1px solid #0000aa;
+  }
+
+  .orbit-mobile-pitch h2 {
+    font-size: clamp(1.45rem, 4vw, 1.85rem);
+  }
+
+  .orbit-mobile-pitch-values {
+    margin-top: 0.55rem;
+  }
+
+  .orbit-mobile-cognition-credit {
+    min-height: 3.5rem;
+    flex-basis: 3.5rem;
+  }
+}
+
+/* A no-animation phone gets the full programme as a normal scroll page. */
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  .orbit-stage.is-static-mobile {
+    height: auto !important;
+    min-height: 0;
+    padding: 0;
+    background: #0000aa;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-sticky {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    background: #0000aa;
+  }
+
+  .orbit-stage.is-static-mobile #orbit-canvas,
+  .orbit-stage.is-static-mobile .orbit-copy,
+  .orbit-stage.is-static-mobile .orbit-bsod,
+  .orbit-stage.is-static-mobile .orbit-bios-chrome,
+  .orbit-stage.is-static-mobile .orbit-bios-nav,
+  .orbit-stage.is-static-mobile .orbit-legend,
+  .orbit-stage.is-static-mobile .orbit-cog-sun {
+    display: none !important;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-exe-dock {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-venue { order: 1; }
+  .orbit-stage.is-static-mobile .orbit-speakers { order: 2; }
+  .orbit-stage.is-static-mobile .orbit-workshop { order: 3; }
+  .orbit-stage.is-static-mobile .orbit-partners { order: 4; }
+  .orbit-stage.is-static-mobile .orbit-tickets-page { order: 5; }
+
+  .orbit-stage.is-static-mobile .orbit-app {
+    position: relative;
+    inset: auto !important;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin: 0 0 0.75rem;
+    opacity: 1;
+    overflow: visible;
+    pointer-events: auto;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-app-frame,
+  .orbit-stage.is-static-mobile .orbit-app-inner {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-day-stage,
+  .orbit-stage.is-static-mobile .orbit-venue-blueprint,
+  .orbit-stage.is-static-mobile .orbit-mobile-pitch,
+  .orbit-stage.is-static-mobile .orbit-speakers-grid,
+  .orbit-stage.is-static-mobile .orbit-workshop-body,
+  .orbit-stage.is-static-mobile .orbit-partners-body,
+  .orbit-stage.is-static-mobile .orbit-tickets-page-body {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-venue-blueprint {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: min(220px, 36svh) auto;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-day-blueprint-img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-mobile-pitch {
+    grid-column: 1;
+    grid-row: 2;
+    border-top: 1px solid #0000aa;
+    border-left: 0;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-mobile-wordmark {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-speakers-grid {
+    grid-auto-rows: minmax(10.5rem, auto);
+  }
+
+  .orbit-stage.is-static-mobile .orbit-workshop-body {
+    grid-template-rows: auto min(320px, 42svh) auto;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-workshop-steps,
+  .orbit-stage.is-static-mobile .orbit-workshop-facts {
+    display: grid;
+  }
+
+  .orbit-stage.is-static-mobile .orbit-partner-grid,
+  .orbit-stage.is-static-mobile .orbit-ticket-row {
+    margin-top: 1rem;
   }
 }

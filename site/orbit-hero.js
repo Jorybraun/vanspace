@@ -31,6 +31,7 @@
   const biosNav = document.getElementById("orbit-bios-nav");
   const statusEl = document.getElementById("orbit-status");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobileMedia = window.matchMedia("(max-width: 899px)");
 
   const GROUND = [229, 224, 207]; // --ground
   /* Classic-ish BSOD blue (not pure #00f — readable with cream particles) */
@@ -224,6 +225,31 @@
   let lastAnnouncedPhase = "";
   let speakerDetailActive = false;
   let mobileDialogTrigger = null;
+  const mobileStagePanels = [
+    venuePanel,
+    speakersPanel,
+    workshopPanel,
+    partnersPanel,
+    ticketsPagePanel
+  ].filter(Boolean);
+
+  function setStagePanelVisibility(panel, visible) {
+    if (!panel) return;
+    panel.classList.toggle("is-on", visible);
+    panel.setAttribute("aria-hidden", visible ? "false" : "true");
+    if (mobileMedia.matches && !stage.classList.contains("is-static-mobile")) {
+      panel.inert = !visible;
+    }
+  }
+
+  if (mobileMedia.matches) {
+    mobileStagePanels.forEach(function (panel) { panel.inert = true; });
+  }
+  mobileMedia.addEventListener("change", function (event) {
+    if (!event.matches) {
+      mobileStagePanels.forEach(function (panel) { panel.inert = false; });
+    }
+  });
 
   function updateTitleBlock(forPhase, visible) {
     const data = TITLE_BLOCKS[forPhase] || TITLE_BLOCKS.intro;
@@ -351,9 +377,36 @@
   }
 
   function focusMobileDialog(dialog) {
-    if (window.matchMedia("(max-width: 899px)").matches && dialog) {
+    if (mobileMedia.matches && dialog) {
       window.requestAnimationFrame(function () { dialog.focus(); });
     }
+  }
+
+  function trapMobileDialogFocus(dialog, event) {
+    if (!dialog || dialog.hidden) return false;
+    const focusable = Array.from(dialog.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (element) {
+      return !element.hidden && element.getClientRects().length > 0;
+    });
+    if (!focusable.length) {
+      event.preventDefault();
+      dialog.focus();
+      return true;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+      event.preventDefault();
+      last.focus();
+      return true;
+    }
+    if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+      return true;
+    }
+    return false;
   }
 
   function restoreMobileDialogFocus() {
@@ -478,12 +531,22 @@
     scheduleBack.addEventListener("click", closeMobileSchedule);
   }
   document.addEventListener("keydown", function (e) {
+    if (e.key === "Tab" && mobileMedia.matches) {
+      if (speakerDetail && !speakerDetail.hidden) {
+        trapMobileDialogFocus(speakerDetail, e);
+        return;
+      }
+      if (schedulePanel && !schedulePanel.hidden) {
+        trapMobileDialogFocus(schedulePanel, e);
+        return;
+      }
+    }
     if (e.key !== "Escape") return;
     if (ticketDetail && ticketDetail.classList.contains("is-on")) {
       closeTicketDetail();
       return;
     }
-    if (!window.matchMedia("(max-width: 899px)").matches) return;
+    if (!mobileMedia.matches) return;
     if (speakerDetail && !speakerDetail.hidden) closeSpeakerDetail();
     else if (schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
   });
@@ -956,7 +1019,7 @@
             Math.max(0, (chapterP - SPEAKERS_AT) / (WORKSHOP_AT - SPEAKERS_AT))
           );
           bsodEl.scrollTop = speakerProgress * (bsodEl.scrollHeight - bsodEl.clientHeight);
-        } else if (W >= 900 && phase !== "intro" && phase !== "speakers") {
+        } else if (W >= 900 && phase !== "intro" && phase !== "speakers" && phase !== "workshop") {
           bsodEl.scrollTop = bsodEl.scrollHeight;
         }
       }
@@ -1047,28 +1110,23 @@
     const baseStage = !warping && invert > 0.5 && (W >= 900 ? form > 0.85 : true);
     if (speakersPanel) {
       const showSpeakers = baseStage && speakerReveal > 0.08;
-      speakersPanel.classList.toggle("is-on", showSpeakers);
-      speakersPanel.setAttribute("aria-hidden", showSpeakers ? "false" : "true");
+      setStagePanelVisibility(speakersPanel, showSpeakers);
     }
     if (workshopPanel) {
       const showWorkshop = baseStage && workshopOn;
-      workshopPanel.classList.toggle("is-on", showWorkshop);
-      workshopPanel.setAttribute("aria-hidden", showWorkshop ? "false" : "true");
+      setStagePanelVisibility(workshopPanel, showWorkshop);
     }
     if (partnersPanel) {
       const showPartners = baseStage && partnersOn;
-      partnersPanel.classList.toggle("is-on", showPartners);
-      partnersPanel.setAttribute("aria-hidden", showPartners ? "false" : "true");
+      setStagePanelVisibility(partnersPanel, showPartners);
     }
     if (ticketsPagePanel) {
       const showTickets = baseStage && ticketsOn;
-      ticketsPagePanel.classList.toggle("is-on", showTickets);
-      ticketsPagePanel.setAttribute("aria-hidden", showTickets ? "false" : "true");
+      setStagePanelVisibility(ticketsPagePanel, showTickets);
     }
     if (venuePanel) {
       const showVenue = baseStage && venueOn;
-      venuePanel.classList.toggle("is-on", showVenue);
-      venuePanel.setAttribute("aria-hidden", showVenue ? "false" : "true");
+      setStagePanelVisibility(venuePanel, showVenue);
     }
 
     // particles
@@ -1237,12 +1295,53 @@
     ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
   }
 
+  function mobileStaticFallback() {
+    stage.classList.add("is-static", "is-static-mobile", "is-blue-first");
+    stage.classList.remove(
+      "is-intro-phase",
+      "is-speakers-phase",
+      "is-workshop-phase",
+      "is-partners-phase",
+      "is-tickets-phase"
+    );
+    phase = "intro";
+    if (heroCopy) {
+      heroCopy.setAttribute("aria-hidden", "true");
+      heroCopy.style.display = "none";
+    }
+    if (biosChrome) biosChrome.setAttribute("aria-hidden", "true");
+    if (biosNav) biosNav.setAttribute("aria-hidden", "true");
+    if (lineUpPanel) lineUpPanel.hidden = false;
+    if (schedulePanel) {
+      schedulePanel.hidden = true;
+      schedulePanel.setAttribute("aria-hidden", "true");
+    }
+    if (speakerDetail) {
+      speakerDetail.hidden = true;
+      speakerDetail.setAttribute("aria-hidden", "true");
+    }
+    mobileStagePanels.forEach(function (panel) {
+      panel.inert = false;
+      panel.classList.add("is-on");
+      panel.setAttribute("aria-hidden", "false");
+    });
+    if (statusEl) {
+      statusEl.textContent = "Full BIOS SPHERE programme loaded without motion.";
+    }
+    if (window.scrollY > 0) window.scrollTo(0, 0);
+    window.requestAnimationFrame(function () { window.scrollTo(0, 0); });
+  }
+
   img = new Image();
   img.decoding = "async";
   img.onload = function () {
     resize();
     if (reduce) {
       stage.classList.add("is-static");
+      if (mobileMedia.matches) {
+        mobileStaticFallback();
+        return;
+      }
       staticFallback();
       window.addEventListener("resize", staticFallback);
       return;
@@ -1260,6 +1359,11 @@
     }
     requestAnimationFrame(frame);
   };
-  img.onerror = function () { stage.classList.add("is-static"); };
-  img.src = canvas.dataset.src || "/science-world-aug11-blue.png";
+  img.onerror = function () {
+    if (mobileMedia.matches) mobileStaticFallback();
+    else stage.classList.add("is-static");
+  };
+  img.src = mobileMedia.matches && canvas.dataset.srcMobile
+    ? canvas.dataset.srcMobile
+    : canvas.dataset.src || "/science-world-aug11-blue.png";
 })();
