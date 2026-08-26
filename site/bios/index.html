@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=164" />
+    <link rel="stylesheet" href="/styles.css?v=165" />
     <style>
       .orbit-spk.is-key .orbit-spk-photo img {
         object-fit: contain;
@@ -256,7 +256,8 @@
                 <button type="button" class="orbit-speakers-tab is-active" id="orbit-lineup-tab" role="tab" aria-selected="true" aria-controls="orbit-lineup-panel">Line-up</button>
                 <button type="button" class="orbit-speakers-tab" id="orbit-schedule-tab" role="tab" aria-selected="false" aria-controls="orbit-schedule-panel">Schedule</button>
               </div>
-              <div class="orbit-speakers-grid" id="orbit-lineup-panel" role="list" aria-labelledby="orbit-speakers-heading">
+              <div class="orbit-speakers-grid-lock" id="orbit-lineup-panel" role="tabpanel" aria-labelledby="orbit-lineup-tab">
+              <div class="orbit-speakers-grid" role="list" aria-labelledby="orbit-speakers-heading" inert aria-hidden="true">
               <article class="orbit-spk is-orchid" role="listitem" data-name="Orchid" data-tag="Main-stage session" data-meta="Speaker announcing soon" data-talk-title="Talk in development" data-talk-status="Speaker and topic TBC" data-talk-format="Main-stage session" data-talk-duration="Timing TBC" data-desc="Orchid is developing a session for the BIOS SPHERE stage. The speaker, title, and abstract will be published when confirmed." data-bio="Orchid is the presenting partner for the Kent C. Dodds morning workshop. The main-stage speaker biography will be added when the presenter is confirmed." tabindex="0">
                 <div class="orbit-spk-photo is-logo">
                   <img src="/orchid-mark.svg" alt="Orchid" width="72" height="74" />
@@ -341,6 +342,10 @@
                   <p class="orbit-spk-meta">Devin · Cognition</p>
                 </div>
               </article>
+              </div>
+              <div class="orbit-speakers-announcement" role="status">
+                <p>Announcing soon</p>
+              </div>
               </div>
               <article class="orbit-speaker-detail" id="orbit-speaker-detail" role="dialog" aria-modal="true" aria-labelledby="orbit-speaker-detail-name" aria-describedby="orbit-speaker-detail-desc" aria-live="polite" aria-hidden="true" tabindex="-1" hidden>
                 <header class="orbit-profile-command">
