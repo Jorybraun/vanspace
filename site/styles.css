@@ -6486,7 +6486,7 @@ input {
   }
 
   /* Every constrained panel has its own vertical escape route. */
-  .orbit-mobile-pitch,
+  .orbit-venue .orbit-venue-blueprint,
   .orbit-partners-body,
   .orbit-tickets-page-body,
   .orbit-profile-content,
@@ -6496,6 +6496,10 @@ input {
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .orbit-venue .orbit-venue-blueprint {
+    grid-template-rows: clamp(15rem, 40svh, 23rem) auto;
   }
 
   .orbit-speakers-grid {
@@ -6514,7 +6518,7 @@ input {
     scrollbar-gutter: stable;
   }
 
-  .orbit-mobile-pitch,
+  .orbit-venue .orbit-venue-blueprint,
   .orbit-partners-body,
   .orbit-tickets-page-body,
   .orbit-speakers-grid {
@@ -6610,6 +6614,7 @@ input {
   .orbit-venue .orbit-venue-blueprint {
     grid-template-columns: minmax(13rem, 38%) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
   }
 
   .orbit-venue .orbit-day-blueprint-img {
@@ -6629,9 +6634,14 @@ input {
   .orbit-mobile-pitch {
     grid-column: 2;
     grid-row: 1;
+    min-height: 0;
     padding: 0.75rem;
     border-top: 0;
     border-left: 1px solid #0000aa;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .orbit-mobile-pitch h2 {
