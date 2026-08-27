@@ -6879,12 +6879,13 @@ input {
 
 /* BIOS SPHERE footer — shared by the only two public pages. */
 .site-footer {
+  --footer-bg: #0000aa;
   --footer-line: rgba(238, 233, 216, 0.2);
   --footer-muted: rgba(238, 233, 216, 0.66);
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--footer-line);
-  background: #07070a;
+  background: var(--footer-bg);
   color: #eee9d8;
 }
 
@@ -7068,7 +7069,7 @@ input {
 .site-footer-nav a:hover,
 .site-footer-nav a:focus-visible {
   background: #eee9d8;
-  color: #07070a;
+  color: var(--footer-bg);
 }
 
 .site-footer-nav a:hover,
@@ -7119,13 +7120,15 @@ input {
 }
 
 .site-footer-logo {
-  padding: clamp(2.5rem, 5.8vw, 6.5rem) clamp(1rem, 2.5vw, 2.75rem) clamp(1rem, 2vw, 2rem);
+  display: flex;
+  justify-content: flex-end;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .site-footer-logo img {
-  width: 100%;
-  max-width: none;
-  opacity: 0.3;
+  width: min(40vw, 34rem);
+  max-width: 100%;
+  opacity: 0.38;
 }
 
 @media (max-width: 900px) {
@@ -7200,14 +7203,13 @@ input {
   }
 
   .site-footer-logo {
-    display: flex;
-    justify-content: center;
-    padding: 2.75rem 0.75rem 1.5rem;
+    justify-content: flex-end;
+    padding: 2rem 1rem 1.25rem;
   }
 
   .site-footer-logo img {
-    width: 100%;
-    margin-left: 0;
+    width: min(68vw, 17rem);
+    margin-left: auto;
     opacity: 0.45;
   }
 }
