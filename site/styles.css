@@ -6777,6 +6777,106 @@ input {
   }
 }
 
+/* Preserve the full-bleed venue poster on portrait phones. */
+@media (max-width: 899px) and (orientation: portrait) {
+  .orbit-venue .orbit-venue-blueprint,
+  .orbit-stage.is-static-mobile .orbit-venue-blueprint {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: clamp(30rem, 72svh, 38rem) auto;
+  }
+
+  .orbit-venue .orbit-venue-blueprint::before {
+    content: "";
+    position: relative;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 82, 0.44) 0%, rgba(0, 0, 120, 0.08) 48%, rgba(0, 0, 70, 0.52) 100%),
+      linear-gradient(90deg, rgba(0, 0, 82, 0.28) 0%, transparent 78%);
+    pointer-events: none;
+  }
+
+  .orbit-venue .orbit-day-blueprint-img {
+    grid-column: 1;
+    grid-row: 1;
+    object-position: center 48%;
+    opacity: 0.58;
+  }
+
+  .orbit-venue-headline {
+    display: block;
+    top: clamp(1rem, 5vw, 1.5rem);
+    right: clamp(1rem, 5vw, 1.5rem);
+    left: clamp(1rem, 5vw, 1.5rem);
+    max-width: none;
+    text-shadow: 0 1px 10px rgba(0, 0, 70, 0.36);
+  }
+
+  .orbit-venue-headline p {
+    font-size: 0.625rem;
+  }
+
+  .orbit-venue-headline h2 {
+    max-width: 11ch;
+    font-size: clamp(2.4rem, 11vw, 3.25rem);
+  }
+
+  .orbit-venue-headline span {
+    max-width: 38ch;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+  }
+
+  .orbit-day-cognition-credit {
+    position: relative;
+    z-index: 5;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    justify-self: end;
+    display: flex;
+    width: min(48%, 10.5rem);
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0 clamp(1rem, 5vw, 1.5rem) clamp(1rem, 5vw, 1.5rem) 0;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  .orbit-day-cognition-credit span {
+    width: fit-content;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+    font: 500 0.58rem var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .orbit-day-cognition-credit img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .orbit-mobile-wordmark,
+  .orbit-mobile-pitch-kicker,
+  .orbit-mobile-pitch > h2,
+  .orbit-mobile-pitch-copy,
+  .orbit-mobile-cognition-credit {
+    display: none;
+  }
+
+  .orbit-mobile-pitch {
+    padding-top: 0.75rem;
+  }
+
+  .orbit-mobile-pitch-values {
+    margin-top: 0;
+  }
+}
+
 /* BIOS SPHERE footer — shared by the only two public pages. */
 .site-footer {
   --footer-line: rgba(238, 233, 216, 0.2);
