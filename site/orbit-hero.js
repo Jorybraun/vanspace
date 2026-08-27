@@ -155,6 +155,17 @@
     if (!btn) return;
     e.preventDefault();
     const jump = btn.getAttribute("data-bios-jump");
+    if (stage.classList.contains("is-static-mobile")) {
+      const target = {
+        venue: venuePanel,
+        speakers: speakersPanel,
+        workshop: workshopPanel,
+        partners: partnersPanel,
+        tickets: ticketsPagePanel
+      }[jump];
+      if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+      return;
+    }
     if (jump === "venue") scrollStageTo(0.04);
     else if (jump === "speakers") scrollStageTo(SPEAKERS_AT + 0.03);
     else if (jump === "workshop") scrollStageTo(WORKSHOP_AT + 0.03);
