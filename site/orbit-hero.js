@@ -251,6 +251,105 @@
     }
   });
 
+  /* Clipped EXE shells block native chaining from an inner scroller to the page. */
+  function findMobileScrollOwner(target) {
+    let element = target instanceof Element ? target : target && target.parentElement;
+    if (element && element.closest("[role=dialog][aria-modal=true]")) return null;
+    while (element && element !== stage) {
+      const style = window.getComputedStyle(element);
+      const canScroll = element.scrollHeight - element.clientHeight > 1;
+      if (canScroll && (style.overflowY === "auto" || style.overflowY === "scroll")) {
+        if (style.overscrollBehaviorY === "contain" || style.overscrollBehaviorY === "none") {
+          return null;
+        }
+        return element;
+      }
+      element = element.parentElement;
+    }
+    return null;
+  }
+
+  function handOffMobileScroll(owner, delta) {
+    if (
+      !owner ||
+      !mobileMedia.matches ||
+      stage.classList.contains("is-static-mobile") ||
+      Math.abs(delta) < 0.5
+    ) {
+      return false;
+    }
+
+    const edge = 1;
+    const maxScroll = Math.max(0, owner.scrollHeight - owner.clientHeight);
+    const atBoundary = delta > 0
+      ? owner.scrollTop >= maxScroll - edge
+      : owner.scrollTop <= edge;
+    if (!atBoundary) return false;
+
+    const pageScroller = document.scrollingElement || document.documentElement;
+    const before = pageScroller.scrollTop;
+    const pageMax = Math.max(0, pageScroller.scrollHeight - window.innerHeight);
+    const next = Math.min(pageMax, Math.max(0, before + delta));
+    if (next === before) return false;
+
+    window.scrollTo({ top: next, left: window.scrollX, behavior: "instant" });
+    return true;
+  }
+
+  let mobileTouchY = null;
+  let mobileTouchOwner = null;
+
+  stage.addEventListener("wheel", function (event) {
+    if (
+      event.ctrlKey ||
+      !mobileMedia.matches ||
+      stage.classList.contains("is-static-mobile")
+    ) return;
+    const owner = findMobileScrollOwner(event.target);
+    if (!owner) return;
+    const lineHeight = 16;
+    const delta = event.deltaMode === 1
+      ? event.deltaY * lineHeight
+      : event.deltaMode === 2
+        ? event.deltaY * window.innerHeight
+        : event.deltaY;
+    if (handOffMobileScroll(owner, delta)) event.preventDefault();
+  }, { passive: false });
+
+  stage.addEventListener("touchstart", function (event) {
+    if (
+      !mobileMedia.matches ||
+      stage.classList.contains("is-static-mobile") ||
+      event.touches.length !== 1
+    ) {
+      mobileTouchY = null;
+      mobileTouchOwner = null;
+      return;
+    }
+    mobileTouchY = event.touches[0].clientY;
+    mobileTouchOwner = findMobileScrollOwner(event.target);
+  }, { passive: true });
+
+  stage.addEventListener("touchmove", function (event) {
+    if (mobileTouchY === null || !mobileTouchOwner || event.touches.length !== 1) {
+      mobileTouchY = null;
+      mobileTouchOwner = null;
+      return;
+    }
+    const nextY = event.touches[0].clientY;
+    const delta = mobileTouchY - nextY;
+    mobileTouchY = nextY;
+    if (handOffMobileScroll(mobileTouchOwner, delta)) event.preventDefault();
+  }, { passive: false });
+
+  function clearMobileTouch() {
+    mobileTouchY = null;
+    mobileTouchOwner = null;
+  }
+
+  stage.addEventListener("touchend", clearMobileTouch, { passive: true });
+  stage.addEventListener("touchcancel", clearMobileTouch, { passive: true });
+
   function updateTitleBlock(forPhase, visible) {
     const data = TITLE_BLOCKS[forPhase] || TITLE_BLOCKS.intro;
     if (introKicker) introKicker.textContent = data.kicker;
