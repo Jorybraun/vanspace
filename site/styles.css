@@ -2225,6 +2225,11 @@ input {
   filter: brightness(0) invert(1);
   opacity: 0.95;
 }
+.orbit-spk.is-orchid .orbit-spk-photo img {
+  width: min(72%, 7.25rem);
+  filter: none;
+  opacity: 1;
+}
 .orbit-spk-photo.is-hermes {
   display: grid;
   place-items: center;
@@ -2646,16 +2651,11 @@ input {
     color: rgba(0, 0, 170, 0.62);
   }
 
-  .orbit-workshop-console-copy small strong {
-    font-size: 0.54rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-  }
-
   .orbit-workshop-console-copy small img {
-    width: 1.15rem;
+    display: block;
+    width: 4.5rem;
     height: auto;
-    filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(6527%) hue-rotate(245deg) brightness(72%) contrast(147%);
+    filter: none;
   }
 }
 
@@ -3210,14 +3210,10 @@ input {
 }
 
 .orbit-workshop-footer img {
-  width: 1.35rem;
+  display: block;
+  width: 5.15rem;
   height: auto;
-  filter: brightness(0) invert(1);
-}
-
-.orbit-workshop-footer strong {
-  color: #fff;
-  font-weight: 500;
+  filter: none;
 }
 
 .orbit-workshop-details {
@@ -3236,8 +3232,7 @@ input {
 
 .orbit-workshop-details .orbit-workshop-steps li,
 .orbit-workshop-details .orbit-workshop-facts dt,
-.orbit-workshop-details .orbit-workshop-footer,
-.orbit-workshop-details .orbit-workshop-footer strong {
+.orbit-workshop-details .orbit-workshop-footer {
   color: #0000aa;
 }
 
@@ -3259,7 +3254,7 @@ input {
 }
 
 .orbit-workshop-details .orbit-workshop-footer img {
-  filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(6527%) hue-rotate(245deg) brightness(72%) contrast(147%);
+  filter: none;
 }
 
 @media (max-width: 899px) {
@@ -3791,23 +3786,13 @@ input {
   filter: brightness(0) invert(1);
 }
 
-.orbit-partner-card.is-orchid > div {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
 .orbit-partner-card.is-orchid img {
-  width: 2rem;
-  filter: brightness(0) invert(1);
-}
-
-.orbit-partner-card.is-orchid strong {
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: block;
+  width: min(100%, 7.25rem);
+  max-height: 2rem;
+  object-fit: contain;
+  object-position: left center;
+  filter: none;
 }
 
 .orbit-partner-card.is-open {
@@ -5028,28 +5013,13 @@ input {
   filter: brightness(0) invert(1);
 }
 
-.orbit-intro-sponsor.is-orchid > div {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
 .orbit-intro-sponsor.is-orchid img {
-  width: 1.35rem;
+  display: block;
+  width: min(100%, 6.25rem);
+  max-height: 1.5rem;
   height: auto;
-}
-
-.orbit-intro-sponsor.is-orchid strong {
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.orbit-intro-sponsor.is-empty {
-  background: rgba(255, 255, 255, 0.025);
+  object-fit: contain;
+  object-position: left center;
 }
 
 .orbit-lineup-signal {
