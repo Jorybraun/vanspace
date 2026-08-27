@@ -4107,6 +4107,9 @@ input {
   overflow: hidden;
 }
 .orbit-venue-blueprint {
+  --orbit-venue-shade:
+    linear-gradient(180deg, rgba(0, 0, 82, 0.44) 0%, rgba(0, 0, 120, 0.08) 48%, rgba(0, 0, 70, 0.52) 100%),
+    linear-gradient(90deg, rgba(0, 0, 82, 0.28) 0%, transparent 78%);
   position: relative;
   flex: 1 1 auto;
   min-height: 12rem;
@@ -4203,6 +4206,15 @@ input {
 
   .orbit-venue .orbit-day-wordmark.bios-sphere-lockup {
     display: none;
+  }
+
+  .orbit-venue .orbit-venue-blueprint::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: var(--orbit-venue-shade);
+    pointer-events: none;
   }
 
   .orbit-day-cognition-credit {
@@ -6791,9 +6803,7 @@ input {
     z-index: 1;
     grid-column: 1;
     grid-row: 1;
-    background:
-      linear-gradient(180deg, rgba(0, 0, 82, 0.44) 0%, rgba(0, 0, 120, 0.08) 48%, rgba(0, 0, 70, 0.52) 100%),
-      linear-gradient(90deg, rgba(0, 0, 82, 0.28) 0%, transparent 78%);
+    background: var(--orbit-venue-shade);
     pointer-events: none;
   }
 
@@ -6923,9 +6933,9 @@ input {
 }
 
 .site-footer-brand img {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.45rem;
+  width: min(17rem, 72vw);
+  height: auto;
+  border-radius: 0;
 }
 
 .site-footer-kicker,
