@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" role="img" aria-label="VAN colon SPACE dot dev logo in primary and reverse colorways">
+  <style>
+    .word {
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 82px;
+      font-weight: 700;
+      letter-spacing: -3.5px;
+    }
+    .suffix {
+      font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+    }
+  </style>
+
+  <rect width="1400" height="350" fill="#e5e0cf" />
+  <rect y="350" width="1400" height="350" fill="#170073" />
+
+  <g transform="translate(120 51) scale(1.657143)" fill="#170073">
+    <text class="word" x="10" y="106">VAN</text>
+    <rect x="190" y="47" width="15" height="15" rx="1.5" />
+    <rect x="190" y="86" width="15" height="15" rx="1.5" />
+    <text class="word" x="226" y="106">SPACE</text>
+    <g transform="translate(541 20)">
+      <rect x="2.5" y="3.5" width="132" height="40" rx="5" opacity=".14" />
+      <rect x="0" y="0" width="132" height="40" rx="5" fill="#e5e0cf" stroke="#170073" stroke-width="2" />
+      <text class="suffix" x="68" y="26" text-anchor="middle">.DEV</text>
+    </g>
+    <path d="M226 124H673" fill="none" stroke="#170073" stroke-width="2" stroke-linecap="square" />
+    <rect x="663" y="117" width="10" height="14" />
+  </g>
+
+  <g transform="translate(120 401) scale(1.657143)" fill="#fff">
+    <text class="word" x="10" y="106">VAN</text>
+    <rect x="190" y="47" width="15" height="15" rx="1.5" />
+    <rect x="190" y="86" width="15" height="15" rx="1.5" />
+    <text class="word" x="226" y="106">SPACE</text>
+    <g transform="translate(541 20)">
+      <rect x="2.5" y="3.5" width="132" height="40" rx="5" opacity=".16" />
+      <rect x="0" y="0" width="132" height="40" rx="5" fill="#170073" stroke="#fff" stroke-width="2" />
+      <text class="suffix" x="68" y="26" text-anchor="middle">.DEV</text>
+    </g>
+    <path d="M226 124H673" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="square" />
+    <rect x="663" y="117" width="10" height="14" />
+  </g>
+</svg>

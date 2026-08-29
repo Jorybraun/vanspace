@@ -6,7 +6,7 @@
     <title>BIOS SPHERE — Micro-conference at Science World, Vancouver</title>
     <meta
       name="description"
-      content="BIOS SPHERE: A one-day, single-track conference packed with value. Monday, November 2, 2026 at Science World."
+      content="BIOS SPHERE brings Vancouver's tech community together at Science World to meet, learn, and have something local to get excited about."
     />
     <meta name="theme-color" content="#e5e0cf" />
     <link rel="canonical" href="https://biossphere.dev/" />
@@ -14,18 +14,18 @@
     <!-- Share card: this page's whole job is to be pasted into a DM -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://biossphere.dev/" />
-    <meta property="og:title" content="BIOS SPHERE — a one-day, single-track conference packed with value" />
+    <meta property="og:title" content="BIOS SPHERE — Vancouver, November 2, 2026" />
     <meta
       property="og:description"
-      content="Monday, November 2, 2026 · 1–7pm · Science World, Vancouver. A one-day, single-track conference packed with value."
+      content="An afternoon for Vancouver's tech community to meet, learn, and hear from people who have shaped how we build."
     />
     <meta property="og:image" content="https://biossphere.dev/science-world-aug11-blue.png" />
     <meta property="og:image:alt" content="Blue dither illustration of Science World, Vancouver." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BIOS SPHERE — a one-day, single-track conference packed with value" />
+    <meta name="twitter:title" content="BIOS SPHERE — Vancouver, November 2, 2026" />
     <meta
       name="twitter:description"
-      content="Monday, November 2, 2026 · 1–7pm · Science World. A one-day, single-track conference packed with value."
+      content="An afternoon for Vancouver's tech community to meet, learn, and hear from people who have shaped how we build."
     />
     <meta name="twitter:image" content="https://biossphere.dev/science-world-aug11-blue.png" />
     <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
@@ -35,13 +35,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=173" />
+    <link rel="stylesheet" href="/styles.css?v=180" />
     <style>
-      .orbit-spk.is-key .orbit-spk-photo img {
-        object-fit: contain;
-        object-position: center;
-      }
-
       .orbit-bsod.is-on.is-split {
         pointer-events: auto;
         overscroll-behavior: contain;
@@ -190,7 +185,7 @@
             id="orbit-canvas"
             data-src="/science-world-aug11-blue.png"
             data-src-mobile="/science-world-aug11-blue-mobile.png"
-            aria-label="Interactive VanSpace programme map. Schedule and tickets are also available further down the page without this animation."
+            aria-label="Interactive Ordinary Labs programme map. Schedule and tickets are also available further down the page without this animation."
           ></canvas>
 
           <div class="orbit-copy" id="orbit-copy">
@@ -204,8 +199,8 @@
                 <div class="orbit-copy-panel">
                   <p class="orbit-meta">Mon 2 Nov 2026 · 13:00–19:00 · Science World · Vancouver</p>
                   <div class="orbit-actions">
-                    <span class="btn btn-primary is-soon" aria-disabled="true">Tickets soon</span>
-                    <a class="btn btn-ghost" href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Kent workshop · 30 seats</a>
+                    <button type="button" class="btn btn-primary" data-bios-jump="tickets">See ticket options</button>
+                    <button type="button" class="btn btn-ghost" data-bios-jump="workshop">Kent workshop · 100 seats</button>
                   </div>
                 </div>
               </div>
@@ -214,7 +209,7 @@
                   <source media="(max-width: 899px)" srcset="/science-world-aug11-blue-mobile.png" />
                   <img class="poster-art" src="/science-world-aug11-blue.png" alt="Blue dither illustration of Science World, Vancouver" />
                 </picture>
-                <img class="vanspace-hero-lockup" src="/vanspace-wordmark-v2-reverse.svg" alt="VanSpace.dev" />
+                <span class="ordinary-labs-hero-lockup">Ordinary Labs</span>
               </div>
             </div>
             <div class="poster-foot">
@@ -248,103 +243,100 @@
               <div class="orbit-app-inner">
               <header class="orbit-app-titlebar">
                 <span class="orbit-app-dot" aria-hidden="true"></span>
-                <p class="orbit-app-title" id="orbit-speakers-heading">C:\VANSPACE\SPEAKERS.EXE</p>
+                <p class="orbit-app-title" id="orbit-speakers-heading">C:\ORDINARY_LABS\SPEAKERS.EXE</p>
                 <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
               </header>
-              <p class="orbit-app-status" id="orbit-speakers-status">LINE-UP · 2 NOV 2026 · ONE STAGE · SCIENCE WORLD</p>
+              <p class="orbit-app-status" id="orbit-speakers-status">LINE-UP · 3 REVEALED · 2 NOV 2026 · SCIENCE WORLD</p>
               <div class="orbit-speakers-tabs" role="tablist" aria-label="Programme views">
                 <button type="button" class="orbit-speakers-tab is-active" id="orbit-lineup-tab" role="tab" aria-selected="true" aria-controls="orbit-lineup-panel">Line-up</button>
                 <button type="button" class="orbit-speakers-tab" id="orbit-schedule-tab" role="tab" aria-selected="false" aria-controls="orbit-schedule-panel">Schedule</button>
               </div>
               <div class="orbit-speakers-grid-lock" id="orbit-lineup-panel" role="tabpanel" aria-labelledby="orbit-lineup-tab">
-              <div class="orbit-speakers-grid" role="list" aria-labelledby="orbit-speakers-heading" inert aria-hidden="true">
-              <article class="orbit-spk is-orchid" role="listitem" data-name="Orchid" data-tag="Main-stage session" data-meta="Speaker announcing soon" data-talk-title="Talk in development" data-talk-status="Speaker and topic TBC" data-talk-format="Main-stage session" data-talk-duration="Timing TBC" data-desc="Orchid is developing a session for the BIOS SPHERE stage. The speaker, title, and abstract will be published when confirmed." data-bio="Orchid is the presenting partner for the Kent C. Dodds morning workshop. The main-stage speaker biography will be added when the presenter is confirmed." tabindex="0">
-                <div class="orbit-spk-photo is-logo">
-                  <img src="/orchid-wordmark-paper.svg" alt="" width="117" height="28" />
-                </div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Orchid</h3>
-                  <p class="orbit-spk-meta">Speaker announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk" role="listitem" data-name="AgentGrid" data-tag="Lightning talk" data-meta="AI agent orchestration · Vancouver" data-talk-title="Talk in development" data-talk-status="Confirmed · speaker and title TBC" data-talk-format="Lightning talk" data-talk-duration="20 minutes" data-desc="A practical session from the AgentGrid team on orchestrating coding agents in one visual workspace." data-bio="AgentGrid brings Claude Code, Codex, Cursor, Devin, and other coding agents into one visual workspace. Built in Vancouver for teams shipping software with multiple agents." data-website="https://agentgrid.sh" tabindex="0">
-                <div class="orbit-spk-photo is-slot">AG</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Lightning · 20 min</p>
-                  <h3>AgentGrid</h3>
-                  <p class="orbit-spk-meta">agentgrid.sh · Vancouver</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="-1">
-                <div class="orbit-spk-photo is-slot">02</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Session</h3>
-                  <p class="orbit-spk-meta">Announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="-1">
-                <div class="orbit-spk-photo is-slot">03</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Session</h3>
-                  <p class="orbit-spk-meta">Announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="-1">
-                <div class="orbit-spk-photo is-slot">04</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Session</h3>
-                  <p class="orbit-spk-meta">Announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="-1">
-                <div class="orbit-spk-photo is-slot">05</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Session</h3>
-                  <p class="orbit-spk-meta">Announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-tba" role="listitem" data-name="Session" data-tag="Talk" data-meta="Announcing soon" data-desc="Announcing soon." tabindex="-1">
-                <div class="orbit-spk-photo is-slot">06</div>
-                <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Talk</p>
-                  <h3>Session</h3>
-                  <p class="orbit-spk-meta">Announcing soon</p>
-                </div>
-              </article>
-              <article class="orbit-spk is-key" role="listitem" data-name="Kent C. Dodds" data-tag="Keynote" data-meta="Software Engineer and Educator" data-talk-title="Talk in development" data-talk-status="Confirmed · 17:00" data-talk-format="Keynote" data-talk-duration="17:00 · 45 minutes · no Q&amp;A" data-detail-image="/kent-koala.webp" data-desc="Kent takes the BIOS SPHERE stage at 17:00 with a keynote shaped for this audience and his current interests in product engineering and the AI era. The final title and abstract will be announced when the talk is ready." data-bio="Kent represented PayPal at TC39, created React Testing Library, and has spent more than a decade teaching developers around the world. He now builds EpicProduct.engineer, EpicAI.pro, EpicWeb.dev, and EpicReact.dev, bringing hard-won engineering judgment into the AI era." tabindex="0">
+              <div class="orbit-speakers-grid" role="list" aria-labelledby="orbit-speakers-heading">
+              <article class="orbit-spk is-revealed is-key" role="listitem" data-door="01" data-speaker-profile data-name="Kent C. Dodds" data-tag="Software Engineer and Educator" data-meta="EpicWeb · BIOS SPHERE guest" data-talk-title="The Last Software Developer" data-talk-status="Talk announced · timing TBC" data-talk-format="Main-stage session" data-talk-duration="Time TBC" data-detail-image="/kent-koala.webp" data-desc="Kent will present The Last Software Developer at BIOS SPHERE. The abstract and exact time will be announced next." data-bio="Kent represented PayPal at TC39, created React Testing Library, and has spent more than a decade teaching developers around the world. He now builds EpicProduct.engineer, EpicAI.pro, EpicWeb.dev, and EpicReact.dev, bringing hard-won engineering judgment into the AI era." data-link-1-label="Website" data-link-1-title="kentcdodds.com ↗" data-link-1-url="https://kentcdodds.com/" data-link-2-label="Recent talk · 2026" data-link-2-title="How I Build Web Applications in 2026 ↗" data-link-2-url="https://www.youtube.com/watch?v=MYcz1KkuREk" data-link-3-label="Conference talk · 2025" data-link-3-title="The Future of User Interaction ↗" data-link-3-url="https://www.youtube.com/watch?v=gDSIxIGYk-o">
                 <div class="orbit-spk-photo">
-                  <img
-                    src="/kent-photo.jpg"
-                    alt="Kent C. Dodds"
-                    width="400"
-                    height="400"
-                    loading="lazy"
-                  />
+                  <img src="/kent-photo.jpg" alt="" width="400" height="400" loading="lazy" />
+                  <span class="orbit-spk-reveal" aria-hidden="true">Revealed · 01</span>
                 </div>
                 <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Keynote · 17:00</p>
-                  <h3>Kent C. Dodds</h3>
-                  <p class="orbit-spk-meta">EpicWeb</p>
+                  <p class="orbit-spk-tag">BIOS SPHERE guest · Time TBC</p>
+                  <h3 id="orbit-spk-name-kent">Kent C. Dodds</h3>
+                  <p class="orbit-spk-meta" id="orbit-spk-desc-kent">The Last Software Developer</p>
                 </div>
+                <button type="button" class="orbit-spk-trigger" aria-labelledby="orbit-spk-action-kent orbit-spk-name-kent" aria-describedby="orbit-spk-desc-kent" aria-haspopup="dialog" aria-controls="orbit-speaker-detail"><span class="sr-only" id="orbit-spk-action-kent">Open profile for</span></button>
               </article>
-              <article class="orbit-spk is-closing" role="listitem" data-name="Cognition" data-tag="Closing session" data-meta="Devin · Cognition" data-talk-title="Closing session" data-talk-status="Speaker TBC · 18:00" data-talk-format="Closing session" data-talk-duration="18:00 · timing TBC" data-desc="Cognition closes BIOS SPHERE at 18:00. The presenter, final title, and session details will be announced when confirmed." data-bio="Cognition is the company behind Devin. The presenter biography will be added when the closing speaker is confirmed." tabindex="0">
-                <div class="orbit-spk-photo is-logo">
-                  <img src="/devin-mark.svg" alt="Devin" width="80" height="92" />
+              <article class="orbit-spk is-revealed" role="listitem" data-door="02" data-speaker-profile data-name="Adam Wazzan" data-tag="Founder &amp; CTO · Orchid" data-meta="@theCTO · Orchid" data-talk-title="Orchid session in development" data-talk-status="Speaker confirmed · details TBC" data-talk-format="Main-stage session" data-talk-duration="Time TBC" data-desc="Adam will bring Orchid's builder perspective to the BIOS SPHERE stage. The session title and abstract will be announced next." data-bio="Adam Wazzan is the co-founder and CTO of Orchid, a personal assistant that works through messages to help people stay organized, find information, and get things done." data-link-1-label="Company" data-link-1-title="orchid.ai ↗" data-link-1-url="https://orchid.ai/" data-link-2-label="Profile" data-link-2-title="@theCTO ↗" data-link-2-url="https://x.com/theCTO" data-link-3-label="Founding team" data-link-3-title="Orchid on Y Combinator ↗" data-link-3-url="https://www.ycombinator.com/companies/orchid-ai">
+                <div class="orbit-spk-photo">
+                  <img src="/adam-wazzan.webp" alt="" width="200" height="200" loading="lazy" />
+                  <span class="orbit-spk-reveal" aria-hidden="true">Revealed · 02</span>
                 </div>
                 <div class="orbit-spk-body">
-                  <p class="orbit-spk-tag">Closing · 18:00</p>
-                  <h3>Cognition</h3>
-                  <p class="orbit-spk-meta">Devin · Cognition</p>
+                  <p class="orbit-spk-tag">Orchid · Main stage</p>
+                  <h3 id="orbit-spk-name-adam">Adam Wazzan</h3>
+                  <p class="orbit-spk-meta" id="orbit-spk-desc-adam">Founder &amp; CTO · @theCTO</p>
+                </div>
+                <button type="button" class="orbit-spk-trigger" aria-labelledby="orbit-spk-action-adam orbit-spk-name-adam" aria-describedby="orbit-spk-desc-adam" aria-haspopup="dialog" aria-controls="orbit-speaker-detail"><span class="sr-only" id="orbit-spk-action-adam">Open profile for</span></button>
+              </article>
+              <article class="orbit-spk is-revealed" role="listitem" data-door="03" data-speaker-profile data-name="Michael Yagudaev" data-tag="AgentGrid · Lightning talk" data-meta="Co-founder · AgentGrid · Vancouver" data-talk-title="Talk in development" data-talk-status="Speaker confirmed · title TBC" data-talk-format="Lightning talk" data-talk-duration="20 minutes" data-desc="A practical session on orchestrating coding agents in one visual workspace. Michael's final title and abstract will be announced next." data-bio="Michael Yagudaev is a product-oriented engineering leader, tech entrepreneur, maker, and speaker. He co-founded AgentGrid, a Vancouver-built visual workspace for running and coordinating coding agents." data-link-1-label="Product" data-link-1-title="agentgrid.sh ↗" data-link-1-url="https://agentgrid.sh/" data-link-2-label="Profile" data-link-2-title="@yagudaev ↗" data-link-2-url="https://x.com/yagudaev" data-link-3-label="Recent talk" data-link-3-title="AI Coding: Speed is Everything ↗" data-link-3-url="https://yagudaev.com/talks/ai-coding-speed-is-everything/">
+                <div class="orbit-spk-photo">
+                  <img src="/michael-yagudaev.webp?v=2" alt="" width="512" height="512" loading="lazy" />
+                  <span class="orbit-spk-reveal" aria-hidden="true">Revealed · 03</span>
+                </div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">AgentGrid · 20 min</p>
+                  <h3 id="orbit-spk-name-michael">Michael Yagudaev</h3>
+                  <p class="orbit-spk-meta" id="orbit-spk-desc-michael">Co-founder · Vancouver</p>
+                </div>
+                <button type="button" class="orbit-spk-trigger" aria-labelledby="orbit-spk-action-michael orbit-spk-name-michael" aria-describedby="orbit-spk-desc-michael" aria-haspopup="dialog" aria-controls="orbit-speaker-detail"><span class="sr-only" id="orbit-spk-action-michael">Open profile for</span></button>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" aria-label="Speaker reveal 04, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>04</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 04</p>
                 </div>
               </article>
-              </div>
-              <div class="orbit-speakers-announcement" role="status">
-                <p>Announcing soon</p>
+              <article class="orbit-spk is-tba" role="listitem" aria-label="Speaker reveal 05, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>05</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 05</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" aria-label="Speaker reveal 06, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>06</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 06</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" aria-label="Speaker reveal 07, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>07</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 07</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba" role="listitem" aria-label="Speaker reveal 08, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>08</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 08</p>
+                </div>
+              </article>
+              <article class="orbit-spk is-tba is-closing" role="listitem" aria-label="Speaker reveal 09, announcing soon">
+                <div class="orbit-spk-photo is-slot" aria-hidden="true"><span>09</span><small>Locked</small></div>
+                <div class="orbit-spk-body">
+                  <p class="orbit-spk-tag">Next reveal</p>
+                  <h3>Announcing soon</h3>
+                  <p class="orbit-spk-meta">Door 09</p>
+                </div>
+              </article>
               </div>
               </div>
               <article class="orbit-speaker-detail" id="orbit-speaker-detail" role="dialog" aria-modal="true" aria-labelledby="orbit-speaker-detail-name" aria-describedby="orbit-speaker-detail-desc" aria-live="polite" aria-hidden="true" tabindex="-1" hidden>
@@ -378,10 +370,10 @@
                       <p class="orbit-profile-label" id="orbit-speaker-bio-label">About the speaker</p>
                       <p id="orbit-speaker-detail-bio"></p>
                     </section>
-                    <nav class="orbit-profile-links" id="orbit-speaker-links" aria-label="Selected work by Kent C. Dodds" hidden>
-                      <a href="https://kentcdodds.com/" target="_blank" rel="noopener"><span>Website</span><strong>kentcdodds.com ↗</strong></a>
-                      <a href="https://www.youtube.com/watch?v=MYcz1KkuREk" target="_blank" rel="noopener"><span>Recent talk · 2026</span><strong>How I Build Web Applications in 2026 ↗</strong></a>
-                      <a href="https://www.youtube.com/watch?v=gDSIxIGYk-o" target="_blank" rel="noopener"><span>Conference talk · 2025</span><strong>The Future of User Interaction ↗</strong></a>
+                    <nav class="orbit-profile-links" id="orbit-speaker-links" aria-label="Speaker links" hidden>
+                      <a href="#" target="_blank" rel="noopener" data-speaker-link hidden><span></span><strong></strong></a>
+                      <a href="#" target="_blank" rel="noopener" data-speaker-link hidden><span></span><strong></strong></a>
+                      <a href="#" target="_blank" rel="noopener" data-speaker-link hidden><span></span><strong></strong></a>
                     </nav>
                   </div>
                 </div>
@@ -410,7 +402,7 @@
                 <header class="orbit-app-titlebar">
                   <span class="orbit-app-dot" aria-hidden="true"></span>
                   <p class="orbit-app-title" id="orbit-venue-heading">
-                    C:\VANSPACE\VENUE.EXE
+                    C:\ORDINARY_LABS\VENUE.EXE
                   </p>
                   <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
                 </header>
@@ -437,7 +429,7 @@
                     <header class="orbit-venue-headline">
                       <p>BIOS SPHERE · VANCOUVER</p>
                       <h2>A micro-conference with big-conference energy.</h2>
-                      <span>One day. One track. One focused room for engineers, designers, and curious people making things.</span>
+                      <span>Our tech scene is full of amazing talent, but we need more to get excited about. A chance to meet the people who have shaped how we build, and a place for Vancouver's community to find each other. BIOS SPHERE is our attempt to help fill that gap.</span>
                     </header>
                     <img class="orbit-day-wordmark bios-sphere-lockup" src="/bios-sphere-lockup.svg" alt="BIOS SPHERE" />
                     <div class="orbit-day-cognition-credit">
@@ -446,42 +438,24 @@
                     </div>
                     <button type="button" class="orbit-venue-image-cta" data-bios-jump="tickets">View tickets</button>
                     <!-- Tickets row OVER the blueprint -->
-                    <div class="orbit-day-tickets is-soon" role="list">
-                      <article class="orbit-day-tix is-hero" role="listitem" data-ticket="early-bird">
-                        <p class="orbit-tix-tag">Early bird · first 25</p>
-                        <p class="orbit-tix-note">Coming soon</p>
-                      </article>
-                      <article class="orbit-day-tix" role="listitem" data-ticket="student">
-                        <p class="orbit-tix-tag">Student</p>
-                        <p class="orbit-tix-note">Coming soon</p>
-                      </article>
-                      <article class="orbit-day-tix" role="listitem" data-ticket="standard">
-                        <p class="orbit-tix-tag">Standard</p>
-                        <p class="orbit-tix-note">Coming soon</p>
-                      </article>
-                    </div>
-                    <!-- Ticket detail overlay -->
-                    <div class="orbit-ticket-detail" id="orbit-ticket-detail" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="orbit-ticket-detail-title">
-                      <div class="orbit-ticket-detail-inner">
-                        <header class="orbit-ticket-detail-header">
-                          <button type="button" class="orbit-ticket-back" id="orbit-ticket-back" aria-label="Back to day view">←</button>
-                          <p class="orbit-ticket-detail-title" id="orbit-ticket-detail-title">Ticket</p>
-                          <span class="orbit-app-winbtns">
-                            <span aria-hidden="true">_ □</span>
-                            <button type="button" class="orbit-ticket-close" id="orbit-ticket-close" aria-label="Close ticket">×</button>
-                          </span>
-                        </header>
-                        <div class="orbit-ticket-detail-body">
-                          <p class="orbit-ticket-detail-price" id="orbit-ticket-detail-price">$0</p>
-                          <p class="orbit-ticket-detail-desc" id="orbit-ticket-detail-desc"></p>
-                          <a class="orbit-ticket-cta" id="orbit-ticket-cta" href="#" target="_blank" rel="noopener">Get ticket</a>
-                        </div>
-                      </div>
+                    <div class="orbit-day-tickets" aria-label="Ticket options">
+                      <a class="orbit-day-tix is-hero" href="https://luma.com/biossphere" target="_blank" rel="noopener" aria-label="Conference tickets on Luma, from 35 Canadian dollars">
+                        <p class="orbit-tix-tag">Conference</p>
+                        <p class="orbit-tix-note">From $35 CAD</p>
+                      </a>
+                      <a class="orbit-day-tix" href="https://luma.com/biossphere" target="_blank" rel="noopener" aria-label="Workshop-only tickets on Luma, from 75 Canadian dollars">
+                        <p class="orbit-tix-tag">Workshop only</p>
+                        <p class="orbit-tix-note">From $75 CAD</p>
+                      </a>
+                      <a class="orbit-day-tix" href="https://luma.com/biossphere" target="_blank" rel="noopener" aria-label="Workshop and BIOS SPHERE combo tickets on Luma, from 100 Canadian dollars">
+                        <p class="orbit-tix-tag">Workshop + BIOS</p>
+                        <p class="orbit-tix-note">From $100 CAD</p>
+                      </a>
                     </div>
                   </div>
                 </div>
                 <p class="orbit-app-footer" aria-hidden="true">
-                  DEVIN · COGNITION · VANSPACE
+                  DEVIN · COGNITION · ORDINARY LABS
                 </p>
               </div>
             </div>
@@ -498,10 +472,10 @@
               <div class="orbit-app-inner">
                 <header class="orbit-app-titlebar">
                   <span class="orbit-app-dot" aria-hidden="true"></span>
-                  <p class="orbit-app-title">C:\VANSPACE\WORKSHOP.EXE</p>
+                  <p class="orbit-app-title">C:\ORDINARY_LABS\WORKSHOP.EXE</p>
                   <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
                 </header>
-                <p class="orbit-app-status">KENT C. DODDS · NOV 2 · 09:00–12:00 · 30 SEATS</p>
+                <p class="orbit-app-status">KENT C. DODDS · NOV 2 · 09:00–12:00 · 100 SEATS</p>
                 <div class="orbit-workshop-body">
                   <figure class="orbit-workshop-portrait">
                     <img src="/kent-koala.webp" alt="Kent C. Dodds with Kody the Koala" width="768" height="547" />
@@ -528,10 +502,11 @@
                       </ol>
                       <dl class="orbit-workshop-facts">
                         <div><dt>When</dt><dd>Nov 2 · 09:00–12:00</dd></div>
-                        <div><dt>Where</dt><dd>Science Theatre</dd></div>
-                        <div><dt>Room</dt><dd>30 participants</dd></div>
+                        <div><dt>Where</dt><dd>Venue announcing soon</dd></div>
+                        <div><dt>Room</dt><dd>100 participants</dd></div>
+                        <div><dt>Price · CAD</dt><dd>$75 Early Bird · $100 Regular</dd></div>
                       </dl>
-                      <a class="orbit-workshop-cta" href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Join workshop waitlist</a>
+                      <button type="button" class="orbit-workshop-cta" data-bios-jump="tickets">See workshop tickets</button>
                       <div class="orbit-workshop-footer">
                         <span>Presented by</span>
                         <img src="/orchid-wordmark-ink.svg" alt="Orchid" width="117" height="28" />
@@ -548,7 +523,7 @@
               <div class="orbit-app-inner">
                 <header class="orbit-app-titlebar">
                   <span class="orbit-app-dot" aria-hidden="true"></span>
-                  <p class="orbit-app-title">C:\VANSPACE\SPONSORS.EXE</p>
+                  <p class="orbit-app-title">C:\ORDINARY_LABS\SPONSORS.EXE</p>
                   <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
                 </header>
                 <p class="orbit-app-status">WITH THANKS · COGNITION · ORCHID</p>
@@ -581,23 +556,64 @@
               <div class="orbit-app-inner">
                 <header class="orbit-app-titlebar">
                   <span class="orbit-app-dot" aria-hidden="true"></span>
-                  <p class="orbit-app-title">C:\VANSPACE\TICKETS.EXE</p>
+                  <p class="orbit-app-title">C:\ORDINARY_LABS\TICKETS.EXE</p>
                   <span class="orbit-app-winbtns" aria-hidden="true">_ □ ×</span>
                 </header>
-                <p class="orbit-app-status">ADMISSION · 2 NOV 2026 · SCIENCE WORLD</p>
+                <p class="orbit-app-status">ONE EVENT · ONE DAY · VANCOUVER</p>
                 <div class="orbit-tickets-page-body">
                   <header class="orbit-page-lead">
-                    <p>Our mission</p>
-                    <h2>Keep great events within reach.</h2>
-                    <span>We want to keep BIOS SPHERE affordable and continue bringing Vancouver the people you genuinely want to hear speak. We can only do that with your support. Thank you.</span>
+                    <p>Ticket options · CAD</p>
+                    <h2>Choose the part of the day that fits you.</h2>
+                    <span>Each Early Bird tier ends when its 25 tickets sell or September 30, 2026 at 11:59 PM Vancouver time, whichever comes first. Registration is live now on Luma.</span>
                   </header>
-                  <div class="orbit-ticket-row">
-                    <div><p>Conference admission</p><strong>Ticket release coming soon</strong><span>One shared programme · 10 amazing presentations · pricing and policies announced at launch</span></div>
-                    <a class="orbit-page-cta" href="mailto:hello@vanspace.dev?subject=BIOS%20SPHERE%20ticket%20updates">Get ticket updates</a>
+                  <div class="orbit-ticket-catalog" id="ticket-options">
+                    <article class="orbit-ticket-product">
+                      <header>
+                        <p>Conference only</p>
+                        <h3>BIOS SPHERE</h3>
+                        <span>13:00–19:00 · Science World · Conference admission</span>
+                      </header>
+                      <dl class="orbit-ticket-tiers">
+                        <div class="is-early"><dt>Early Bird <small>25 tickets</small></dt><dd><strong>$35</strong><small>CAD</small></dd></div>
+                        <div><dt>Regular <small>after Early Bird</small></dt><dd><strong>$50</strong><small>CAD</small></dd></div>
+                      </dl>
+                      <p class="orbit-ticket-boundary">Conference admission · Catering not confirmed</p>
+                    </article>
+                    <article class="orbit-ticket-product">
+                      <header>
+                        <p>Workshop only</p>
+                        <h3>Kent C. Dodds</h3>
+                        <span>09:00–12:00 · Venue announcing soon</span>
+                      </header>
+                      <dl class="orbit-ticket-tiers">
+                        <div class="is-early"><dt>Early Bird <small>25 tickets</small></dt><dd><strong>$75</strong><small>CAD</small></dd></div>
+                        <div><dt>Regular <small>after Early Bird</small></dt><dd><strong>$100</strong><small>CAD</small></dd></div>
+                      </dl>
+                      <p class="orbit-ticket-boundary">Coffee + morning snacks · No conference</p>
+                    </article>
+                    <article class="orbit-ticket-product is-combo">
+                      <header>
+                        <p>Workshop + conference</p>
+                        <h3>Complete day</h3>
+                        <span>One workshop seat + one BIOS SPHERE seat</span>
+                      </header>
+                      <dl class="orbit-ticket-tiers">
+                        <div class="is-early"><dt>Early Bird <small>25 tickets</small></dt><dd><strong>$100</strong><small>CAD</small></dd></div>
+                        <div><dt>Regular <small>after Early Bird</small></dt><dd><strong>$125</strong><small>CAD</small></dd></div>
+                      </dl>
+                      <p class="orbit-ticket-boundary">Coffee + snacks + lunch + conference</p>
+                    </article>
                   </div>
-                  <p class="orbit-ticket-workshop-note"><strong>Kent C. Dodds workshop:</strong> Nov 2 · 09:00–12:00 · separate admission · 30 seats.</p>
+                  <div class="orbit-ticket-policy-note">
+                    <p><strong>Refunds:</strong> full refunds through October 19, 2026 at 11:59 PM Vancouver time. After that, tickets can be transferred but are non-refundable.</p>
+                    <p><strong>Current status:</strong> registration is live on Luma. Choose your ticket there; all prices are in Canadian dollars.</p>
+                  </div>
+                  <div class="orbit-ticket-actions">
+                    <a class="orbit-page-cta" href="https://luma.com/biossphere" target="_blank" rel="noopener">Get tickets on Luma</a>
+                    <a class="orbit-page-cta is-secondary" href="mailto:hello@vanspace.dev?subject=BIOS%20SPHERE%20ticket%20question">Questions about tickets</a>
+                  </div>
                 </div>
-                <p class="orbit-app-footer">PRICING · REFUNDS · LUMA LINK · COMING SOON</p>
+                <p class="orbit-app-footer">REGISTRATION LIVE · CHECKOUT ON LUMA · LIMITED EARLY BIRD</p>
               </div>
             </div>
           </section>
@@ -609,7 +625,7 @@
               <img class="orbit-intro-lockup" src="/bios-sphere-lockup.svg" alt="BIOS SPHERE" width="520" height="96" />
               <p class="orbit-intro-kicker" id="orbit-intro-kicker">BIOS SPHERE · VANCOUVER</p>
               <h2 class="orbit-intro-title" id="orbit-intro-title">
-                Single track. Premium talks. Community prices.
+                A micro-conference with big-conference energy.
               </h2>
               <p class="orbit-intro-mission" id="orbit-intro-mission">
                 One day. One track. A focused room for engineers, designers, and curious people making things.
@@ -624,32 +640,32 @@
                 <div class="orbit-workshop-console-copy">
                   <p>Featured morning workshop</p>
                   <h3>AI-Native Product Development Workshop.</h3>
-                  <span>Kent C. Dodds · Nov 2 · 09:00–12:00 · 30 seats</span>
-                  <a href="mailto:hello@vanspace.dev?subject=Kent%20workshop%20waitlist">Join workshop waitlist</a>
+                  <span>Kent C. Dodds · Nov 2 · 09:00–12:00 · 100 seats</span>
+                  <button type="button" data-bios-jump="tickets">See workshop ticket options</button>
                   <small><span>Presented by</span><img src="/orchid-wordmark-ink.svg" alt="Orchid" width="117" height="28" /></small>
                 </div>
               </aside>
               <div class="orbit-intro-conversion">
                 <dl class="orbit-intro-values">
                   <div><dt>One room</dt><dd>Every session. No conflicts.</dd></div>
-                  <div><dt>10 amazing presentations</dt><dd>Keynotes, talks, and demos.</dd></div>
+                  <div><dt>One shared programme</dt><dd>Talks, demos, and ideas.</dd></div>
                   <div><dt>Science World</dt><dd>A Vancouver landmark.</dd></div>
                 </dl>
                 <div class="orbit-intro-speakers" aria-label="Line-up preview">
                   <article class="is-featured">
-                    <span>Keynote · 17:00</span>
+                    <span>BIOS SPHERE guest · Time TBC</span>
                     <strong>Kent C. Dodds</strong>
-                    <small>45 minutes · no Q&amp;A</small>
+                    <small>Session details announcing soon</small>
                   </article>
                   <article>
-                    <span>Closing · 18:00</span>
-                    <strong>Cognition</strong>
-                    <small>Speaker TBC</small>
+                    <span>Lightning talk · Time TBC</span>
+                    <strong>Michael Yagudaev</strong>
+                    <small>AgentGrid · 20 minutes</small>
                   </article>
                   <article>
-                    <span>Main stage</span>
-                    <strong>Orchid</strong>
-                    <small>Speaker TBC</small>
+                    <span>Full programme</span>
+                    <strong>Announcing soon</strong>
+                    <small>More speakers to come</small>
                   </article>
                 </div>
                 <div class="orbit-intro-actions">
@@ -677,25 +693,25 @@
                 <span>Step into Vancouver’s room for people building what comes next. Hear the systems, failures, demos, and ideas shaping software—then meet the builders turning them into reality.</span>
               </div>
               <dl class="orbit-lineup-values">
-                <div><dt>9 premium talks</dt><dd>Keynotes, talks, and demos</dd></div>
+                <div><dt>One shared programme</dt><dd>Talks, demos, and ideas</dd></div>
                 <div><dt>3-hour AI workshop</dt><dd>Build alongside Kent C. Dodds</dd></div>
               </dl>
               <div class="orbit-lineup-schedule" aria-label="Programme schedule">
-                <div><span>Time TBC</span><strong>Orchid</strong><small>Premium talk</small></div>
-                <div><span>Time TBC</span><strong>AgentGrid</strong><small>Lightning talk · 20 min</small></div>
-                <div><span>Time TBC</span><strong>Session 02</strong><small>Talk</small></div>
-                <div><span>Time TBC</span><strong>Session 03</strong><small>Talk</small></div>
-                <div><span>Time TBC</span><strong>Session 04</strong><small>Talk</small></div>
-                <div><span>Time TBC</span><strong>Session 05</strong><small>Talk</small></div>
-                <div><span>Time TBC</span><strong>Session 06</strong><small>Talk</small></div>
+                <div><span>Time TBC</span><strong>Adam Wazzan</strong><small>Orchid · Main stage</small></div>
+                <div><span>Time TBC</span><strong>Michael Yagudaev</strong><small>AgentGrid · 20 min</small></div>
+                <div><span>Reveal 04</span><strong>Announcing soon</strong><small>Door locked</small></div>
+                <div><span>Reveal 05</span><strong>Announcing soon</strong><small>Door locked</small></div>
+                <div><span>Reveal 06</span><strong>Announcing soon</strong><small>Door locked</small></div>
+                <div><span>Reveal 07</span><strong>Announcing soon</strong><small>Door locked</small></div>
+                <div><span>Reveal 08</span><strong>Announcing soon</strong><small>Door locked</small></div>
               </div>
               <div class="orbit-lineup-feature">
-                <span>17:00 · Keynote</span>
+                <span>Time TBC · BIOS SPHERE guest</span>
                 <strong>Kent C. Dodds</strong>
-                <small>45 minutes · no Q&amp;A</small>
+                <small>The Last Software Developer</small>
               </div>
               <div class="orbit-lineup-schedule" aria-label="Programme closing session">
-                <div><span>18:00</span><strong>Cognition</strong><small>Closing session</small></div>
+                <div><span>Reveal 09</span><strong>Announcing soon</strong><small>Door locked</small></div>
               </div>
             </section>
             <div class="orbit-bsod-inner" id="orbit-bsod-inner">
@@ -711,7 +727,7 @@
           </div>
 
           <!-- BIOS bottom nav — actions inside the double border -->
-          <nav class="orbit-bios-nav" id="orbit-bios-nav" aria-label="VanSpace shortcuts" hidden>
+          <nav class="orbit-bios-nav" id="orbit-bios-nav" aria-label="Ordinary Labs shortcuts" hidden>
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="venue">Venue</button>
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="speakers">Line-up</button>
             <button type="button" class="orbit-bios-nav-btn" data-bios-jump="workshop">Workshop</button>
@@ -729,14 +745,14 @@
     <footer class="site-footer" id="site-footer">
       <div class="site-footer-grid">
         <section class="site-footer-intro" aria-labelledby="site-footer-heading">
-          <a class="site-footer-brand" href="/bios/" aria-label="VanSpace home">
-            <img src="/vanspace-wordmark-v2-reverse.svg" alt="" width="600" height="112" />
+          <a class="site-footer-brand" href="/bios/" aria-label="Ordinary Labs home">
+            <span class="site-footer-brand-wordmark">Ordinary Labs</span>
           </a>
-          <p class="site-footer-kicker">VANSPACE · NONPROFIT INITIATIVE</p>
+          <p class="site-footer-kicker">ORDINARY LABS · COMMUNITY INITIATIVE</p>
           <h2 id="site-footer-heading">Bring the people shaping technology closer to the people building it here.</h2>
           <div class="site-footer-manifesto">
-            <p>VanSpace is a nonprofit initiative working to enrich Vancouver's tech scene. Each quarter, we invite an educator or builder worth learning from, invest in their visit, and create a gathering around them.</p>
-            <p>We exist to close the distance between the people shaping how software is built and the community building it in Vancouver. The goal is more shared knowledge, stronger relationships, and more reasons to come together.</p>
+            <p>Ordinary Labs is a community initiative working to enrich Vancouver's tech scene. Each quarter, we invite an educator or builder worth learning from, invest in their visit, and create a gathering around them.</p>
+            <p>We are building it for public benefit, not profit, and working toward registration as a B.C. non-profit society. The goal is more shared knowledge, stronger relationships, and more reasons to come together.</p>
           </div>
           <a class="site-footer-contact" href="mailto:hello@vanspace.dev">
             <span>Talk to us</span>
@@ -774,7 +790,7 @@
             <span aria-hidden="true">02</span>
           </a>
           <a href="mailto:hello@vanspace.dev">
-            <span>hello@vanspace.dev</span>
+            <span>Email the organizers</span>
             <span aria-hidden="true">↗</span>
           </a>
         </nav>
@@ -786,7 +802,7 @@
           <img src="/cognition-lockup.svg" alt="Cognition" />
         </div>
         <p>One day · One room · Built in Vancouver</p>
-        <p>© 2026 VanSpace.dev</p>
+        <p>© 2026 Ordinary Labs</p>
       </div>
 
       <div class="site-footer-logo" aria-hidden="true">
@@ -794,6 +810,6 @@
       </div>
     </footer>
     <div class="wormhole-transition" id="wormhole-transition" aria-hidden="true"></div>
-    <script src="/orbit-hero.js?v=107" defer></script>
+    <script src="/orbit-hero.js?v=113" defer></script>
   </body>
 </html>

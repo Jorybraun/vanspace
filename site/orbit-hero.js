@@ -1,5 +1,5 @@
 /**
- * VanSpace hero: dithered Science World -> orbit map of the day.
+ * Ordinary Labs hero: dithered Science World -> orbit map of the day.
  *
  * The sketch is Floyd-Steinberg dithered at runtime, so the halftone dots ARE
  * the particles. Scrolling the stage releases them into orbit and inverts the
@@ -50,7 +50,7 @@
   const dayAddressEl = document.getElementById("orbit-day-address");
   const devinLogoEl = document.getElementById("orbit-devin-logo");
   const speakerBack = document.getElementById("orbit-speaker-back");
-  const speakerCards = stage ? stage.querySelectorAll(".orbit-spk:not(.is-tba)") : [];
+  const speakerCards = stage ? stage.querySelectorAll(".orbit-spk[data-speaker-profile]") : [];
   const lineUpPanel = document.getElementById("orbit-lineup-panel");
   const schedulePanel = document.getElementById("orbit-schedule-panel");
   const lineUpTab = document.getElementById("orbit-lineup-tab");
@@ -72,17 +72,9 @@
   const speakerTalkConfirmation = document.getElementById("orbit-speaker-talk-confirmation");
   const speakerDetailBio = document.getElementById("orbit-speaker-detail-bio");
   const speakerLinks = document.getElementById("orbit-speaker-links");
+  const speakerLinkItems = speakerLinks ? Array.from(speakerLinks.querySelectorAll("[data-speaker-link]")) : [];
   const speakersStatus = document.getElementById("orbit-speakers-status");
-  const ticketDetail = document.getElementById("orbit-ticket-detail");
-  const ticketDetailTitle = document.getElementById("orbit-ticket-detail-title");
-  const ticketDetailPrice = document.getElementById("orbit-ticket-detail-price");
-  const ticketDetailDesc = document.getElementById("orbit-ticket-detail-desc");
-  const ticketDetailCta = document.getElementById("orbit-ticket-cta");
-  const ticketBack = document.getElementById("orbit-ticket-back");
-  const ticketClose = document.getElementById("orbit-ticket-close");
-  const ticketCards = stage ? stage.querySelectorAll("[data-ticket]") : [];
   const navEl = document.querySelector(".nav");
-  const TICKETS_LIVE = false;
 
   /* Blue-first: boot on blue → manifesto → scroll modules */
   const BLUE_FIRST = true;
@@ -91,7 +83,7 @@
   const TITLE_BLOCKS = {
     intro: {
       kicker: "BIOS SPHERE · VANCOUVER",
-      title: "Single track. Premium talks. Community prices.",
+      title: "A micro-conference with big-conference energy.",
       mission: "One day. One track. A focused room for engineers, designers, and curious people making things.",
       meta: "Mon 2 Nov 2026 · 13:00–19:00 · Science World"
     },
@@ -105,7 +97,7 @@
       kicker: "KENT C. DODDS · IN VANCOUVER",
       title: "A rare chance to learn with one of the web’s most experienced teachers.",
       mission: "From representing PayPal at TC39 to creating React Testing Library, Kent has spent more than a decade turning deep engineering experience into practical teaching.",
-      meta: "Nov 2 · 09:00–12:00 · Science Theatre"
+      meta: "Nov 2 · 09:00–12:00 · Vancouver venue announcing soon"
     },
     partners: {
       kicker: "WITH GRATITUDE",
@@ -123,10 +115,10 @@
   const BOOT_SCRIPT = [
     "BIOS SPHERE (C) 2026",
     "",
-    "C:\\VANSPACE> boot programme.exe",
+    "C:\\ORDINARY_LABS> boot programme.exe",
     "Loading micro-conference...",
     "  cognition.......... OK",
-    "  keynotes........... OK",
+    "  programme.......... LOADING",
     "  single track....... OK",
     "  Science World...... OK",
     "  2 Nov 2026........ OK",
@@ -176,6 +168,8 @@
   if (biosNav) biosNav.addEventListener("click", handleBiosJump);
   if (introEl) introEl.addEventListener("click", handleBiosJump);
   if (venuePanel) venuePanel.addEventListener("click", handleBiosJump);
+  if (heroCopy) heroCopy.addEventListener("click", handleBiosJump);
+  if (workshopPanel) workshopPanel.addEventListener("click", handleBiosJump);
 
   /* Speakers phase — no public run-of-show until times are real */
   const SCHEDULE_LINES = [
@@ -185,12 +179,11 @@
     "Every speaker gets the whole room.",
     "Everyone leaves with the same signal.",
     "",
-    "ORCHID / PREMIUM TALK",
-    "AGENTGRID / LIGHTNING TALK / 20 MIN",
-    "MORE VOICES LOADING...",
+    "KENT C. DODDS / THE LAST SOFTWARE DEVELOPER / TIME TBC",
+    "ADAM WAZZAN / ORCHID / TIME TBC",
+    "MICHAEL YAGUDAEV / AGENTGRID / 20 MIN",
     "",
-    "17:00 / KENT C. DODDS / KEYNOTE / 45 MIN",
-    "18:00 / COGNITION / CLOSING SESSION"
+    "SIX MORE REVEALS LOADING..."
   ].join("\n");
 
   /* Workshop phase — don't retype the headline */
@@ -380,7 +373,7 @@
   }
 
   /* Live countdown to the event in the Devin CLI header */
-  const EVENT_DATE = new Date("2026-11-02T13:00:00-08:00");
+  const EVENT_DATE = new Date("2026-11-02T13:00:00-07:00");
 
   function formatCountdown(ms) {
     if (ms <= 0) return "resets now";
@@ -448,7 +441,6 @@
     if (bsodEl) bsodEl.scrollTop = 0;
     setDevinMode(next === "workshop");
     updateTitleBlock(next, next !== "boot");
-    if (next !== "intro") closeTicketDetail();
     if (next !== "speakers") closeSpeakerDetail();
     if (next === "intro") {
       introAt = now || performance.now();
@@ -456,11 +448,11 @@
     }
     if (statusEl && next !== "boot") {
       const labels = {
-        intro: "VanSpace",
+        intro: "Ordinary Labs",
         speakers: "Line-up loaded — one stage on the right",
         workshop: "Workshop loaded — AI-Native Product Development Workshop with Kent C. Dodds",
         partners: "Sponsors loaded — Cognition, Orchid, and open partner places",
-        tickets: "Tickets loaded — one conference admission release and separate workshop admission"
+        tickets: "Tickets loaded — conference, workshop only, and workshop plus conference options"
       };
       if (labels[next] && labels[next] !== lastAnnouncedPhase) {
         lastAnnouncedPhase = labels[next];
@@ -487,9 +479,7 @@
   }
 
   function focusMobileDialog(dialog) {
-    if (mobileMedia.matches && dialog) {
-      window.requestAnimationFrame(function () { dialog.focus(); });
-    }
+    if (dialog) window.requestAnimationFrame(function () { dialog.focus(); });
   }
 
   function trapMobileDialogFocus(dialog, event) {
@@ -544,8 +534,8 @@
     speakerDetail.setAttribute("aria-hidden", "true");
     if (speakersPanel) speakersPanel.classList.remove("is-detail");
     stage.classList.remove("is-speaker-detail");
-    if (speakersHeading) speakersHeading.textContent = "C:\\VANSPACE\\SPEAKERS.EXE";
-    if (speakersStatus) speakersStatus.textContent = "LINE-UP · 2 NOV 2026 · ONE STAGE · SCIENCE WORLD";
+    if (speakersHeading) speakersHeading.textContent = "C:\\ORDINARY_LABS\\SPEAKERS.EXE";
+    if (speakersStatus) speakersStatus.textContent = "LINE-UP · 3 REVEALED · 2 NOV 2026 · SCIENCE WORLD";
     setProgrammeView("lineup");
     restoreMobileDialogFocus();
   }
@@ -604,7 +594,25 @@
     if (speakerTalkDuration) speakerTalkDuration.textContent = talkDuration;
     if (speakerTalkConfirmation) speakerTalkConfirmation.textContent = talkStatus;
     if (speakerDetailBio) speakerDetailBio.textContent = bio;
-    if (speakerLinks) speakerLinks.hidden = name !== "Kent C. Dodds";
+    if (speakerLinks) {
+      let visibleLinks = 0;
+      speakerLinkItems.forEach(function (link, index) {
+        const slot = index + 1;
+        const url = card.getAttribute("data-link-" + slot + "-url") || "";
+        const label = card.getAttribute("data-link-" + slot + "-label") || "Link";
+        const title = card.getAttribute("data-link-" + slot + "-title") || url;
+        const labelEl = link.querySelector("span");
+        const titleEl = link.querySelector("strong");
+        link.hidden = !url;
+        if (!url) return;
+        link.href = url;
+        if (labelEl) labelEl.textContent = label;
+        if (titleEl) titleEl.textContent = title;
+        visibleLinks += 1;
+      });
+      speakerLinks.hidden = visibleLinks === 0;
+      speakerLinks.setAttribute("aria-label", "Selected links for " + name);
+    }
     if (speakerDetailPortrait) speakerDetailPortrait.classList.toggle("is-logo", isLogo);
     if (speakerDetailImage && cardImage) {
       speakerDetailImage.src = detailImage || cardImage.currentSrc || cardImage.src;
@@ -612,10 +620,10 @@
     }
     if (speakersPanel) speakersPanel.classList.add("is-detail");
     stage.classList.add("is-speaker-detail");
-    if (speakersHeading) speakersHeading.textContent = "C:\\VANSPACE\\PROFILE.EXE";
+    if (speakersHeading) speakersHeading.textContent = "C:\\ORDINARY_LABS\\PROFILE.EXE";
     if (speakersStatus) speakersStatus.textContent = (talkFormat + " · " + talkDuration + " · SCIENCE THEATRE").toUpperCase();
     if (speakerDetail) {
-      mobileDialogTrigger = card;
+      mobileDialogTrigger = card.querySelector(".orbit-spk-trigger") || card;
       setProgrammeView("lineup");
       speakerDetail.hidden = false;
       speakerDetail.setAttribute("aria-hidden", "false");
@@ -641,7 +649,7 @@
     scheduleBack.addEventListener("click", closeMobileSchedule);
   }
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Tab" && mobileMedia.matches) {
+    if (e.key === "Tab") {
       if (speakerDetail && !speakerDetail.hidden) {
         trapMobileDialogFocus(speakerDetail, e);
         return;
@@ -652,71 +660,20 @@
       }
     }
     if (e.key !== "Escape") return;
-    if (ticketDetail && ticketDetail.classList.contains("is-on")) {
-      closeTicketDetail();
-      return;
-    }
-    if (!mobileMedia.matches) return;
     if (speakerDetail && !speakerDetail.hidden) closeSpeakerDetail();
-    else if (schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
+    else if (mobileMedia.matches && schedulePanel && !schedulePanel.hidden) closeMobileSchedule();
   });
 
   if (speakerCards.length) {
     speakerCards.forEach(function (card) {
-      card.addEventListener("pointerdown", function (e) {
+      const trigger = card.querySelector(".orbit-spk-trigger");
+      if (!trigger) return;
+      trigger.addEventListener("pointerdown", function (e) {
         e.stopPropagation();
       });
-      card.addEventListener("click", function () {
+      trigger.addEventListener("click", function () {
         openSpeakerDetail(card);
       });
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openSpeakerDetail(card);
-        }
-      });
-    });
-  }
-
-  /* ---- Ticket detail overlay in the day panel ------------------------ */
-  function closeTicketDetail() {
-    if (!ticketDetail) return;
-    ticketDetail.classList.remove("is-on");
-    ticketDetail.setAttribute("aria-hidden", "true");
-  }
-
-  function openTicketDetail(card) {
-    if (!TICKETS_LIVE || !ticketDetail || !ticketDetailTitle || !ticketDetailPrice || !ticketDetailDesc || !ticketDetailCta) return;
-    ticketDetailTitle.textContent = card.querySelector(".orbit-tix-tag")?.textContent || "Ticket";
-    ticketDetailPrice.textContent = card.getAttribute("data-price") || "";
-    ticketDetailDesc.textContent = card.getAttribute("data-desc") || "";
-    ticketDetailCta.textContent = card.getAttribute("data-cta") || "Get ticket";
-    ticketDetailCta.href = card.getAttribute("data-luma") || "#";
-    ticketDetail.classList.add("is-on");
-    ticketDetail.setAttribute("aria-hidden", "false");
-  }
-
-  if (TICKETS_LIVE && ticketCards.length) {
-    ticketCards.forEach(function (card) {
-      card.addEventListener("click", function () {
-        openTicketDetail(card);
-      });
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openTicketDetail(card);
-        }
-      });
-      card.setAttribute("tabindex", "0");
-      card.setAttribute("role", "button");
-    });
-  }
-
-  if (ticketBack) ticketBack.addEventListener("click", closeTicketDetail);
-  if (ticketClose) ticketClose.addEventListener("click", closeTicketDetail);
-  if (ticketDetail) {
-    ticketDetail.addEventListener("click", function (e) {
-      if (e.target === ticketDetail) closeTicketDetail();
     });
   }
 
@@ -727,10 +684,9 @@
       r: 0.24,
       tilt: 0.32,
       nodes: [
-        { label: "Orchid", sub: "Premium talk", filled: true },
-        { label: "AgentGrid", sub: "20 min lightning", filled: true },
-        { label: "Kent C. Dodds", sub: "17:00 keynote", filled: true },
-        { label: "Cognition", sub: "18:00 closing", filled: true }
+        { label: "Kent C. Dodds", sub: "BIOS SPHERE guest", filled: true },
+        { label: "Adam Wazzan", sub: "Orchid", filled: true },
+        { label: "Michael Yagudaev", sub: "AgentGrid", filled: true }
       ]
     },
     {
@@ -746,7 +702,7 @@
       ]
     },
     {
-      name: "VanSpace",
+      name: "Ordinary Labs",
       r: 0.58,
       tilt: 0.36,
       nodes: [
