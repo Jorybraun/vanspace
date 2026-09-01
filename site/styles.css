@@ -1909,6 +1909,12 @@ input {
   filter: none;
 }
 
+.orbit-profile-identity.is-contained > img {
+  object-fit: contain;
+  object-position: center;
+  background: #0000aa;
+}
+
 .orbit-profile-identity.is-logo > img {
   width: min(48%, 8rem);
   height: auto;

@@ -577,6 +577,7 @@
     const cardImage = card.querySelector("img");
     const detailImage = card.getAttribute("data-detail-image");
     const isLogo = !!card.querySelector(".orbit-spk-photo.is-logo");
+    const containPortrait = card.getAttribute("data-portrait-fit") === "contain";
 
     if (introKicker) introKicker.textContent = tag.toUpperCase();
     if (introTitle) introTitle.textContent = name;
@@ -613,7 +614,10 @@
       speakerLinks.hidden = visibleLinks === 0;
       speakerLinks.setAttribute("aria-label", "Selected links for " + name);
     }
-    if (speakerDetailPortrait) speakerDetailPortrait.classList.toggle("is-logo", isLogo);
+    if (speakerDetailPortrait) {
+      speakerDetailPortrait.classList.toggle("is-logo", isLogo);
+      speakerDetailPortrait.classList.toggle("is-contained", containPortrait);
+    }
     if (speakerDetailImage && cardImage) {
       speakerDetailImage.src = detailImage || cardImage.currentSrc || cardImage.src;
       speakerDetailImage.alt = detailImage ? name + " with Kody the Koala" : name;
