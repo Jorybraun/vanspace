@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Propose a talk · BIOS SPHERE</title>
+    <meta
+      name="description"
+      content="Submit one talk or demo idea for the BIOS SPHERE afternoon programme at Science World in Vancouver on November 2, 2026."
+    />
+    <meta name="theme-color" content="#0000aa" />
+    <link rel="canonical" href="https://biossphere.dev/propose/" />
+    <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=182" />
+    <style>
+      body.proposal-page {
+        min-height: 100vh;
+        background: #0000aa;
+        color: #fff;
+      }
+
+      .proposal-nav {
+        position: sticky;
+        z-index: 50;
+        top: 0;
+        display: flex;
+        min-height: 4.5rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+        background: rgba(0, 0, 170, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .proposal-brand {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        color: #fff;
+        font: 500 1rem var(--mono);
+        text-decoration: none;
+      }
+
+      .proposal-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .proposal-nav-links a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        color: #fff;
+        font: 500 0.62rem var(--mono);
+        letter-spacing: 0.07em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .proposal-nav-links a[aria-current="page"] {
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .proposal-brand:focus-visible,
+      .proposal-nav-links a:focus-visible,
+      .proposal-form :focus-visible,
+      .proposal-success :focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 3px;
+      }
+
+      .proposal-main {
+        min-height: calc(100vh - 4.5rem);
+      }
+
+      .proposal-hero {
+        display: grid;
+        width: min(100% - 2rem, 76rem);
+        gap: clamp(2rem, 7vw, 6rem);
+        margin-inline: auto;
+        padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 7vw, 5rem);
+      }
+
+      .proposal-kicker,
+      .proposal-section-index,
+      .proposal-field-meta,
+      .proposal-context dt,
+      .proposal-form-header p,
+      .proposal-success-kicker {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .proposal-kicker {
+        margin: 0 0 1rem;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .proposal-hero h1 {
+        max-width: 10ch;
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(3.5rem, 9vw, 7.75rem);
+        font-weight: 500;
+        letter-spacing: -0.065em;
+        line-height: 0.86;
+      }
+
+      .proposal-lede {
+        max-width: 58ch;
+        margin: 1.75rem 0 0;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.55;
+      }
+
+      .proposal-context {
+        align-self: end;
+        margin: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.55);
+        border-left: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .proposal-context > div {
+        display: grid;
+        grid-template-columns: minmax(7rem, 0.4fr) minmax(0, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.55);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .proposal-context dt,
+      .proposal-context dd {
+        margin: 0;
+      }
+
+      .proposal-context dt {
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .proposal-context dd {
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+      .proposal-shell {
+        width: min(100% - 2rem, 76rem);
+        margin: 0 auto clamp(4rem, 9vw, 8rem);
+        border: 1px solid rgba(255, 255, 255, 0.58);
+        background: rgba(0, 0, 100, 0.32);
+      }
+
+      .proposal-form-header {
+        display: grid;
+        gap: 0.75rem;
+        padding: clamp(1.25rem, 4vw, 3rem);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-form-header p,
+      .proposal-form-header h2,
+      .proposal-form-header span {
+        margin: 0;
+      }
+
+      .proposal-form-header p {
+        color: rgba(255, 255, 255, 0.68);
+      }
+
+      .proposal-form-header h2 {
+        max-width: 15ch;
+        font-family: var(--display);
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.92;
+      }
+
+      .proposal-form-header span {
+        max-width: 68ch;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.55;
+      }
+
+      .proposal-form[aria-busy="true"] {
+        cursor: wait;
+      }
+
+      .proposal-section {
+        display: grid;
+        grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
+        gap: clamp(1.25rem, 4vw, 3rem);
+        padding: clamp(1.25rem, 4vw, 3rem);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-section-heading h3,
+      .proposal-section-heading p {
+        margin: 0;
+      }
+
+      .proposal-section-heading h3 {
+        margin-top: 0.6rem;
+        font-family: var(--display);
+        font-size: clamp(1.45rem, 3vw, 2.25rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+
+      .proposal-section-index {
+        color: rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .proposal-field {
+        min-width: 0;
+      }
+
+      .proposal-field.is-wide {
+        grid-column: 1 / -1;
+      }
+
+      .proposal-field > label,
+      .proposal-choice-group legend {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin: 0 0 0.55rem;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .proposal-field-meta {
+        flex: 0 0 auto;
+        color: rgba(255, 255, 255, 0.56);
+        font-size: 0.52rem;
+      }
+
+      .proposal-help {
+        margin: 0.5rem 0 0;
+        color: rgba(255, 255, 255, 0.66);
+        font: 400 0.72rem/1.5 var(--mono);
+      }
+
+      .proposal-field > input,
+      .proposal-field > textarea,
+      .proposal-field > select {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.64);
+        border-radius: 0;
+        background: rgba(0, 0, 70, 0.42);
+        color: #fff;
+        font: inherit;
+      }
+
+      .proposal-field > input,
+      .proposal-field > select {
+        padding: 0.72rem 0.8rem;
+      }
+
+      .proposal-field > textarea {
+        min-height: 9rem;
+        padding: 0.8rem;
+        line-height: 1.5;
+        resize: vertical;
+      }
+
+      .proposal-field > textarea.is-compact {
+        min-height: 6.5rem;
+      }
+
+      .proposal-field > input::placeholder,
+      .proposal-field > textarea::placeholder {
+        color: rgba(255, 255, 255, 0.48);
+      }
+
+      .proposal-field > select option {
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .proposal-field > input[aria-invalid="true"],
+      .proposal-field > textarea[aria-invalid="true"],
+      .proposal-field > select[aria-invalid="true"],
+      .proposal-choice-group[aria-invalid="true"] {
+        border-color: #ffd2d2;
+        box-shadow: inset 0 0 0 2px #ffd2d2;
+      }
+
+      .proposal-choice-group {
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .proposal-choice-group legend {
+        width: 100%;
+      }
+
+      .proposal-choices {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid rgba(255, 255, 255, 0.58);
+        border-left: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-choice {
+        position: relative;
+        display: flex;
+        min-height: 56px;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.8rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.58);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+        cursor: pointer;
+      }
+
+      .proposal-choice:has(input:checked) {
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .proposal-choice input,
+      .proposal-consent input {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex: 0 0 auto;
+        margin: 0;
+        accent-color: #0000aa;
+      }
+
+      .proposal-choice span {
+        font-size: 0.88rem;
+        line-height: 1.3;
+      }
+
+      .proposal-consents {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .proposal-consent {
+        display: flex;
+        min-height: 48px;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-consent:has(input:checked) {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .proposal-consent input {
+        margin-top: 0.15rem;
+      }
+
+      .proposal-consent-copy {
+        min-width: 0;
+      }
+
+      .proposal-consent-copy label {
+        display: flex;
+        min-height: 44px;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 0.92rem;
+        line-height: 1.5;
+        cursor: pointer;
+      }
+
+      .proposal-consent-copy > a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .proposal-consent-copy > span {
+        display: block;
+        margin-top: 0.35rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .proposal-consent-copy > span a {
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .proposal-honeypot {
+        position: fixed;
+        top: -200vh;
+        left: -200vw;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      .proposal-errors {
+        margin: clamp(1.25rem, 4vw, 3rem);
+        padding: 1.1rem;
+        border: 3px double #0000aa;
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .proposal-errors h3,
+      .proposal-errors p,
+      .proposal-errors ul {
+        margin: 0;
+      }
+
+      .proposal-errors h3 {
+        font: 600 1.1rem var(--display);
+      }
+
+      .proposal-errors p {
+        margin-top: 0.35rem;
+      }
+
+      .proposal-errors ul {
+        margin-top: 0.75rem;
+        padding-left: 1.25rem;
+      }
+
+      .proposal-errors a {
+        display: inline-block;
+        min-height: 44px;
+        padding-block: 0.55rem;
+        color: #0000aa;
+        font-weight: 500;
+      }
+
+      .proposal-errors:focus-visible,
+      .proposal-errors a:focus-visible {
+        outline-color: #0000aa;
+      }
+
+      .proposal-submit-area {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: clamp(1.25rem, 4vw, 3rem);
+        align-items: end;
+        padding: clamp(1.25rem, 4vw, 3rem);
+      }
+
+      .proposal-verification {
+        min-width: 0;
+      }
+
+      .proposal-verification-status {
+        max-width: 62ch;
+        margin: 0 0 0.8rem;
+        color: rgba(255, 255, 255, 0.76);
+        font: 400 0.72rem/1.5 var(--mono);
+      }
+
+      .proposal-verification-status[data-state="ready"] {
+        color: #fff;
+      }
+
+      .proposal-verification-status[data-state="error"] {
+        color: #ffd2d2;
+      }
+
+      .proposal-turnstile {
+        min-height: 65px;
+      }
+
+      .proposal-verification-retry,
+      .proposal-submit,
+      .proposal-success-action {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        border: 1px solid #fff;
+        border-radius: 0;
+        font: 500 0.68rem var(--mono);
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .proposal-verification-retry {
+        margin-top: 0.75rem;
+        background: transparent;
+        color: #fff;
+      }
+
+      .proposal-submit {
+        min-width: 13rem;
+        background: #fff;
+        color: #0000aa;
+      }
+
+      .proposal-submit:disabled {
+        background: rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.58);
+        cursor: not-allowed;
+      }
+
+      .proposal-submit.is-submitting::before {
+        content: "";
+        width: 0.8rem;
+        height: 0.8rem;
+        margin-right: 0.55rem;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: proposal-spin 0.75s linear infinite;
+      }
+
+      @keyframes proposal-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .proposal-submit-note {
+        max-width: 34ch;
+        margin: 0.65rem 0 0;
+        color: rgba(255, 255, 255, 0.64);
+        font-size: 0.78rem;
+        line-height: 1.45;
+        text-align: right;
+      }
+
+      .proposal-fallback {
+        margin: 0;
+        padding: 1rem clamp(1.25rem, 4vw, 3rem);
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.82rem;
+      }
+
+      .proposal-fallback a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .proposal-success {
+        margin: clamp(1.25rem, 4vw, 3rem);
+        padding: clamp(1.5rem, 5vw, 4rem);
+        border: 3px double #0000aa;
+        background: #e5e0cf;
+        color: #0000aa;
+      }
+
+      .proposal-success-kicker,
+      .proposal-success h2,
+      .proposal-success p {
+        margin: 0;
+      }
+
+      .proposal-success h2 {
+        max-width: 12ch;
+        margin-top: 0.75rem;
+        font-family: var(--display);
+        font-size: clamp(2.75rem, 7vw, 5.5rem);
+        font-weight: 500;
+        letter-spacing: -0.06em;
+        line-height: 0.9;
+      }
+
+      .proposal-success p:not(.proposal-success-kicker) {
+        max-width: 58ch;
+        margin-top: 1rem;
+        line-height: 1.55;
+      }
+
+      .proposal-success-reference {
+        display: flex;
+        max-width: 44rem;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.8rem;
+        align-items: baseline;
+        padding: 0.8rem;
+        border: 1px solid rgba(0, 0, 170, 0.45);
+        font: 500 0.72rem/1.45 var(--mono);
+      }
+
+      .proposal-success-reference strong {
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .proposal-success-reference code {
+        color: inherit;
+        font: inherit;
+        overflow-wrap: anywhere;
+      }
+
+      .proposal-success-reference span {
+        flex-basis: 100%;
+        font-weight: 400;
+      }
+
+      .proposal-success-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 1.5rem;
+      }
+
+      .proposal-success-action {
+        border-color: #0000aa;
+        background: #0000aa;
+        color: #fff;
+      }
+
+      .proposal-success-action.is-secondary {
+        background: transparent;
+        color: #0000aa;
+      }
+
+      .proposal-success :focus-visible {
+        outline-color: #0000aa;
+      }
+
+      .proposal-page .site-footer {
+        --footer-bg: #050565;
+      }
+
+      @media (min-width: 820px) {
+        .proposal-hero {
+          grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        }
+      }
+
+      @media (max-width: 759px) {
+        .proposal-section {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .proposal-fields,
+        .proposal-submit-area {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .proposal-submit-actions,
+        .proposal-submit {
+          width: 100%;
+        }
+
+        .proposal-submit-note {
+          max-width: none;
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .proposal-nav {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 0.35rem;
+          padding: 0.45rem 0.75rem 0.6rem;
+        }
+
+        .proposal-brand {
+          min-height: 36px;
+        }
+
+        .proposal-nav-links {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .proposal-nav-links a {
+          min-width: 0;
+          padding-inline: 0.25rem;
+          font-size: 0.52rem;
+        }
+
+        .proposal-hero,
+        .proposal-shell {
+          width: min(100% - 1.5rem, 76rem);
+        }
+
+        .proposal-hero {
+          padding-top: 3.5rem;
+        }
+
+        .proposal-hero h1 {
+          font-size: clamp(3.25rem, 18vw, 4.75rem);
+          overflow-wrap: anywhere;
+        }
+
+        .proposal-context > div {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 0.35rem;
+        }
+
+        .proposal-choices {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .proposal-submit.is-submitting::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="proposal-page">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="proposal-nav">
+      <a class="proposal-brand" href="/bios/">Ordinary Labs</a>
+      <nav class="proposal-nav-links" aria-label="Primary">
+        <a href="/bios/">BIOS SPHERE</a>
+        <a href="/propose/" aria-current="page">Propose a talk</a>
+        <a href="/conduct/">Code of Conduct</a>
+      </nav>
+    </header>
+
+    <main class="proposal-main" id="main">
+      <header class="proposal-hero">
+        <div>
+          <p class="proposal-kicker">BIOS SPHERE · AFTERNOON PROGRAMME</p>
+          <h1>Bring one idea worth sharing.</h1>
+          <p class="proposal-lede">
+            Propose one talk or demo for November 2 at Science World. We are
+            looking for useful, grounded ideas for Vancouver's builders—not a
+            polished conference performance.
+          </p>
+        </div>
+        <dl class="proposal-context">
+          <div>
+            <dt>The room</dt>
+            <dd>One stage, one shared programme, 13:00–19:00.</dd>
+          </div>
+          <div>
+            <dt>What helps</dt>
+            <dd>A clear takeaway grounded in work, research, or lived experience.</dd>
+          </div>
+          <div>
+            <dt>The fit</dt>
+            <dd>A useful idea—not a company overview or sales pitch.</dd>
+          </div>
+          <div>
+            <dt>What happens</dt>
+            <dd>We review the idea and contact you if it may fit the programme.</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="proposal-shell" aria-labelledby="proposal-heading">
+        <header class="proposal-form-header">
+          <p>One form · One idea</p>
+          <h2 id="proposal-heading">Tell us what the room could learn.</h2>
+          <span id="proposal-form-intro">
+            Submitting does not guarantee a programme place. We have not set a
+            submission deadline. Final format, logistics, recording, and any
+            support are discussed before either side commits. Required fields
+            are marked below.
+          </span>
+        </header>
+
+        <form
+          class="proposal-form"
+          id="proposal-form"
+          action="/api/talk-proposals"
+          method="post"
+          aria-describedby="proposal-form-intro"
+          novalidate
+        >
+          <input id="proposal-started-at" name="startedAt" type="hidden" value="" />
+          <div class="proposal-honeypot" aria-hidden="true">
+            <label for="proposal-website">Leave this field empty</label>
+            <input
+              id="proposal-website"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div
+            class="proposal-errors"
+            id="proposal-errors"
+            role="alert"
+            aria-live="assertive"
+            tabindex="-1"
+            hidden
+          >
+            <h3 id="proposal-error-heading">Check the form</h3>
+            <p id="proposal-error-message">Some information needs your attention.</p>
+            <ul id="proposal-error-list"></ul>
+          </div>
+
+          <section class="proposal-section" aria-labelledby="proposal-about-heading">
+            <header class="proposal-section-heading">
+              <p class="proposal-section-index">01 · About you</p>
+              <h3 id="proposal-about-heading">Who should we contact?</h3>
+            </header>
+            <div class="proposal-fields">
+              <div class="proposal-field">
+                <label for="proposal-name">
+                  <span>Name</span>
+                  <span class="proposal-field-meta">Required</span>
+                </label>
+                <input
+                  id="proposal-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  minlength="2"
+                  maxlength="100"
+                  data-error-required="Enter your name."
+                  data-error-min="Enter at least two characters for your name."
+                  required
+                />
+              </div>
+              <div class="proposal-field">
+                <label for="proposal-email">
+                  <span>Email</span>
+                  <span class="proposal-field-meta">Required</span>
+                </label>
+                <input
+                  id="proposal-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  maxlength="254"
+                  data-error-required="Enter your email address."
+                  data-error-type="Enter an email address like name@example.com."
+                  required
+                />
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-city">
+                  <span>City or region</span>
+                  <span class="proposal-field-meta">Optional</span>
+                </label>
+                <input
+                  id="proposal-city"
+                  name="cityRegion"
+                  type="text"
+                  autocomplete="address-level2"
+                  maxlength="120"
+                  placeholder="Vancouver, BC"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="proposal-section" aria-labelledby="proposal-idea-heading">
+            <header class="proposal-section-heading">
+              <p class="proposal-section-index">02 · The idea</p>
+              <h3 id="proposal-idea-heading">What will people leave with?</h3>
+            </header>
+            <div class="proposal-fields">
+              <div class="proposal-field is-wide">
+                <label for="proposal-title">
+                  <span>Working title</span>
+                  <span class="proposal-field-meta">Required · 120 max</span>
+                </label>
+                <input
+                  id="proposal-title"
+                  name="workingTitle"
+                  type="text"
+                  minlength="5"
+                  maxlength="120"
+                  data-error-required="Enter a working title."
+                  data-error-min="Use at least five characters for the working title."
+                  required
+                />
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-format">
+                  <span>Format preference</span>
+                  <span class="proposal-field-meta">Required</span>
+                </label>
+                <select
+                  id="proposal-format"
+                  name="formatPreference"
+                  data-error-required="Choose a format preference."
+                  required
+                >
+                  <option value="">Choose a format</option>
+                  <option value="talk-20">20-minute talk</option>
+                  <option value="demo-20">20-minute demo</option>
+                  <option value="feature-30">30-minute feature</option>
+                  <option value="open">Open to fit</option>
+                </select>
+                <p class="proposal-help">A preference, not a final slot or duration.</p>
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-takeaway">
+                  <span>One-sentence takeaway</span>
+                  <span class="proposal-field-meta">Required · 240 max</span>
+                </label>
+                <input
+                  id="proposal-takeaway"
+                  name="takeaway"
+                  type="text"
+                  minlength="20"
+                  maxlength="240"
+                  data-error-required="Write the one sentence you want people to remember."
+                  data-error-min="Make the takeaway a complete sentence of at least 20 characters."
+                  placeholder="After this session, people will be able to…"
+                  required
+                />
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-abstract">
+                  <span>Abstract</span>
+                  <span class="proposal-field-meta">Required · 1,800 max</span>
+                </label>
+                <textarea
+                  id="proposal-abstract"
+                  name="abstract"
+                  minlength="80"
+                  maxlength="1800"
+                  data-error-required="Describe the idea and how you would share it."
+                  data-error-min="Give us at least 80 characters about the idea and its shape."
+                  aria-describedby="proposal-abstract-help"
+                  required
+                ></textarea>
+                <p class="proposal-help" id="proposal-abstract-help">
+                  Explain the problem, argument, story, or demo arc in plain language.
+                </p>
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-grounding">
+                  <span>Grounding or evidence</span>
+                  <span class="proposal-field-meta">Required · 1,200 max</span>
+                </label>
+                <textarea
+                  class="is-compact"
+                  id="proposal-grounding"
+                  name="groundingEvidence"
+                  minlength="20"
+                  maxlength="1200"
+                  data-error-required="Tell us what experience or evidence grounds this idea."
+                  data-error-min="Use at least 20 characters to explain what grounds the idea."
+                  aria-describedby="proposal-grounding-help"
+                  required
+                ></textarea>
+                <p class="proposal-help" id="proposal-grounding-help">
+                  This can be shipped work, a failure, research, an experiment, or lived experience.
+                </p>
+              </div>
+              <div class="proposal-field is-wide">
+                <label for="proposal-links">
+                  <span>Links</span>
+                  <span class="proposal-field-meta">Optional · 2 max</span>
+                </label>
+                <textarea
+                  class="is-compact"
+                  id="proposal-links"
+                  name="links"
+                  maxlength="500"
+                  data-validate="urls"
+                  aria-describedby="proposal-links-help"
+                  placeholder="https://example.com/your-work"
+                ></textarea>
+                <p class="proposal-help" id="proposal-links-help">
+                  Up to two public URLs, one per line. A past talk is welcome but not required.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="proposal-section" aria-labelledby="proposal-recording-heading">
+            <header class="proposal-section-heading">
+              <p class="proposal-section-index">03 · Recording</p>
+              <h3 id="proposal-recording-heading">Share a preference.</h3>
+            </header>
+            <div class="proposal-fields">
+              <fieldset
+                class="proposal-choice-group proposal-field is-wide"
+                id="proposal-recording-group"
+                aria-describedby="proposal-recording-help"
+              >
+                <legend>
+                  <span>Recording preference</span>
+                  <span class="proposal-field-meta">Required</span>
+                </legend>
+                <div class="proposal-choices">
+                  <label class="proposal-choice" for="proposal-recording-yes">
+                    <input
+                      id="proposal-recording-yes"
+                      name="recordingPreference"
+                      type="radio"
+                      value="yes"
+                      data-error-required="Choose a recording preference."
+                      required
+                    />
+                    <span>Yes</span>
+                  </label>
+                  <label class="proposal-choice" for="proposal-recording-discuss">
+                    <input
+                      id="proposal-recording-discuss"
+                      name="recordingPreference"
+                      type="radio"
+                      value="discuss"
+                      data-error-required="Choose a recording preference."
+                      required
+                    />
+                    <span>Let's discuss</span>
+                  </label>
+                  <label class="proposal-choice" for="proposal-recording-no">
+                    <input
+                      id="proposal-recording-no"
+                      name="recordingPreference"
+                      type="radio"
+                      value="no"
+                      data-error-required="Choose a recording preference."
+                      required
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+                <p class="proposal-help" id="proposal-recording-help">
+                  This is a preference, not a recording release. If selected, any recording terms
+                  will be discussed and agreed separately.
+                </p>
+              </fieldset>
+            </div>
+          </section>
+
+          <section class="proposal-section" aria-labelledby="proposal-consent-heading">
+            <header class="proposal-section-heading">
+              <p class="proposal-section-index">04 · Agreement</p>
+              <h3 id="proposal-consent-heading">Make the room safe and the review clear.</h3>
+            </header>
+            <div class="proposal-consents">
+              <div class="proposal-consent">
+                <input
+                  id="proposal-conduct"
+                  name="conductAccepted"
+                  type="checkbox"
+                  value="true"
+                  data-error-required="Accept the BIOS SPHERE Code of Conduct."
+                  required
+                />
+                <div class="proposal-consent-copy">
+                  <label for="proposal-conduct">I have read and accept the BIOS SPHERE Code of Conduct.</label>
+                  <a href="/conduct/" target="_blank" rel="noopener">Open the Code of Conduct in a new tab</a>
+                </div>
+              </div>
+              <div class="proposal-consent">
+                <input
+                  id="proposal-privacy"
+                  name="privacyConsent"
+                  type="checkbox"
+                  value="true"
+                  data-error-required="Consent to the stated proposal review and contact use."
+                  required
+                />
+                <div class="proposal-consent-copy">
+                  <label for="proposal-privacy">
+                    I consent to the Ordinary Labs programme team using this information only to
+                    review my BIOS SPHERE proposal and contact me about it—not for marketing.
+                  </label>
+                  <span>
+                    Request an update or deletion at
+                    <a href="mailto:hello@vanspace.dev">hello@vanspace.dev</a>.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="proposal-submit-area">
+            <div class="proposal-verification">
+              <p
+                class="proposal-verification-status"
+                id="proposal-verification-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                tabindex="-1"
+                data-state="loading"
+              >
+                Preparing human verification…
+              </p>
+              <div class="proposal-turnstile" id="proposal-turnstile"></div>
+              <button
+                class="proposal-verification-retry"
+                id="proposal-verification-retry"
+                type="button"
+                hidden
+              >
+                Try verification again
+              </button>
+            </div>
+            <div class="proposal-submit-actions">
+              <button
+                class="proposal-submit"
+                id="proposal-submit"
+                type="submit"
+                aria-describedby="proposal-submit-note proposal-verification-status"
+                disabled
+              >
+                Submit talk idea
+              </button>
+              <p class="proposal-submit-note" id="proposal-submit-note">
+                You will see a confirmation here. Submission is not programme acceptance.
+              </p>
+            </div>
+          </div>
+
+          <noscript>
+            <p class="proposal-fallback">
+              JavaScript is required for spam protection. You can still
+              <a href="mailto:hello@vanspace.dev?subject=BIOS%20SPHERE%20talk%20idea">email your idea to the organizers</a>.
+            </p>
+          </noscript>
+          <p class="proposal-fallback">
+            Form not working?
+            <a href="mailto:hello@vanspace.dev?subject=BIOS%20SPHERE%20talk%20idea">Email your idea to hello@vanspace.dev</a>.
+          </p>
+          <p class="sr-only" id="proposal-submit-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        </form>
+
+        <section
+          class="proposal-success"
+          id="proposal-success"
+          aria-labelledby="proposal-success-heading"
+          tabindex="-1"
+          hidden
+        >
+          <p class="proposal-success-kicker">Submission received</p>
+          <h2 id="proposal-success-heading">Your idea is in.</h2>
+          <p>
+            Thank you. The Ordinary Labs programme team will review it for the November 2
+            afternoon programme and contact you if it may fit. This confirmation is not an
+            acceptance.
+          </p>
+          <p class="proposal-success-reference">
+            <strong>Proposal reference</strong>
+            <code id="proposal-reference">Not provided—use your email and working title.</code>
+            <span>Quote this when requesting an update or deletion.</span>
+          </p>
+          <div class="proposal-success-actions">
+            <button class="proposal-success-action" id="proposal-submit-another" type="button">
+              Submit another idea
+            </button>
+            <a
+              class="proposal-success-action is-secondary"
+              href="mailto:hello@vanspace.dev?subject=BIOS%20SPHERE%20proposal%20update"
+            >
+              Update by email
+            </a>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer">
+      <div class="site-footer-grid">
+        <section class="site-footer-intro" aria-labelledby="site-footer-heading">
+          <a class="site-footer-brand" href="/bios/" aria-label="Ordinary Labs home">
+            <span class="site-footer-brand-wordmark">Ordinary Labs</span>
+          </a>
+          <p class="site-footer-kicker">ORDINARY LABS · COMMUNITY INITIATIVE</p>
+          <h2 id="site-footer-heading">Bring the people shaping technology closer to the people building it here.</h2>
+          <div class="site-footer-manifesto">
+            <p>Ordinary Labs is a community initiative working to enrich Vancouver's tech scene. Each quarter, we invite an educator or builder worth learning from, invest in their visit, and create a gathering around them.</p>
+            <p>We are building it for public benefit, not profit, and working toward registration as a B.C. non-profit society. The goal is more shared knowledge, stronger relationships, and more reasons to come together.</p>
+          </div>
+          <a class="site-footer-contact" href="mailto:hello@vanspace.dev">
+            <span>Talk to us</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </section>
+
+        <section class="site-footer-event" aria-labelledby="site-footer-event-heading">
+          <p class="site-footer-label">The gathering</p>
+          <h3 id="site-footer-event-heading">BIOS SPHERE</h3>
+          <dl>
+            <div>
+              <dt>When</dt>
+              <dd>November 2, 2026</dd>
+            </div>
+            <div>
+              <dt>Where</dt>
+              <dd>Science World</dd>
+            </div>
+            <div>
+              <dt>City</dt>
+              <dd>Vancouver, BC</dd>
+            </div>
+          </dl>
+        </section>
+
+        <nav class="site-footer-nav" aria-label="Footer">
+          <p class="site-footer-label">Explore</p>
+          <a href="/bios/">
+            <span>BIOS SPHERE</span>
+            <span aria-hidden="true">01</span>
+          </a>
+          <a href="/propose/" aria-current="page">
+            <span>Propose a talk</span>
+            <span aria-hidden="true">02</span>
+          </a>
+          <a href="/conduct/">
+            <span>Code of Conduct</span>
+            <span aria-hidden="true">03</span>
+          </a>
+          <a href="mailto:hello@vanspace.dev">
+            <span>Email the organizers</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="site-footer-utility">
+        <div class="site-footer-presented">
+          <span>Presented by</span>
+          <img src="/cognition-lockup.svg?v=2" alt="Cognition" />
+        </div>
+        <p>One day · One room · Built in Vancouver</p>
+        <p>© 2026 Ordinary Labs</p>
+      </div>
+
+      <div class="site-footer-logo" aria-hidden="true">
+        <img src="/bios-sphere-lockup.svg" alt="" width="520" height="96" />
+      </div>
+    </footer>
+
+    <script src="/proposal-form.js?v=1" defer></script>
+  </body>
+</html>

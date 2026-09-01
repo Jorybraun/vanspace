@@ -1,0 +1,54 @@
+{
+  "name": "biossphere-talk-proposals",
+  "main": "talk-proposals-worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "biossphere.dev/api/talk-proposals",
+      "zone_name": "biossphere.dev"
+    },
+    {
+      "pattern": "vanspace.dev/api/talk-proposals",
+      "zone_name": "vanspace.dev"
+    },
+    {
+      "pattern": "www.vanspace.dev/api/talk-proposals",
+      "zone_name": "vanspace.dev"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "PROPOSALS_DB",
+      "database_name": "biossphere-talk-proposals",
+      "database_id": "eacb4355-31b3-4b4a-b7f4-461aed770759"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "PROPOSAL_NOTIFICATIONS",
+      "allowed_destination_addresses": ["hello@vanspace.dev"],
+      "allowed_sender_addresses": ["proposals@vanspace.dev"]
+    }
+  ],
+  "vars": {
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAEkQNyCJV3tProrR",
+    "PROPOSAL_FROM_EMAIL": "proposals@vanspace.dev",
+    "PROPOSAL_NOTIFICATION_EMAIL": "hello@vanspace.dev"
+  },
+  "secrets": {
+    "required": ["TURNSTILE_SECRET_KEY"]
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.05
+    }
+  }
+}
