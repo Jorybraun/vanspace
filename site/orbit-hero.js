@@ -182,8 +182,10 @@
     "KENT C. DODDS / THE LAST SOFTWARE DEVELOPER / TIME TBC",
     "ADAM WAZZAN / ORCHID / TIME TBC",
     "MICHAEL YAGUDAEV / AGENTGRID / 20 MIN",
+    "JOSEPH ALESSIO / COGNITION / TIME TBC",
+    "ANGEL / FIRESIDE CONVERSATION / TIME TBC",
     "",
-    "SIX MORE REVEALS LOADING..."
+    "FOUR MORE REVEALS LOADING..."
   ].join("\n");
 
   /* Workshop phase — don't retype the headline */
@@ -535,7 +537,7 @@
     if (speakersPanel) speakersPanel.classList.remove("is-detail");
     stage.classList.remove("is-speaker-detail");
     if (speakersHeading) speakersHeading.textContent = "C:\\ORDINARY_LABS\\SPEAKERS.EXE";
-    if (speakersStatus) speakersStatus.textContent = "LINE-UP · 3 REVEALED · 2 NOV 2026 · SCIENCE WORLD";
+    if (speakersStatus) speakersStatus.textContent = "LINE-UP · 5 REVEALED · 2 NOV 2026 · SCIENCE WORLD";
     setProgrammeView("lineup");
     restoreMobileDialogFocus();
   }
@@ -690,7 +692,9 @@
       nodes: [
         { label: "Kent C. Dodds", sub: "BIOS SPHERE guest", filled: true },
         { label: "Adam Wazzan", sub: "Orchid", filled: true },
-        { label: "Michael Yagudaev", sub: "AgentGrid", filled: true }
+        { label: "Michael Yagudaev", sub: "AgentGrid", filled: true },
+        { label: "Joseph Alessio", sub: "Cognition", filled: true },
+        { label: "Angel", sub: "Fireside conversation", filled: true }
       ]
     },
     {
