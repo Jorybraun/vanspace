@@ -165,6 +165,8 @@
       link.textContent = error.message;
       link.addEventListener("click", function (event) {
         event.preventDefault();
+        const disclosure = error.field.closest("details");
+        if (disclosure) disclosure.open = true;
         error.field.focus();
       });
       item.appendChild(link);
@@ -412,6 +414,9 @@
 
   function startAnotherProposal() {
     form.reset();
+    form.querySelectorAll("details[open]").forEach(function (disclosure) {
+      disclosure.open = false;
+    });
     clearValidationState();
     setStartedAt();
     if (successPanel) successPanel.hidden = true;

@@ -267,6 +267,58 @@
         font: 400 0.72rem/1.5 var(--mono);
       }
 
+      .proposal-optional-details {
+        grid-column: 1 / -1;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
+      .proposal-optional-details > summary {
+        display: flex;
+        min-height: 64px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.85rem;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .proposal-optional-details > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .proposal-optional-details > summary::after {
+        content: "+";
+        flex: 0 0 auto;
+        color: #fff;
+        font: 400 1.5rem/1 var(--mono);
+      }
+
+      .proposal-optional-details[open] > summary::after {
+        content: "−";
+      }
+
+      .proposal-optional-summary-copy {
+        display: grid;
+        gap: 0.25rem;
+      }
+
+      .proposal-optional-summary-copy strong {
+        color: #fff;
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+
+      .proposal-optional-summary-copy span {
+        color: rgba(255, 255, 255, 0.66);
+        font: 400 0.68rem/1.45 var(--mono);
+      }
+
+      .proposal-optional-fields {
+        padding: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.58);
+      }
+
       .proposal-field > input,
       .proposal-field > textarea,
       .proposal-field > select {
@@ -785,13 +837,11 @@
 
       <section class="proposal-shell" aria-labelledby="proposal-heading">
         <header class="proposal-form-header">
-          <p>One form · One idea</p>
+          <p>One form · A few minutes</p>
           <h2 id="proposal-heading">Tell us what the room could learn.</h2>
           <span id="proposal-form-intro">
-            Submitting does not guarantee a programme place. We have not set a
-            submission deadline. Final format, logistics, recording, and any
-            support are discussed before either side commits. Required fields
-            are marked below.
+            Share a rough idea—we'll follow up if it may fit. Nothing here locks
+            in the final format or recording. Required fields are marked.
           </span>
         </header>
 
@@ -831,7 +881,7 @@
           <section class="proposal-section" aria-labelledby="proposal-about-heading">
             <header class="proposal-section-heading">
               <p class="proposal-section-index">01 · About you</p>
-              <h3 id="proposal-about-heading">Who should we contact?</h3>
+              <h3 id="proposal-about-heading">How can we reach you?</h3>
             </header>
             <div class="proposal-fields">
               <div class="proposal-field">
@@ -868,20 +918,6 @@
                   required
                 />
               </div>
-              <div class="proposal-field is-wide">
-                <label for="proposal-city">
-                  <span>City or region</span>
-                  <span class="proposal-field-meta">Optional</span>
-                </label>
-                <input
-                  id="proposal-city"
-                  name="cityRegion"
-                  type="text"
-                  autocomplete="address-level2"
-                  maxlength="120"
-                  placeholder="Vancouver, BC"
-                />
-              </div>
             </div>
           </section>
 
@@ -908,27 +944,8 @@
                 />
               </div>
               <div class="proposal-field is-wide">
-                <label for="proposal-format">
-                  <span>Format preference</span>
-                  <span class="proposal-field-meta">Required</span>
-                </label>
-                <select
-                  id="proposal-format"
-                  name="formatPreference"
-                  data-error-required="Choose a format preference."
-                  required
-                >
-                  <option value="">Choose a format</option>
-                  <option value="talk-20">20-minute talk</option>
-                  <option value="demo-20">20-minute demo</option>
-                  <option value="feature-30">30-minute feature</option>
-                  <option value="open">Open to fit</option>
-                </select>
-                <p class="proposal-help">A preference, not a final slot or duration.</p>
-              </div>
-              <div class="proposal-field is-wide">
                 <label for="proposal-takeaway">
-                  <span>One-sentence takeaway</span>
+                  <span>What should people leave knowing?</span>
                   <span class="proposal-field-meta">Required · 240 max</span>
                 </label>
                 <input
@@ -945,7 +962,7 @@
               </div>
               <div class="proposal-field is-wide">
                 <label for="proposal-abstract">
-                  <span>Abstract</span>
+                  <span>Tell us about the idea</span>
                   <span class="proposal-field-meta">Required · 1,800 max</span>
                 </label>
                 <textarea
@@ -964,7 +981,7 @@
               </div>
               <div class="proposal-field is-wide">
                 <label for="proposal-grounding">
-                  <span>Grounding or evidence</span>
+                  <span>What is it based on?</span>
                   <span class="proposal-field-meta">Required · 1,200 max</span>
                 </label>
                 <textarea
@@ -979,92 +996,127 @@
                   required
                 ></textarea>
                 <p class="proposal-help" id="proposal-grounding-help">
-                  This can be shipped work, a failure, research, an experiment, or lived experience.
+                  Shipped work, research, an experiment, a failure, or lived experience all count.
                 </p>
               </div>
-              <div class="proposal-field is-wide">
-                <label for="proposal-links">
-                  <span>Links</span>
-                  <span class="proposal-field-meta">Optional · 2 max</span>
-                </label>
-                <textarea
-                  class="is-compact"
-                  id="proposal-links"
-                  name="links"
-                  maxlength="500"
-                  data-validate="urls"
-                  aria-describedby="proposal-links-help"
-                  placeholder="https://example.com/your-work"
-                ></textarea>
-                <p class="proposal-help" id="proposal-links-help">
-                  Up to two public URLs, one per line. A past talk is welcome but not required.
-                </p>
-              </div>
-            </div>
-          </section>
 
-          <section class="proposal-section" aria-labelledby="proposal-recording-heading">
-            <header class="proposal-section-heading">
-              <p class="proposal-section-index">03 · Recording</p>
-              <h3 id="proposal-recording-heading">Share a preference.</h3>
-            </header>
-            <div class="proposal-fields">
-              <fieldset
-                class="proposal-choice-group proposal-field is-wide"
-                id="proposal-recording-group"
-                aria-describedby="proposal-recording-help"
-              >
-                <legend>
-                  <span>Recording preference</span>
-                  <span class="proposal-field-meta">Required</span>
-                </legend>
-                <div class="proposal-choices">
-                  <label class="proposal-choice" for="proposal-recording-yes">
+              <details class="proposal-optional-details">
+                <summary>
+                  <span class="proposal-optional-summary-copy">
+                    <strong>Optional details</strong>
+                    <span>Format, location, links, and recording</span>
+                  </span>
+                </summary>
+                <div class="proposal-fields proposal-optional-fields">
+                  <div class="proposal-field">
+                    <label for="proposal-city">
+                      <span>City or region</span>
+                      <span class="proposal-field-meta">Optional</span>
+                    </label>
                     <input
-                      id="proposal-recording-yes"
-                      name="recordingPreference"
-                      type="radio"
-                      value="yes"
-                      data-error-required="Choose a recording preference."
-                      required
+                      id="proposal-city"
+                      name="cityRegion"
+                      type="text"
+                      autocomplete="address-level2"
+                      maxlength="120"
+                      placeholder="Vancouver, BC"
                     />
-                    <span>Yes</span>
-                  </label>
-                  <label class="proposal-choice" for="proposal-recording-discuss">
-                    <input
-                      id="proposal-recording-discuss"
-                      name="recordingPreference"
-                      type="radio"
-                      value="discuss"
-                      data-error-required="Choose a recording preference."
+                  </div>
+                  <div class="proposal-field">
+                    <label for="proposal-format">
+                      <span>Format preference</span>
+                      <span class="proposal-field-meta">Optional to change</span>
+                    </label>
+                    <select
+                      id="proposal-format"
+                      name="formatPreference"
+                      data-error-required="Choose a format preference."
                       required
-                    />
-                    <span>Let's discuss</span>
-                  </label>
-                  <label class="proposal-choice" for="proposal-recording-no">
-                    <input
-                      id="proposal-recording-no"
-                      name="recordingPreference"
-                      type="radio"
-                      value="no"
-                      data-error-required="Choose a recording preference."
-                      required
-                    />
-                    <span>No</span>
-                  </label>
+                    >
+                      <option value="open" selected>Open to fit</option>
+                      <option value="talk-20">20-minute talk</option>
+                      <option value="demo-20">20-minute demo</option>
+                      <option value="feature-30">30-minute feature</option>
+                    </select>
+                    <p class="proposal-help">A preference, not a final slot or duration.</p>
+                  </div>
+                  <div class="proposal-field is-wide">
+                    <label for="proposal-links">
+                      <span>Links</span>
+                      <span class="proposal-field-meta">Optional · 2 max</span>
+                    </label>
+                    <textarea
+                      class="is-compact"
+                      id="proposal-links"
+                      name="links"
+                      maxlength="500"
+                      data-validate="urls"
+                      aria-describedby="proposal-links-help"
+                      placeholder="https://example.com/your-work"
+                    ></textarea>
+                    <p class="proposal-help" id="proposal-links-help">
+                      Up to two public URLs, one per line. A past talk is welcome but not required.
+                    </p>
+                  </div>
+                  <fieldset
+                    class="proposal-choice-group proposal-field is-wide"
+                    id="proposal-recording-group"
+                    aria-describedby="proposal-recording-help"
+                  >
+                    <legend>
+                      <span>Recording preference</span>
+                      <span class="proposal-field-meta">Optional to change</span>
+                    </legend>
+                    <div class="proposal-choices">
+                      <label class="proposal-choice" for="proposal-recording-yes">
+                        <input
+                          id="proposal-recording-yes"
+                          name="recordingPreference"
+                          type="radio"
+                          value="yes"
+                          data-error-required="Choose a recording preference."
+                          required
+                        />
+                        <span>Yes</span>
+                      </label>
+                      <label class="proposal-choice" for="proposal-recording-discuss">
+                        <input
+                          id="proposal-recording-discuss"
+                          name="recordingPreference"
+                          type="radio"
+                          value="discuss"
+                          data-error-required="Choose a recording preference."
+                          required
+                          checked
+                        />
+                        <span>Let's discuss</span>
+                      </label>
+                      <label class="proposal-choice" for="proposal-recording-no">
+                        <input
+                          id="proposal-recording-no"
+                          name="recordingPreference"
+                          type="radio"
+                          value="no"
+                          data-error-required="Choose a recording preference."
+                          required
+                        />
+                        <span>No</span>
+                      </label>
+                    </div>
+                    <p class="proposal-help" id="proposal-recording-help">
+                      This is a preference, not a recording release. If selected, any recording
+                      terms will be discussed and agreed separately.
+                    </p>
+                  </fieldset>
                 </div>
-                <p class="proposal-help" id="proposal-recording-help">
-                  This is a preference, not a recording release. If selected, any recording terms
-                  will be discussed and agreed separately.
-                </p>
-              </fieldset>
+              </details>
             </div>
           </section>
 
           <section class="proposal-section" aria-labelledby="proposal-consent-heading">
             <header class="proposal-section-heading">
-              <p class="proposal-section-index">04 · Agreement</p>
-              <h3 id="proposal-consent-heading">Make the room safe and the review clear.</h3>
+              <p class="proposal-section-index">03 · Agreement</p>
+              <h3 id="proposal-consent-heading">Before you submit.</h3>
             </header>
             <div class="proposal-consents">
               <div class="proposal-consent">
@@ -1138,7 +1190,7 @@
                 Submit talk idea
               </button>
               <p class="proposal-submit-note" id="proposal-submit-note">
-                You will see a confirmation here. Submission is not programme acceptance.
+                You'll see a confirmation here. We'll contact you if the idea may fit.
               </p>
             </div>
           </div>

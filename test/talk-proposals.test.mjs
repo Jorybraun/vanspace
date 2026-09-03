@@ -319,6 +319,24 @@ describe("talk proposal request handler", { concurrency: false }, () => {
     assert.deepEqual(JSON.parse(insert.values[11]), input.links);
   });
 
+  test("streamlined defaults work without optional location or links", async (t) => {
+    const database = createD1();
+    stubSuccessfulTurnstile(t);
+    const input = validProposal();
+    delete input.cityRegion;
+    delete input.links;
+
+    const response = await submitJson(input, createEnv({ database }));
+
+    assert.equal(response.status, 201);
+    const insert = database.calls.find((call) => call.sql.includes("INSERT INTO"));
+    assert.ok(insert);
+    assert.equal(insert.values[5], null);
+    assert.equal(insert.values[7], "open");
+    assert.equal(insert.values[11], "[]");
+    assert.equal(insert.values[12], "discuss");
+  });
+
   test("equivalent normalized proposals produce the same content hash", async (t) => {
     const firstDatabase = createD1();
     const secondDatabase = createD1();
@@ -506,7 +524,7 @@ function validProposal() {
     email: "Ada@Example.com",
     cityRegion: "Vancouver, BC",
     workingTitle: "How real systems fail in production",
-    formatPreference: "talk-20",
+    formatPreference: "open",
     takeaway:
       "Attendees will leave with a practical checklist they can use tomorrow.",
     abstract:
